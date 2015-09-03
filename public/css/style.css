@@ -1,6 +1,15 @@
 .h6-custom{
   font-size: 11px;
 }
+.h4-custom{
+    padding: 12px;
+}
+.form-horizontal .control-label {
+    text-align: left;
+}
+.i-custom{
+    font-weight: normal;
+}
 body{
     /*background: #ECECEE;*/
 }
@@ -48,3 +57,12 @@ body{
 .navbar-custom .icon-bar {
     background-color:#33aa33;
 }
+hr{
+    border: none;
+    height: 4px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+
+}
+.ui-helper-clearfix { display:none; }

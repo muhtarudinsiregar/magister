@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<title>Home</title>
 </head>
@@ -9,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<nav class="navbar navbar-default navbar-custom" role="navigation">
+				<nav class="navbar navbar-default" role="navigation">
 
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -60,7 +61,7 @@
 							</li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
-			</nav>
+				</nav>
 			</div>
 		</div>
 		<div class="row">
@@ -68,7 +69,17 @@
 		</div>
 	</div>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
+	<script>
+		$(function() {
+			$( "#tanggalLahir" ).datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange: '1945:2015'
+			});
+		});
+	</script>
 </body>
 </html>	
