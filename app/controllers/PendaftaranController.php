@@ -22,7 +22,22 @@ class PendaftaranController extends \BaseController {
 	{
 		return View::make('pendaftaran.pendidikan');
 	}
-
+	public function pekerjaan()
+	{
+		return View::make('pendaftaran.pekerjaan');
+	}
+	public function pendanaan_beasiswa()
+	{
+		return View::make('pendaftaran.pendanaan_beasiswa');
+	}
+	public function kontak_darurat()
+	{
+		return View::make('pendaftaran.kontak_darurat');
+	}
+	public function jadwal_tes()
+	{
+		return View::make('pendaftaran.jadwal_tes');
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /pendaftaran/create

@@ -22,4 +22,8 @@ Route::resource('register', 'RegistersController');
 Route::resource('articles', "ArticlesController");
 Route::get('data-pribadi', "PendaftaranController@data_pribadi");
 Route::get('pendidikan', "PendaftaranController@pendidikan");
+Route::get('pekerjaan', "PendaftaranController@pekerjaan");
+Route::get('beasiswa', "PendaftaranController@pendanaan_beasiswa");
+Route::get('kontak-darurat',"PendaftaranController@kontak_darurat");
+Route::get('jadwal-tes',"PendaftaranController@jadwal_tes");
 Route::resource('pendaftaran', "PendaftaranController");

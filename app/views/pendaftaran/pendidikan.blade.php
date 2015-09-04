@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
 <div class="col-lg-12">
-	<div class="col-lg-10 div col-lg-offset-1">
+	<div class="col-lg-10 col-lg-offset-1">
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4>Langkah 3 : Pendidikan Sebelumnya</h4>
@@ -97,6 +97,7 @@
 			<div class="form-group">
 				<div class="col-sm-3">
 					<button type="submit" class="btn btn-primary">Tambah Profesi </button>
+					<p>di klik bis nambah 2 input diatas</p>
 				</div>
 			</div>
 
