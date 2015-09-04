@@ -103,7 +103,23 @@
 			};
 
 		});
+		$("#pernyataan").click(function(){
+			if ($(this).is(':checked'))
+			{
+				$('#buttonPernyataan :button').prop('disabled', false);
+			}
+			else
+			{
+				$('#buttonPernyataan #kirim').prop('disabled', true);
+			};
 
+		});
+		
+		var asosiasi = $("#asosiasi");
+		var no_anggota = $("#no_anggota");
+		$("#tambahProfesi").click(function(){
+			
+		})
 	</script>
 </body>
 </html>	

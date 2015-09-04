@@ -38,6 +38,14 @@ class PendaftaranController extends \BaseController {
 	{
 		return View::make('pendaftaran.jadwal_tes');
 	}
+	public function pernyataan()
+	{
+		return View::make('pendaftaran.pernyataan');
+	}
+	public function konfirmasi()
+	{
+		return View::make('pendaftaran.konfirmasi');
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /pendaftaran/create

@@ -1,1 +1,0 @@
-C:\wamp\www\magister\app/views/articles/create.blade.php

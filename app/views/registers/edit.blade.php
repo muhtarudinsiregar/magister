@@ -1,1 +1,0 @@
-C:\wamp\www\magister\app/views/registers/edit.blade.php
