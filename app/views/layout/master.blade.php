@@ -72,54 +72,6 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
-	<script type="text/javascript">
-		$(function() {
-			$( "#tanggalLahir" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: '1945:2015'
-			});
-		});
-		
-		$("#statusKerja").click(function(){
-			if ($(this).is(':checked'))
-			{
-				$('#inputPekerjaan :input').prop('disabled', true);
-			}
-			else
-			{
-				$('#inputPekerjaan :input').prop('disabled', false);
-			};
-
-		});
-		$("#pilihJadwal").click(function(){
-			if ($(this).is(':checked'))
-			{
-				$('#tanggalTes :input').prop('disabled', false);
-			}
-			else
-			{
-				$('#tanggalTes :input').prop('disabled', true);
-			};
-
-		});
-		$("#pernyataan").click(function(){
-			if ($(this).is(':checked'))
-			{
-				$('#buttonPernyataan :button').prop('disabled', false);
-			}
-			else
-			{
-				$('#buttonPernyataan #kirim').prop('disabled', true);
-			};
-
-		});
-		
-		var asosiasi = $("#asosiasi");
-		var no_anggota = $("#no_anggota");
-		$("#tambahProfesi").click(function(){
-			
-		})
-	</script>
+		@yield('script')
 </body>
 </html>	

@@ -94,29 +94,26 @@
 			</div>
 			<div id="riwayat">
 				<div class="form-group">
-					<label for="" class="col-sm-2 control-label">Posisi </label>
-					<div class="col-sm-4">
+					<label for="" class="col-sm-1 control-label">Posisi </label>
+					<div class="col-sm-2">
 						<input type="text" name="" id="input" class="form-control" required="required">
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="col-sm-2 control-label">Institusi </label>
-					<div class="col-sm-4">
-						<input type="text" name="" id="input" class="form-control" required="required">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="col-sm-2 control-label">Masa Kerja </label>
-					<div class="col-lg-2">
-						<input type="text" name="" id="input" class="form-control" required="required">
-					</div>
-					<label for="" class="col-sm-2 control-label">tahun</label>
-				</div>
-				<div class="form-group">
+					<label for="" class="col-sm-1 control-label">Institusi </label>
 					<div class="col-sm-3">
-						<button type="button" class="btn btn-default">Tambah Pekerjaan</button>
+						<input type="text" name="" id="input" class="form-control" required="required">
 					</div>
+					<label for="" class="col-sm-2 control-label">Masa Kerja </label>
+					<div class="col-lg-1">
+						<input type="text" name="" id="input" class="form-control" required="required">
+					</div>
+					<label for="" class="col-sm-1 control-label">tahun</label>
 				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-3">
+					<button type="button" class="btn btn-default" id="tambahPekerjaan">Tambah Pekerjaan</button>
+				</div>
+			</div>
 			</div>
 			{{-- butttonnnnnnnnnnnnnnnnnnnnnnnnnnn --}}
 			<div class="form-group">
@@ -128,9 +125,19 @@
 		</form>
 	</div>
 </div>
-<script>
-	
-
+@stop
+@section('script')
+<script type="text/javascript">
+	$(function() {		
+		$("#tambahPekerjaan ").click(function(e){
+                e.preventDefault();
+                $("#riwayat").append('<div class="form-group"><label for="" class="col-sm-1 control-label">Posisi </label><div class="col-sm-2"><input type="text" name="" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">Institusi </label><div class="col-sm-3"><input type="text" name="" id="input" class="form-control" required="required"></div><label for="" class="col-sm-2 control-label">Masa Kerja </label><div class="col-lg-1"><input type="text" name="" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">tahun</label><button class="btn btn-danger" type="button" id="hapusPekerjaan"><i class="glyphicon glyphicon-remove"></i></button></div>');
+            });
+            $(document).on("click","#hapusPekerjaan",function(){
+                $(this).parent().remove();
+            });
+	});	
 </script>
+
 @stop
 

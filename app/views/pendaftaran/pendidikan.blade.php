@@ -81,25 +81,21 @@
 				<label for="" class="col-sm-4 control-label	i-custom">Keanggotaan asosiasi profesi (jika ada)</label>
 			</div>
 
-			<div id="tambahAsosiasi">
+			<div id="profesi">
 				<div class="form-group">
-					<label for="tahun_akademik" class="col-sm-2 control-label" id="">Asosiasi  </label>
-					<div class="col-sm-4">
-						<input type="text" name="" id="input" class="form-control" id="asosiasi">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
-					<div class="col-sm-4">
-						<input type="text" name="" id="input" class="form-control" id="no_anggota">
-					</div>
+						<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
+						<div class="col-sm-3">
+							<input type="text" name="" id="input" class="form-control" id="asosiasi">
+						</div>
+						<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
+						<div class="col-sm-2" id="no_anggota">
+							<input type="text" name="" id="input" class="form-control" id="no_anggota">
+						</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-3">
-					<button type="button" class="btn btn-primary" id="#tambahProfesi">Tambah Profesi </button>
-					<p>di klik bis nambah 2 input diatas</p>
+					<button type="button" class="btn btn-primary" id="tambahProfesi">Tambah Profesi </button>
 				</div>
 			</div>
 
