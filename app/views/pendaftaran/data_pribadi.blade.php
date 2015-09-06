@@ -163,4 +163,13 @@
 		</form>
 	</div>
 </div>		
+@stop
+@section('script')
+	<script>
+	$(function(){
+		$("input[type='radio']").change(function(){
+			$('input[type=radio]:checked').not(this).prop('checked', false);
+		})
+	});
+	</script>
 @stop	

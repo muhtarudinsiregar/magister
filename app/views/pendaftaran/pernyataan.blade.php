@@ -19,7 +19,7 @@
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-7 i-custom control-label">
-					<i>Klik tombol Sebelumnya untuk memeriksa kembali data isian anda.</i>
+					<i>Klik tombol <strong>Sebelumnya</strong> untuk memeriksa kembali data isian anda.</i>
 				</label>
 			</div>
 			<div class="form-group">

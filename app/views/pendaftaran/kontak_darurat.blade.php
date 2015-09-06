@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="form-group">	
-				<label for="input" class="col-sm-2 control-label">Beasiswa</label>
+				<label for="input" class="col-sm-2 control-label">Hubungan *</label>
 				<div class="col-sm-3">
 					<select name="" id="input" class="form-control" required="required">
 						<option value=""></option>

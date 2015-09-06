@@ -34,16 +34,19 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Tanggal tes </label>
 					<div class="col-sm-3">
-						<input type="text" name="" id="input" class="form-control" required="required" disabled="disabled">
+						<input type="text" name="" id="inputTanggal" class="form-control" required="required" disabled="disable" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Pukul </label>
 					<div class="col-sm-3">
-						<select name="" id="input" class="form-control" required="required" disabled="disabled">
+						<select name="" id="input" class="form-control" required="required" disabled="disable">
 							<option value=""></option>
+							<option value="">Pagi:09.00 - 11.00 </option>
+							<option value="">Siang: 13.00 - 15.00 </option>
 						</select>
 					</div>
+					<label for="tahun_akademik" class="col-sm-2 control-label">WIB </label>
 				</div>
 			</div>
 			<div class="form-group">
@@ -55,4 +58,13 @@
 		</form>
 	</div>
 </div>
+@stop
+@section('script')
+	<script>
+		$(function() {
+			$( "#inputTanggal" ).datepicker({
+				changeMonth: true
+			});
+		});
+	</script>
 @stop

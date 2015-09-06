@@ -18,8 +18,6 @@ Route::get('/', function()
 	return View::make('hello');
 });
 Route::get('create', 'RegistersController@create');
-Route::resource('register', 'RegistersController');
-Route::resource('articles', "ArticlesController");
 Route::get('data-pribadi', "PendaftaranController@data_pribadi");
 Route::get('pendidikan', "PendaftaranController@pendidikan");
 Route::get('pekerjaan', "PendaftaranController@pekerjaan");
