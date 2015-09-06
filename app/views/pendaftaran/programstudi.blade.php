@@ -4,7 +4,7 @@
 		<div class="col-lg-10 col-lg-offset-1">
 			<form action="" method="POST" class="form-horizontal" role="form">
 				<div class="form-group">
-					<h4 class="">Langkah 1 : Program Studi</h4>
+					<h4 class=""><strong>Langkah 1 : Program Studi</strong></h4>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Tahun Akademik</label>
@@ -42,6 +42,7 @@
 					<label for="program" class="col-sm-2 control-label">Konsentrasi</label>
 					<div class="col-sm-4">
 						<select name="" id="input" class="form-control" required="required">
+							<option value="Forensika Digital"></option>
 							<option value="Forensika Digital">Forensika Digital</option>
 							<option value="Informatika Medis">Informatika Medis</option>
 						</select>

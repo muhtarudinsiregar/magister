@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4>Langkah 8 : Pernyataan</h4>
+				<h4><strong>Langkah 8 : Pernyataan</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-7 i-custom control-label"><i>Mohon pastikan bahwa data yang anda masukkan sudah benar. </i></label>

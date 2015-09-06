@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4>Langkah 5 : Pendanaan Beasiswa</h4>
+				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>

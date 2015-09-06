@@ -9,6 +9,10 @@ class PendaftaranController extends \BaseController {
 	 * @return Response
 	 */
 	
+	public function beranda()
+	{
+		return View::make('pendaftaran.beranda');
+	}
 	public function index()
 	{
 		return View::make('pendaftaran.programstudi');
@@ -45,6 +49,10 @@ class PendaftaranController extends \BaseController {
 	public function konfirmasi()
 	{
 		return View::make('pendaftaran.konfirmasi');
+	}
+	public function tes()
+	{
+		return View::make('basic-disabletabclick');
 	}
 	/**
 	 * Show the form for creating a new resource.

@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4>Langkah 2 : Data Pribadi</h4>
+				<h4><strong>Langkah 2 : Data Pribadi</strong></h4>
 			</div>
 			{{--================================Data Pribadi===================================================  --}}
 			<div class="form-group">
@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Pin* </label>
 				<div class="col-sm-3">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="password" name="" id="input" class="form-control" required="required">
 				</div>
 				<label for="tahun_akademik" class="col-sm-2 col-sm-offset-1 control-label i-custom"><i>Angka 4 digit</i></label>
 			</div>

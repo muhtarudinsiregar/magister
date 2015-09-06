@@ -5,7 +5,7 @@
 
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4>Langkah 7 : Jadwal Tes</h4>
+				<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-7 i-custom control-label"><i>Jadwal tes bersifat tentatif. Kepastian jadwal pasti akan kami konfirmasikan melalui email/no. handphone anda. </i></label>

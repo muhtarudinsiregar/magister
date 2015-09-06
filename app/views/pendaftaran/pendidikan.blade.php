@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4>Langkah 3 : Pendidikan Sebelumnya</h4>
+				<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 			</div>
 			
 			<div class="form-group">
