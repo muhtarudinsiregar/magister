@@ -1,0 +1,1 @@
+C:\wamp\www\magister\app/views/Pekerjaans/show.blade.php

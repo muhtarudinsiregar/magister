@@ -1,48 +1,32 @@
 <?php
 
-class PendaftaranController extends \BaseController {
+class JadwalTesController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pendaftaran
+	 * GET /jadwaltes
 	 *
 	 * @return Response
 	 */
-	
-	public function beranda()
-	{
-		return View::make('pendaftaran.beranda');
-	}
 	public function index()
-	{
-		// return View::make('pendaftaran.programstudi');
-	}
-	public function pernyataan()
-	{
-		return View::make('pendaftaran.pernyataan');
-	}
-	public function konfirmasi()
-	{
-		return View::make('pendaftaran.konfirmasi');
-	}
-	public function tes()
-	{
-		return View::make('basic-disabletabclick');
-	}
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /pendaftaran/create
-	 *
-	 * @return Response
-	 */
-	public function create()
 	{
 		//
 	}
 
 	/**
+	 * Show the form for creating a new resource.
+	 * GET /jadwaltes/create
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return View::make('jadwaltes.create');
+	}
+
+	/**
 	 * Store a newly created resource in storage.
-	 * POST /pendaftaran
+	 * POST /jadwaltes
 	 *
 	 * @return Response
 	 */
@@ -53,7 +37,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /pendaftaran/{id}
+	 * GET /jadwaltes/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -65,7 +49,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pendaftaran/{id}/edit
+	 * GET /jadwaltes/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -77,7 +61,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pendaftaran/{id}
+	 * PUT /jadwaltes/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -89,7 +73,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pendaftaran/{id}
+	 * DELETE /jadwaltes/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

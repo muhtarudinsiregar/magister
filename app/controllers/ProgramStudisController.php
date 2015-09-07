@@ -1,59 +1,47 @@
 <?php
 
-class PendaftaranController extends \BaseController {
+class ProgramStudisController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pendaftaran
+	 * GET /programstudis
 	 *
 	 * @return Response
 	 */
-	
-	public function beranda()
-	{
-		return View::make('pendaftaran.beranda');
-	}
 	public function index()
 	{
-		// return View::make('pendaftaran.programstudi');
+		
 	}
-	public function pernyataan()
-	{
-		return View::make('pendaftaran.pernyataan');
-	}
-	public function konfirmasi()
-	{
-		return View::make('pendaftaran.konfirmasi');
-	}
-	public function tes()
-	{
-		return View::make('basic-disabletabclick');
-	}
+
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /pendaftaran/create
+	 * GET /programstudis/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+		$data = [
+			'jurusan' => ProgramStudi::prodi(),
+			'konsentrasi' => ProgramStudi::konsentrasi()
+		];
+		return View::make('programstudis.create')->with('data',$data);
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /pendaftaran
+	 * POST /programstudis
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
+		var_dump(Input::all());
 	}
 
 	/**
 	 * Display the specified resource.
-	 * GET /pendaftaran/{id}
+	 * GET /programstudis/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -65,7 +53,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pendaftaran/{id}/edit
+	 * GET /programstudis/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -77,7 +65,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pendaftaran/{id}
+	 * PUT /programstudis/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -89,7 +77,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pendaftaran/{id}
+	 * DELETE /programstudis/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

@@ -1,0 +1,1 @@
+C:\wamp\www\magister\app/views/Pendidikans/index.blade.php

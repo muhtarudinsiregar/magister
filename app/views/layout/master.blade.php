@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<title>Home</title>
 </head>
@@ -56,9 +57,10 @@
 			@yield('content')
 		</div>
 	</div>
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-ui.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.chained.min.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 		@yield('script')
 </body>

@@ -19,14 +19,16 @@ Route::get('/', function()
 });
 
 Route::get('beranda', "PendaftaranController@beranda");
-Route::get('programstudi', "PendaftaranController@index");
-Route::get('data-pribadi', "PendaftaranController@data_pribadi");
-Route::get('pendidikan', "PendaftaranController@pendidikan");
-Route::get('pekerjaan', "PendaftaranController@pekerjaan");
-Route::get('pendanaan', "PendaftaranController@pendanaan_beasiswa");
-Route::get('kontak',"PendaftaranController@kontak_darurat");
-Route::get('jadwal',"PendaftaranController@jadwal_tes");
+Route::get('programstudi', "ProgramStudisController@create");
+Route::get('data-pribadi', "DataPribadisController@create");
+Route::get('pendidikan', "PendidikansController@create");
+Route::get('pekerjaan', "PekerjaansController@create");
+Route::get('pendanaan', "PendanaansController@create");
+Route::get('kontak',"KontaksController@create");
+Route::get('jadwal',"JadwalTesController@create");
 Route::get('pernyataan',"PendaftaranController@pernyataan");
 Route::get('konfirmasi',"PendaftaranController@konfirmasi");
 Route::get('tes',"PendaftaranController@tes");
 Route::resource('pendaftaran', "PendaftaranController");
+Route::resource('programstudis', "ProgramStudisController");
+Route::resource('kontaks', "KontaksController");
