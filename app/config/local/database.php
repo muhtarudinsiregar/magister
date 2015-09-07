@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'siamb',
+			'database'  => 'siamb2',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

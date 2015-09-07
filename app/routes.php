@@ -32,3 +32,4 @@ Route::get('tes',"PendaftaranController@tes");
 Route::resource('pendaftaran', "PendaftaranController");
 Route::resource('programstudis', "ProgramStudisController");
 Route::resource('kontaks', "KontaksController");
+Route::resource('pendidikans', "PendidikansController");

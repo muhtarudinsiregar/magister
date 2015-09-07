@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		<form action="" method="POST" class="form-horizontal" role="form">
+		<form action="{{ url('pendidikans') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 			</div>
@@ -11,10 +11,10 @@
 				<label for="program" class="col-sm-2 control-label">Jenjang *</label>
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> S1
+						<input type="radio" name="jnjg" id="inlineRadio1" value="S1"> S1
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> D4
+						<input type="radio" name="jnjg" id="inlineRadio1" value="D4"> D4
 					</label>
 				</div>
 			</div>
@@ -22,18 +22,17 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Program Studi* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="prgrmstd" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Akreditasi * </label>
 				<div class="col-sm-2">
-					<select name="" id="input" class="form-control" required="required">
-						<option value="">A</option>
-						<option value="">B</option>
-						<option value="">C</option>
-						<option value="">Tidak terakreditasi</option>
+					<select name="akrdts" id="input" class="form-control" required="required">
+						@foreach ($akreditasi as $element)
+							<option value="{{ $element->id }}">{{ $element->akreditasi }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -41,37 +40,37 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Perguruan Tinggi* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="pt" id="input" class="form-control" required="required">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tahun masuk* </label>
 				<div class="col-sm-2">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="thmsk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tahun lulus* </label>
 				<div class="col-sm-2">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="thlls" id="input" class="form-control" required="required">
 				</div>
 			</div>
 		
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">No. ijazah  </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="noijzh" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">IPK* </label>
 				<div class="col-sm-2">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="ipk" id="input" class="form-control" required="required">
 				</div>
 				<label for="tahun_akademik" class="col-sm-1 control-label">Skala* </label>
 				<div class="col-sm-2">
-					<input type="text" name="" id="input" class="form-control" required="required" value="4">
+					<input type="text" name="skala" id="input" class="form-control" required="required" value="4">
 				</div>
 			</div>
 
@@ -85,11 +84,11 @@
 				<div class="form-group">
 						<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
 						<div class="col-sm-3">
-							<input type="text" name="" id="input" class="form-control" id="asosiasi">
+							<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi">
 						</div>
 						<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
 						<div class="col-sm-2" id="no_anggota">
-							<input type="text" name="" id="input" class="form-control" id="no_anggota">
+							<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota">
 						</div>
 				</div>
 			</div>

@@ -21,7 +21,8 @@ class PendidikansController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('Pendidikans.create');
+		$akreditasi = Pendidikan::akreditasi();
+		return View::make('Pendidikans.create')->with('akreditasi',$akreditasi);
 	}
 
 	/**
@@ -32,7 +33,31 @@ class PendidikansController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$validator = Validator::make($data = Input::all(), Pendidikan::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+
+        }
+        var_dump(Input::all());
+
+        $user = new Pendidikan;
+        $user->id_pendaftar = 1;
+        $user->jenjang = Input::get('jnjg');
+        $user->programStudi = Input::get('prgrmstd');
+        $user->akreditasi = Input::get('akrdts');
+        $user->kotakab = Input::get('pt');
+        $user->negara = Input::get('thmsk');
+        $user->noTelepon = Input::get('thlls');
+        $user->propinsi = Input::get('noijzh');
+        $user->email = Input::get('ipk');
+        $user->email = Input::get('skala');
+
+        $user->save();
+        return Redirect::to('pendidikan');
+
+        // line utk perulangan profesi
 	}
 
 	/**
