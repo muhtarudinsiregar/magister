@@ -1,16 +1,28 @@
 @extends('layout.master')
 @section('content')
+@if (Session::has('validator'))
+	{{ $validator }}
+@endif
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		<form action="" method="POST" class="form-horizontal" role="form">
+		<form action="{{ url('datapribadis') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 2 : Data Pribadi</strong></h4>
 			</div>
+			<?php if ($errors->has()): ?>
+					<div class="alert alert-danger">
+					<ul class="square">
+						<?php foreach ($errors->all() as $error): ?>
+							<li><?php echo $error; ?></li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			<?php endif ?>
 			{{--================================Data Pribadi===================================================  --}}
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Email* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="mail" id="input" class="form-control" required="required">
 				</div>
 				<label for="tahun_akademik" class="col-sm-5 control-label i-custom"><i>Email digunakan untuk login ke sistem ini</i></label>
 			</div>
@@ -18,7 +30,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Pin* </label>
 				<div class="col-sm-3">
-					<input type="password" name="" id="input" class="form-control" required="required">
+					<input type="password" name="pin" id="input" class="form-control" required="required">
 				</div>
 				<label for="tahun_akademik" class="col-sm-2 col-sm-offset-1 control-label i-custom"><i>Angka 4 digit</i></label>
 			</div>
@@ -26,21 +38,21 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Nama* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="nm" id="input" class="form-control" required="required">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tempat Lahir* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="tlhr" id="input" class="form-control" required="required">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tanggal Lahir* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="tanggalLahir" class="form-control" required="required">
+					<input type="text" name="tglhr" id="tanggalLahir" class="form-control" required="required">
 				</div>
 			</div>
 
@@ -48,10 +60,10 @@
 				<label for="program" class="col-sm-2 control-label">Jenis Kelamin</label>
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Pria
+						<input type="radio" name="jk" id="inlineRadio1" value="option1"> Pria
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Wanita
+						<input type="radio" name="jk" id="inlineRadio1" value="option1"> Wanita
 					</label>
 				</div>
 			</div>
@@ -59,7 +71,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Agama * </label>
 				<div class="col-sm-3">
-					<select name="" id="input" class="form-control" required="required">
+					<select name="agama" id="input" class="form-control" required="required">
 						@foreach ($agama as $element)
 							<option value="{{ $element->id }}">{{ $element->agama }}</option>
 						@endforeach
@@ -70,7 +82,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">No. handphone* </label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control"required="required">
+					<input type="text" name="no_hp" id="input" class="form-control"required="required">
 				</div>
 			</div>
 
@@ -86,25 +98,25 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Alamat</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="almtYk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Kabupaten/Kota</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="kotakabYk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No. telepon</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="no_telYk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="" id="dalamYogya" value="option1"> Sekarang tinggal di Yogyakarta
+						<input type="radio" name="tinggalYk" id="dalamYogya" value="y"> Sekarang tinggal di Yogyakarta
 					</label>
 				</div>
 			</div>
@@ -119,38 +131,38 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Alamat</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="almtNyk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Kabupaten/Kota</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="kotakabNyk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Propinsi</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="Nyk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Negara</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required" value="Indonesia">
+					<input type="text" name="neg" id="input" class="form-control" required="required" value="Indonesia">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No. telepon</label>
 				<div class="col-sm-4">
-					<input type="text" name="" id="input" class="form-control" required="required">
+					<input type="text" name="no_telNyk" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="" id="luarYogya" value="option1"> Sekarang tinggal di luar Yogyakarta
+						<input type="radio" name="tinggalLuarYk" id="luarYogya" value="y"> Sekarang tinggal di luar Yogyakarta
 					</label>
 				</div>
 			</div>

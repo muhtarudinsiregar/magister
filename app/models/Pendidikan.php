@@ -13,8 +13,8 @@ class Pendidikan extends \Eloquent {
 		'noijzh' => 'required',
 		'ipk' => 'required',
 		'skala' => 'required'
-		'asosiasi' => 'required',
-		'no_anggota' => 'required'
+		// 'asosiasi' => 'required',
+		// 'no_anggota' => 'required'
 	];
 	public static function akreditasi()
 	{

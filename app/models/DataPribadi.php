@@ -2,7 +2,8 @@
 
 class DataPribadi extends \Eloquent {
 	protected $fillable = [];
-
+	protected $table = '';
+	public static $rules = [];
 
 	public static function agama()
 	{

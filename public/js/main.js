@@ -57,7 +57,7 @@ $(document).ready(function()
         });
         $("#tambahProfesi ").click(function(e){
                 e.preventDefault();
-                $("#profesi").append('<div class="form-group"><label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="" id="input" class="form-control" id="asosiasi"></div><label for="tahun_akademik" class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Remove</button></div>');
+                $("#profesi").append('<div class="form-group"><label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi"></div><label for="" class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Remove</button></div>');
             });
             $(document).on("click","#hapusProfesi",function(){
                 $(this).parent().remove();

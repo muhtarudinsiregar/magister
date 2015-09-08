@@ -2,7 +2,7 @@
 
 class ProgramStudi extends \Eloquent {
 	protected $fillable = [];
-
+	public static $rules = [];
 	public static function prodi()
 	{
 		return DB::table('programstudi')->get();

@@ -21,7 +21,8 @@ class PendanaansController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pendanaans.create');
+		$beasiswa = Pendanaan::beasiswa();
+		return View::make('pendanaans.create')->withBeasiswa($beasiswa);
 	}
 
 	/**
@@ -32,7 +33,32 @@ class PendanaansController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$validator = Validator::make($data = Input::all(), Pendanaan::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+
+        }
+        var_dump(Input::all());
+
+        // $dana = new Pendanaan;
+        // $dana->id_pendaftar = 1;
+        // $dana->jenjang = Input::get('dana');
+        // $dana->programStudi = Input::get('beasiswa');
+        // $dana->sponsor = Input::get('pemberi');
+        // $dana->alamat = Input::get('almt');
+        // $dana->kotakab = Input::get('kotakab');
+        // $dana->propinsi = Input::get('prop');
+        // $dana->negara = Input::get('neg');
+        // $dana->noTelepon = Input::get('notel');
+        // $dana->noFaksimili = Input::get('nofax');
+        // $dana->email = Input::get('mail');
+        // $dana->statusBeasiswa = Input::get('sttsbea');
+
+        // $dana->save();
+        // return Redirect::to('kontak');
+
 	}
 
 	/**

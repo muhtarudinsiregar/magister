@@ -40,7 +40,7 @@ class KontaksController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        var_dump(Input::all());
+        // var_dump(Input::all());
         // Kontak::create($data);
         $user = new Kontak;
         $user->id_pendaftar = 1;
@@ -54,7 +54,7 @@ class KontaksController extends \BaseController {
         $user->email = Input::get('email');
 
         $user->save();
-        return Redirect::to('kontaks');
+        // return Redirect::to('kontaks');
 	}
 
 	/**

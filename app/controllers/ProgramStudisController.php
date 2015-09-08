@@ -36,6 +36,13 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function store()
 	{
+		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+
+        }
 		var_dump(Input::all());
 	}
 

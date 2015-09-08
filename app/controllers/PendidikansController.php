@@ -42,20 +42,20 @@ class PendidikansController extends \BaseController {
         }
         var_dump(Input::all());
 
-        $user = new Pendidikan;
-        $user->id_pendaftar = 1;
-        $user->jenjang = Input::get('jnjg');
-        $user->programStudi = Input::get('prgrmstd');
-        $user->akreditasi = Input::get('akrdts');
-        $user->kotakab = Input::get('pt');
-        $user->negara = Input::get('thmsk');
-        $user->noTelepon = Input::get('thlls');
-        $user->propinsi = Input::get('noijzh');
-        $user->email = Input::get('ipk');
-        $user->email = Input::get('skala');
+        // $user = new Pendidikan;
+        // $user->id_pendaftar = 1;
+        // $user->jenjang = Input::get('jnjg');
+        // $user->programStudi = Input::get('prgrmstd');
+        // $user->akreditasi = Input::get('akrdts');
+        // $user->PT = Input::get('pt');
+        // $user->tahunMasuk = Input::get('thmsk');
+        // $user->tahunLulus = Input::get('thlls');
+        // $user->noIjazah = Input::get('noijzh');
+        // $user->IPK = Input::get('ipk');
+        // $user->skala = Input::get('skala');
 
-        $user->save();
-        return Redirect::to('pendidikan');
+        // $user->save();
+        // return Redirect::to('pekerjaan');
 
         // line utk perulangan profesi
 	}

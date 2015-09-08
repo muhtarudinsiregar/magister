@@ -3,7 +3,7 @@
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
 
-		<form action="" method="POST" class="form-horizontal" role="form">
+		<form action=" {{ url('jadwals') }} " method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
 			</div>
@@ -24,7 +24,7 @@
 				<div class="col-sm-2">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" value="" id="pilihJadwal">
+							<input type="checkbox" value="T" id="pilihJadwal">
 							Pilih Jadwal
 						</label>
 					</div>
@@ -34,16 +34,18 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Tanggal tes </label>
 					<div class="col-sm-3">
-						<input type="text" name="" id="inputTanggal" class="form-control" required="required" disabled="disable" >
+						<input type="text" name="tgglTes" id="inputTanggal" class="form-control" required="required" disabled="disable" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Pukul </label>
 					<div class="col-sm-3">
-						<select name="" id="input" class="form-control" required="required" disabled="disable">
+						<select name="jTes" id="input" class="form-control" required="required" disabled="disable">
 							<option value=""></option>
-							<option value="">Pagi:09.00 - 11.00 </option>
-							<option value="">Siang: 13.00 - 15.00 </option>
+							@foreach ($tes as $element)
+								<option value="{{ $element->id }}"> {{ $element->sesi }} </option>
+							@endforeach
+							
 						</select>
 					</div>
 					<label for="tahun_akademik" class="col-sm-2 control-label">WIB </label>

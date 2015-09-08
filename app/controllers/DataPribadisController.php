@@ -34,7 +34,21 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$validator = Validator::make($data = Input::all(), DataPribadi::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+
+        }
+        var_dump(Input::all());
+
+        	// $user = new JadwalTes;
+        	// $user->id_pendaftar = 1;
+    	    // $user->nama = Input::get('tglTes');
+    	    // $user->nama = Input::get('jTes');
+	       	// $user->save();
+        // Redirect::to('konfirmasi');
 	}
 
 	/**
