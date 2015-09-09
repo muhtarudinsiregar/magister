@@ -44,29 +44,39 @@ class PekerjaansController extends \BaseController {
 		if ($status_kerja != 'y') 
 		{
 
-        	// $user = new Pekerjaan;
-        	// $user->id_pendaftar = 1;
-        	// $user->posisi = Input::get('pos');
-        	// $user->institusi = Input::get('ins');
-        	// $user->alamat = Input::get('almt');
-        	// $user->kotakab = Input::get('kotkab');
-        	// $user->propinsi = Input::get('prop');
-        	// $user->negara = Input::get('neg');
-        	// $user->noTelepon = Input::get('notel');
-        	// $user->noFaximile = Input::get('nofax');
-        	// $user->email = Input::get('mail');
-        	// $user->tahunMulai = Input::get('thnkrj');
-	        // $user->save();
+        	$user = new Pekerjaan;
+        	$user->id_pendaftar = 1;
+        	$user->posisi = Input::get('pos');
+        	$user->institusi = Input::get('ins');
+        	$user->alamat = Input::get('almt');
+        	$user->kotakab = Input::get('kotkab');
+        	$user->propinsi = Input::get('prop');
+        	$user->negara = Input::get('neg');
+        	$user->noTelepon = Input::get('notel');
+        	$user->noFaximile = Input::get('nofax');
+        	$user->email = Input::get('mail');
+        	$user->tahunMulai = Input::get('thnkrj');
+	        $user->save();
 
 		}
-		var_dump(Input::all());
-			// $riwayat = new Pekerjaan;
+		
+			
+			$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
+			$posi = $pekerjaan['pos_riw'];
+			$insitut = $pekerjaan['ins_riw'];
+			$tahun = $pekerjaan['th_riw'];
 
-			// $riwayat->posisi = Input::get('pos_riw'); 
-			// $riwayat->intitusi = Input::get('ins_riw'); 
-			// $riwayat->tahun = Input::get('th_riw');
-			// $riwayat->save();
-			 // return Redirect::to('pendanaan');
+			foreach ($posi as $key => $value)
+			{
+				DB::table('riwayatpekerjaan')->insert(
+					[
+						'id_pendaftar'=>1,
+						'posisi'=>$posi[$key],
+						'institusi'=>$insitut[$key],
+						'masaKerja'=>$tahun[$key]
+					]);
+			}
+			 return Redirect::to('pendanaan');
 	}
 
 	/**

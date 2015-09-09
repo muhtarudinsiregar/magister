@@ -3,14 +3,14 @@
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
 	<?php if ($errors->has()): ?>
-					<div class="alert alert-danger">
-					<ul class="square">
-						<?php foreach ($errors->all() as $error): ?>
-							<li><?php echo $error; ?></li>
-						<?php endforeach ?>
-					</ul>
-				</div>
-			<?php endif ?>
+			<div class="alert alert-danger">
+				<ul class="square">
+					<?php foreach ($errors->all() as $error): ?>
+						<li><?php echo $error; ?></li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+		<?php endif ?>
 		<form action="{{ url('pendanaans') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
@@ -19,10 +19,10 @@
 				<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>
 				<div class="col-sm-3" id="pendanaan">
 					<label class="radio-inline" >
-						<input type="radio" value="sendiri" name="dana" id="sendiri"> Sendiri
+						<input type="radio" value="0" name="dana" id="sendiri"> Sendiri
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" value="beasiswa" name="dana" id="beasiswa"> Beasiswa
+						<input type="radio" value="1" name="dana" id="beasiswa"> Beasiswa
 					</label>
 				</div>
 			</div>
@@ -33,7 +33,7 @@
 						<select name="beasiswa" id="input" class="form-control" required="required">
 							<option value="">--</option>
 							@foreach ($beasiswa as $element)
-								<option value=" {{ $element->id }} "> {{ $element->beasiswa }} </option>
+								<option value="{{$element->id}}"> {{ $element->beasiswa }} </option>
 							@endforeach
 						</select>
 					</div>
@@ -93,10 +93,10 @@
 					<label for="program" class="col-sm-2 control-label">Status Beasiswa</label>
 					<div class="col-sm-4">
 						<label class="radio-inline">
-							<input type="radio" name="sttsbea" id="inlineRadio1" value="Dalam proses"> Dalam proses
+							<input type="radio" name="sttsbea" id="inlineRadio1" value="0"> Dalam proses
 						</label>
 						<label for="" class="radio-inline">
-							<input type="radio" name="sttsbea" id="inlineRadio1" value="udah disetujui"> Sudah disetujui
+							<input type="radio" name="sttsbea" id="inlineRadio1" value="1"> Sudah disetujui
 						</label>
 					</div>
 				</div>

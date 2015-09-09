@@ -40,24 +40,25 @@ class PendanaansController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        var_dump(Input::all());
+        $data_beasiswa = DataPribadi::find(1);
+        // var_dump($data_beasiswa);
+        $data_beasiswa->danaBeasiswa = Input::get('dana');
+        $data_beasiswa->id_beasiswa = Input::get('beasiswa');
+        $data_beasiswa->statusBeasiswa = Input::get('sttsbea');
+		$data_beasiswa->save();
 
-        // $dana = new Pendanaan;
-        // $dana->id_pendaftar = 1;
-        // $dana->jenjang = Input::get('dana');
-        // $dana->programStudi = Input::get('beasiswa');
-        // $dana->sponsor = Input::get('pemberi');
-        // $dana->alamat = Input::get('almt');
-        // $dana->kotakab = Input::get('kotakab');
-        // $dana->propinsi = Input::get('prop');
-        // $dana->negara = Input::get('neg');
-        // $dana->noTelepon = Input::get('notel');
-        // $dana->noFaksimili = Input::get('nofax');
-        // $dana->email = Input::get('mail');
-        // $dana->statusBeasiswa = Input::get('sttsbea');
-
-        // $dana->save();
-        // return Redirect::to('kontak');
+        $sponsor = new Pendanaan;
+        $sponsor->id_pendaftar = 1;
+        $sponsor->sponsor = Input::get('pemberi');
+        $sponsor->alamat = Input::get('almt');
+        $sponsor->kotakab = Input::get('kotakab');
+        $sponsor->propinsi = Input::get('prop');
+        $sponsor->negara = Input::get('neg');
+        $sponsor->noTelepon = Input::get('notel');
+        $sponsor->noFaksimili = Input::get('nofax');
+        $sponsor->email = Input::get('mail');
+        $sponsor->save();
+        return Redirect::to('kontak');
 
 	}
 

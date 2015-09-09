@@ -40,24 +40,41 @@ class PendidikansController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        var_dump(Input::all());
+        // var_dump(Input::all());
 
-        // $user = new Pendidikan;
-        // $user->id_pendaftar = 1;
-        // $user->jenjang = Input::get('jnjg');
-        // $user->programStudi = Input::get('prgrmstd');
-        // $user->akreditasi = Input::get('akrdts');
-        // $user->PT = Input::get('pt');
-        // $user->tahunMasuk = Input::get('thmsk');
-        // $user->tahunLulus = Input::get('thlls');
-        // $user->noIjazah = Input::get('noijzh');
-        // $user->IPK = Input::get('ipk');
-        // $user->skala = Input::get('skala');
+        $user = new Pendidikan;
+        $user->id_pendaftar = 1;
+        $user->jenjang = Input::get('jnjg');
+        $user->programStudi = Input::get('prgrmstd');
+        $user->akreditasi = Input::get('akrdts');
+        $user->PT = Input::get('pt');
+        $user->tahunMasuk = Input::get('thmsk');
+        $user->tahunLulus = Input::get('thlls');
+        $user->noIjazah = Input::get('noijzh');
+        $user->IPK = Input::get('ipk');
+        $user->skala = Input::get('skala');
 
-        // $user->save();
-        // return Redirect::to('pekerjaan');
+        $user->save();
 
         // line utk perulangan profesi
+        $asosia = Input::get('asosiasi');
+        if ($asosia!='')
+        {
+        	$pekerjaan = Input::only('asosiasi','no_anggota');
+			$asos = $pekerjaan['asosiasi'];
+			$no = $pekerjaan['no_anggota'];
+
+			foreach ($asos as $key => $value)
+			{
+				DB::table('profesi')->insert(
+					[
+						'id_pendaftar'=>1,
+						'asosiasi'=>$asos[$key],
+						'noAnggota'=>$no[$key]
+					]);
+			}	
+        }
+        return Redirect::to('pekerjaan');
 	}
 
 	/**

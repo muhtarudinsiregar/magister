@@ -5,7 +5,7 @@ class DataPribadi extends \Eloquent {
 	protected $table = 'pendaftar';
 	public static $rules = 
 	[
-
+		
 	];
 
 	public static function agama()
