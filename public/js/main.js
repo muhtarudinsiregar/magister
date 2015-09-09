@@ -1,26 +1,11 @@
 $(document).ready(function()
 {
- $(".dropdown").hover(            
-            function() {
-                $('.dropdown-menu', this).stop( true, true ).fadeIn(850);
-                $(this).toggleClass('open');
-                $('b', this).toggleClass("caret caret-up");                
-            },
-            function() {
-                $('.dropdown-menu', this).stop( true, true ).fadeOut(850);
-                $(this).toggleClass('open');
-                $('b', this).toggleClass("caret caret-up");                
-            });
         $('input[type="checkbox"]').on('change', function()
             {
                 $('input[name="' + this.name + '"]').not(this).prop('checked', false);
             });
 
-        $( "#tanggalLahir" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                yearRange: '1945:2015'
-            });
+        
 
         $("#statusKerja").click(function(){
             if ($(this).is(':checked'))

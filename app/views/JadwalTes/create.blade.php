@@ -66,7 +66,8 @@
 		$(function() {
 			$( "#inputTanggal" ).datepicker({
 				changeMonth: true,
-				changeYear: true
+				minDate: 0 ,
+				dateFormat: "yy-mm-dd",
 			});
 		});
 	</script>

@@ -2,8 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<title>Home</title>
 </head>
@@ -57,8 +56,8 @@
 			@yield('content')
 		</div>
 	</div>
-	<script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
-	<script src="{{ asset('js/jquery-ui.js') }}"></script>
+	<script src="{{ asset('js/jquery.js') }}"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.chained.min.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>

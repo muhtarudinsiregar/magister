@@ -13,4 +13,10 @@ class Pekerjaan extends \Eloquent {
 		// 'tlp' => 'required',
 		// 'mail' => 'required'
 	];
+
+	public static function riwayatPekerjaan()
+	{
+		
+	}
+
 }

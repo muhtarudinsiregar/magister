@@ -52,7 +52,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tanggal Lahir* </label>
 				<div class="col-sm-4">
-					<input type="text" name="tglhr" id="tanggalLahir" class="form-control" required="required">
+					<input type="text" name="tglhr" id="datepicker" class="form-control" required="required">
 				</div>
 			</div>
 
@@ -60,10 +60,10 @@
 				<label for="program" class="col-sm-2 control-label">Jenis Kelamin</label>
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="jk" id="inlineRadio1" value="option1"> Pria
+						<input type="radio" name="jenisK" value="Pria" checked="checked"> Pria
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="jk" id="inlineRadio1" value="option1"> Wanita
+						<input type="radio" name="jenisK" value="Wanita"> Wanita
 					</label>
 				</div>
 			</div>
@@ -116,7 +116,7 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalYk" id="dalamYogya" value="y"> Sekarang tinggal di Yogyakarta
+						<input type="radio" name="tinggalYk" id="dalamYogya" value="0" checked="checked"> Sekarang tinggal di Yogyakarta
 					</label>
 				</div>
 			</div>
@@ -143,7 +143,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Propinsi</label>
 				<div class="col-sm-4">
-					<input type="text" name="Nyk" id="input" class="form-control" required="required">
+					<input type="text" name="prop" id="input" class="form-control" required="required">
 				</div>
 			</div>
 			<div class="form-group">
@@ -162,7 +162,7 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalLuarYk" id="luarYogya" value="y"> Sekarang tinggal di luar Yogyakarta
+						<input type="radio" name="tinggalYk" id="luarYogya" value="1"> Sekarang tinggal di luar Yogyakarta
 					</label>
 				</div>
 			</div>
@@ -180,9 +180,17 @@
 @section('script')
 	<script>
 	$(function(){
-		$("input[type='radio']").change(function(){
-			$('input[type=radio]:checked').not(this).prop('checked', false);
-		})
+		$("input[name='tinggalYk']").change(function(){
+			$('input[name="tinggalYk"]:checked').not(this).prop('checked', false);
+		});
+
+		$( "#datepicker" ).datepicker({
+                dateFormat: "yy-mm-dd",
+                yearRange: '-70:+0',
+                changeYear: true,
+                changeMonth: true,
+            });
+
 	});
 	</script>
 @stop	

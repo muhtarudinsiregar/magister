@@ -13,4 +13,5 @@ class Kontak extends \Eloquent {
 		'noTelpon' => 'required',
 		'email' => 'required'
 	];
+	
 }

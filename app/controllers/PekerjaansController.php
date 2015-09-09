@@ -56,7 +56,6 @@ class PekerjaansController extends \BaseController {
         	// $user->noFaximile = Input::get('nofax');
         	// $user->email = Input::get('mail');
         	// $user->tahunMulai = Input::get('thnkrj');
-
 	        // $user->save();
 
 		}
