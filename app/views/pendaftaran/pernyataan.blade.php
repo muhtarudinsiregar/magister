@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		<form action="" method="POST" class="form-horizontal" role="form">
+		<form action="{{ url('pendaftaran') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 8 : Pernyataan</strong></h4>
 			</div>
@@ -26,7 +26,7 @@
 				<div class="col-sm-5">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" value="" id="pernyataan">
+							<input name='pernyataan' type="checkbox" value="1" id="pernyataan">
 							Saya menyatakan bahwa data sudah benar.
 						</label>
 					</div>

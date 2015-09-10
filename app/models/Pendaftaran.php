@@ -6,7 +6,8 @@ class Pendaftaran extends \Eloquent {
 	public static $rules = [
 		// 'title' => 'required'
 	];
-
+	protected $table = 'pendaftaran';
+	protected $primaryKey = 'no';
 	// Don't forget to fill this array
 	protected $fillable = [];
 

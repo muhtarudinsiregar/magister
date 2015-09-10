@@ -40,13 +40,19 @@ class JadwalTesController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        var_dump(Input::all());
-        	// $user = new JadwalTes;
-        	// $user->id_pendaftar = 1;
-    	    // $user->nama = Input::get('tglTes');
-    	    // $user->nama = Input::get('jTes');
-	       	// $user->save();
-        // Redirect::to('konfirmasi');
+        // var_dump(Input::all());
+        	$user = JadwalTes::find(1);
+        	$user->id_pendaftar = 1;
+        	$user->id_pendaftarOK = 1;
+    	    $user->tanggalTes = Input::get('tgglTes');
+    	    $user->sesiTes = Input::get('jTes');
+	       	$saved = $user->save();
+
+	    	 //   if(!$saved){
+    		// 	App::abort(500, 'Error');
+    		// }
+	       	// var_dump(Input::all());
+       		return  Redirect::to('pernyataan');
 	}
 
 	/**

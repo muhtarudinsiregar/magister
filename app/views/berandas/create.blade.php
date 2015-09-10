@@ -25,26 +25,25 @@
 		<hr>
 		<div class="row">
 			<div class="col-lg-6">
-				<form action="" method="POST" class="form-horizontal" role="form">
+				<form action="{{url('berandas')}}" method="POST" class="form-horizontal" role="form">
 					<div class="form-group">
 						<label for="tahun_akademik" class="col-sm-2 control-label">Email </label>
 						<div class="col-sm-8">
-							<input type="text" name="" id="input" class="form-control" required="required">
+							<input type="text" name="mail" id="input" class="form-control" required="required">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="tahun_akademik" class="col-sm-2 control-label">Pin </label>
 						<div class="col-sm-4">
-							<input type="password" name="" id="input" class="form-control" required="required">
+							<input type="password" name="password" id="input" class="form-control" required="required">
 						</div>
 						<div class="col-lg-offset-4 col-lg-2">
-							<button type="button" class="btn btn-default">Edit data pendaftaran</button>
+							<button type="submit" class="btn btn-default">Edit data pendaftaran</button>
 						</div>
 					</div>
 				</form>
 			</div>
-			
 		</div>
 	</div>
 </div>

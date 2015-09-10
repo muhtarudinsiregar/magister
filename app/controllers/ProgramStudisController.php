@@ -43,7 +43,15 @@ class ProgramStudisController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-		var_dump(Input::all());
+        $program = new ProgramStudi;
+        $program->no = 2;
+        $program->tahun = date('Y');
+        $program->gelombang = Input::get('gel');
+        $program->id_prodi = Input::get('pro');
+        $program->id_konsentrasi = Input::get('kon');
+        $program->save();
+
+		return Redirect::to('data-pribadi');
 	}
 
 	/**

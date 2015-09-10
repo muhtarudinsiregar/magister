@@ -18,7 +18,7 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('beranda', "PendaftaranController@beranda");
+Route::get('beranda', "BerandasController@create");
 Route::get('programstudi', "ProgramStudisController@create");
 Route::get('data-pribadi', "DataPribadisController@create");
 Route::get('pendidikan', "PendidikansController@create");
@@ -26,9 +26,10 @@ Route::get('pekerjaan', "PekerjaansController@create");
 Route::get('pendanaan', "PendanaansController@create");
 Route::get('kontak',"KontaksController@create");
 Route::get('jadwal',"JadwalTesController@create");
-Route::get('pernyataan',"PendaftaranController@pernyataan");
+Route::get('pernyataan',"PendaftaranController@create");
 Route::get('konfirmasi',"PendaftaranController@konfirmasi");
 Route::get('tes',"PendaftaranController@tes");
+Route::resource('berandas', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
 Route::resource('datapribadis', "DataPribadisController");
 Route::resource('programstudis', "ProgramStudisController");

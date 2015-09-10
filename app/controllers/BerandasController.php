@@ -1,64 +1,64 @@
 <?php
 
-class PendaftaranController extends \BaseController {
+class BerandasController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /pendaftaran
+	 * GET /berandas
 	 *
 	 * @return Response
 	 */
-	
-
-	public function konfirmasi()
-	{
-		return View::make('pendaftaran.konfirmasi');
-	}
-	public function tes()
-	{
-		return View::make('basic-disabletabclick');
-	}
-
 	public function index()
 	{
-		
+		//
 	}
+
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /pendaftaran/create
+	 * GET /berandas/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		return View::make('pendaftaran.pernyataan');
+		return View::make('berandas.create');
 	}
-
+	public function post_login()
+	{
+		
+	}
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /pendaftaran
+	 * POST /berandas
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), JadwalTes::$rules);
+		$validator = Validator::make($data = Input::all(), Pekerjaan::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-
-        }
-
-		$pernyataan = Pendaftaran::find(1);
-		$pernyataan->konfirm = Input::get('pernyataan');
-		$pernyataan->save();
-		return Redirect::to('konfirmasi');
+		if ($validator->fails())
+		{
+			return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
+		} else
+		{
+			$userdata = [
+				'email'=>Input::get('email'),
+				'password'=>Input::get('password'),
+			];
+			if (Auth::attempt($userdata)) {
+				
+				return Redirect::intended('programstudi');
+			}else{
+				Session::flash('notif','Email atau Password Salah!');
+				return Redirect::to('beranda');
+			}
+		}
 	}
 
 	/**
 	 * Display the specified resource.
-	 * GET /pendaftaran/{id}
+	 * GET /berandas/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -70,7 +70,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /pendaftaran/{id}/edit
+	 * GET /berandas/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -82,7 +82,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /pendaftaran/{id}
+	 * PUT /berandas/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -94,7 +94,7 @@ class PendaftaranController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /pendaftaran/{id}
+	 * DELETE /berandas/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
