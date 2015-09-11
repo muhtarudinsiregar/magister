@@ -14,4 +14,9 @@ class Kontak extends \Eloquent {
 		'email' => 'required'
 	];
 	
+	public function pendaftar()
+    {
+        return $this->belongsTo('DataPribadi','id');
+    }
+	
 }

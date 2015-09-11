@@ -1,7 +1,7 @@
 <?php
 
 class Beranda extends \Eloquent {
-	protected $fillable = ['mail','password'];
+	protected $fillable = [];
 	protected $table = 'pendaftar';
 
 	public static $rules = [];

@@ -4,6 +4,17 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		<div class="row">
 			<div class="col-lg-8">
+			@if (Session::has('notif'))
+				<div class="alert alert-warning">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>{{ Session::get('notif')}}!</strong>
+				</div>
+			@endif
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
 				<h4><strong>Selamat datang.</strong></h4>
 			</div>
 		</div>
@@ -36,7 +47,7 @@
 					<div class="form-group">
 						<label for="tahun_akademik" class="col-sm-2 control-label">Pin </label>
 						<div class="col-sm-4">
-							<input type="password" name="password" id="input" class="form-control" required="required">
+							<input type="password" name="passwd" id="input" class="form-control" required="required">
 						</div>
 						<div class="col-lg-offset-4 col-lg-2">
 							<button type="submit" class="btn btn-default">Edit data pendaftaran</button>

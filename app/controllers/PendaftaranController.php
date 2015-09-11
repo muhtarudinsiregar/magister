@@ -31,7 +31,39 @@ class PendaftaranController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pendaftaran.pernyataan');
+		// $data = DataPribadi::find(1)->pendidikan;
+		$id = 1;
+		$pribadi = DataPribadi::all()->find(1);
+		$data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find(1);
+		// var_dump($data['riwayatpekerjaan']);
+		
+		// Pendaftaran::pendaftar($pribadi);
+		// foreach ($data['pekerjaan']as $value)
+		// 	{
+		// 		Pendaftaran::pekerjaan($value);
+		// 	}
+		// foreach ($data['pendidikan']as $value)
+		// 	{
+		// 		Pendaftaran::pendidikan($value);
+		// 	}
+		// foreach ($data['sponsor']as $value)
+		// 	{
+		// 		Pendaftaran::sponsor($value);
+		// 	}
+		// foreach ($data['riwayatpekerjaan']as $value)
+		// 	{
+		// 		Pendaftaran::riwayatpekerjaan($value);
+		// 	}
+		
+		Pendaftaran::kontakdarurat($data->kontakdarurat);
+
+			
+		// foreach ($data['profesi']as $value)
+		// 	{
+		// 		Pendaftaran::profesi($value);
+		// 	}	
+		// return View::make('pendaftaran.pernyataan')->with('data',$data);
+		// return View::make('tests.create')->with('data',$data);
 	}
 
 	/**
@@ -44,11 +76,11 @@ class PendaftaranController extends \BaseController {
 	{
 		$validator = Validator::make($data = Input::all(), JadwalTes::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
 
-        }
+		}
 
 		$pernyataan = Pendaftaran::find(1);
 		$pernyataan->konfirm = Input::get('pernyataan');

@@ -42,15 +42,19 @@ class BerandasController extends \BaseController {
 			return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
 		} else
 		{
-			$userdata = [
-				'email'=>Input::get('email'),
-				'password'=>Input::get('password'),
+			$credentials = [
+				'email'=>Input::get('mail'),
+				'password'=>Input::get('passwd')
 			];
-			if (Auth::attempt($userdata)) {
+			// dd(Auth::attempt($credentials));
+			// $email = Input::get('email');
+			// $passwd= Input::get('passwd');
+			if (Auth::attempt($credentials)) {
 				
-				return Redirect::intended('programstudi');
+				return Redirect::to('programstudi');
 			}else{
 				Session::flash('notif','Email atau Password Salah!');
+				echo Session::get('notif');
 				return Redirect::to('beranda');
 			}
 		}

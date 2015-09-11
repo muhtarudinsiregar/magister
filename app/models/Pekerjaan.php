@@ -14,6 +14,10 @@ class Pekerjaan extends \Eloquent {
 		// 'mail' => 'required'
 	];
 
+	 public function pendaftar()
+    {
+        return $this->hasOne('DataPribadi','id');
+    }
 	public static function riwayatPekerjaan()
 	{
 		

@@ -16,6 +16,10 @@ class Pendidikan extends \Eloquent {
 		// 'asosiasi' => 'required',
 		// 'no_anggota' => 'required'
 	];
+	public function pendaftar()
+    {
+        return $this->hasOne('DataPribadi','id');
+    }
 	public static function akreditasi()
 	{
 		return DB::table('akreditasi')->get(); 

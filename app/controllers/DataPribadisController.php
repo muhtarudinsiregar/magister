@@ -41,11 +41,11 @@ class DataPribadisController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        	var_dump(Input::all());
+        	// var_dump(Input::all());
 
         	$user = new DataPribadi;
         	$user->email = Input::get('mail');
-    	    $user->PIN = Input::get('pin');
+    	    $user->password = Hash::make(Input::get('pin'));
     	    $user->nama = Input::get('nm');
     	    $user->tempatLahir = Input::get('tlhr');
     	    $user->tanggalLahir = Input::get('tglhr');
@@ -62,7 +62,7 @@ class DataPribadisController extends \BaseController {
     	    $user->negara = Input::get('neg');
     	    $user->noTelepon = Input::get('no_telNyk');
 	       	$user->save();
-        	Redirect::to('konfirmasi');
+        	return Redirect::to('pendidikan');
 	}
 
 	/**

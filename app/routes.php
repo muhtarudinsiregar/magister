@@ -13,10 +13,7 @@
 
 // print App::environment();
 // User::find(1);
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/','BerandasController@create');
 
 Route::get('beranda', "BerandasController@create");
 Route::get('programstudi', "ProgramStudisController@create");
