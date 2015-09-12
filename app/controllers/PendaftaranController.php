@@ -12,30 +12,10 @@ class PendaftaranController extends \BaseController {
 
 	public function konfirmasi()
 	{
-		return View::make('pendaftaran.konfirmasi');
-	}
-	public function tes()
-	{
-		return View::make('basic-disabletabclick');
-	}
-
-	public function index()
-	{
-		
-	}
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /pendaftaran/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		// $data = DataPribadi::find(1)->pendidikan;
 		$id = 1;
-		$pribadi = DataPribadi::all()->find(1);
-		$data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find(1);
-		// var_dump($data['riwayatpekerjaan']);
+		// $pribadi = DataPribadi::all()->find(1);
+		// $data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find(1);
+		
 		
 		// Pendaftaran::pendaftar($pribadi);
 		// foreach ($data['pekerjaan']as $value)
@@ -55,15 +35,38 @@ class PendaftaranController extends \BaseController {
 		// 		Pendaftaran::riwayatpekerjaan($value);
 		// 	}
 		
-		Pendaftaran::kontakdarurat($data->kontakdarurat);
-
+		// Pendaftaran::kontakdarurat($data->kontakdarurat);
 			
 		// foreach ($data['profesi']as $value)
 		// 	{
 		// 		Pendaftaran::profesi($value);
 		// 	}	
-		// return View::make('pendaftaran.pernyataan')->with('data',$data);
-		// return View::make('tests.create')->with('data',$data);
+
+		return View::make('pendaftaran.konfirmasi');
+	}
+	public function tes()
+	{
+		return View::make('basic-disabletabclick');
+	}
+
+	public function index()
+	{
+		
+	}
+	/**
+	 * Show the form for creating a new resource.
+	 * GET /pendaftaran/create
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		// $data = Pendaftaran::where('id_pendaftar','=','1')->firstOrFail();
+		// $data = Pendaftaran::lists('konfirm');
+
+		// echo $data['konfirm'];
+		// dd($data);
+		return View::make('pendaftaran.pernyataan');
 	}
 
 	/**

@@ -6,7 +6,8 @@
 </head>
 <body>
 
-      {{  $data->kontakdarurat['noTelepon'] }} <br>
+      
+      Anda mendapatkan hadiah {{ $total }} buah {{ $prize }}
    
 </body>
 </html>

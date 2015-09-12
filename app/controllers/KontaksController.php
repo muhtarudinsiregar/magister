@@ -78,7 +78,10 @@ class KontaksController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+
+		$kontak = Kontak::find(1);
+		
+		return View::make('kontaks.edit')->withKontak($kontak);
 	}
 
 	/**
@@ -90,7 +93,19 @@ class KontaksController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		// var_dump(Input::all());
+		$kontak = Kontak::findOrFail($id);
+
+		$validator = Validator::make($data = Input::all(), Kontak::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$kontak->update($data);
+
+		return Redirect::to('jadwals/'.$id.'/edit');
 	}
 
 	/**

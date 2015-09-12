@@ -21,8 +21,7 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function create()
 	{
-		$tes = JadwalTes::sesiTes();
-		return View::make('jadwaltes.create')->withTes($tes);
+		return View::make('jadwaltes.create');
 	}
 
 	/**
@@ -46,7 +45,7 @@ class JadwalTesController extends \BaseController {
         	$user->id_pendaftarOK = 1;
     	    $user->tanggalTes = Input::get('tgglTes');
     	    $user->sesiTes = Input::get('jTes');
-	       	$saved = $user->save();
+	       	$user->save();
 
 	    	 //   if(!$saved){
     		// 	App::abort(500, 'Error');
@@ -76,7 +75,8 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$jadwal = JadwalTes::find($id);
+		return View::make('jadwalTes.edit')->withJadwal($jadwal);
 	}
 
 	/**
@@ -88,7 +88,21 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		var_dump(Input::all());
+		$jadwal = JadwalTes::findOrFail($id);
+
+		$validator = Validator::make($data = Input::all(), JadwalTes::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+			$jadwal->tanggalTes = Input::get('tgglTes');
+    	    $jadwal->sesiTes = Input::get('jTes');
+	      	$jadwal->save();
+
+		// return Redirect::to('beranda');
 	}
 
 	/**

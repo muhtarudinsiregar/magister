@@ -1,7 +1,8 @@
 <?php
 
 class JadwalTes extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = ['asas','sesiTes'];
+
 	protected $table ='pendaftaran';
 	public static $rules = [];
 	protected $primaryKey = 'no';

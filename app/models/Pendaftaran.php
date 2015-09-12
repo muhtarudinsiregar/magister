@@ -100,15 +100,15 @@ class Pendaftaran extends \Eloquent {
 	{
 		DB::table('kontakdaruratok')->insert(
 			[
-			'id_pendaftar'=>$value->id_pendaftar,
-			'nama'=>$value->nama,
-			'hubungan'=>$value->hubungan,
-			'alamat'=>$value->alamat,
-			'kotakab'=>$value->kotakab,
-			'propinsi'=>$value->propinsi,
-			'negara'=>$value->negara,
-			'no_telepon'=>$value->kontakdarurat['noTelepon'],
-			'email'=>$value->email
+			'id_pendaftar'=>$value['id_pendaftar'],
+			'nama'=>$value['nama'],
+			'hubungan'=>$value['hubungan'],
+			'alamat'=>$value['alamat'],
+			'kotakab'=>$value['kotakab'],
+			'propinsi'=>$value['propinsi'],
+			'negara'=>$value['negara'],
+			'noTelepon'=>$value['noTelepon'],
+			'email'=>$value['email']
 			]);
 	}
 	public static function profesi($value)

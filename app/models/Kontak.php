@@ -1,7 +1,7 @@
 <?php
 
 class Kontak extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = ['nama','hubungan','alamat','kotakab','propinsi','negara','noTelepon','emai'];
 	protected $table = 'kontakdarurat';
 	public static $rules = [
 		'nama' => 'required',
@@ -10,7 +10,7 @@ class Kontak extends \Eloquent {
 		'kotakab' => 'required',
 		'propinsi' => 'required',
 		'negara' => 'required',
-		'noTelpon' => 'required',
+		'noTelepon' => 'required',
 		'email' => 'required'
 	];
 	

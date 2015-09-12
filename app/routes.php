@@ -11,8 +11,29 @@
 |
 */
 
-// print App::environment();
-// User::find(1);
+View::composer(array('jadwalTes.edit','jadwaltes.create'), function($view)
+{
+    $view->with('tes', JadwalTes::sesiTes());
+});
+
+Event::listen('illuminate.query', function($query)
+{
+    var_dump($query);
+});
+// Route::get('mail', function(){
+// 	$data = ['prize' => 'Peke', 'total' => 3 ];
+// 	Mail::send('tests.create', $data, function($mail){
+// 		// Email dikirimkan ke address "momo@deviluke.com" 
+//     	  // dengan nama penerima "Momo Velia Deviluke"
+//       $mail->to('redcar.studious@gmail.com', 'Momo Velia Deviluke');
+ 
+//       // Copy carbon dikirimkan ke address "haruna@sairenji" 
+//       // dengan nama penerima "Haruna Sairenji"
+//       $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
+//       $mail->subject('Hello World!');
+// 	});
+
+// });
 Route::get('/','BerandasController@create');
 
 Route::get('beranda', "BerandasController@create");
