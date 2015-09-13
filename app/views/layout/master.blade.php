@@ -57,7 +57,7 @@
 		</div>
 	</div>
 	<script src="{{ asset('js/jquery.js') }}"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="{{ asset('jquery-ui.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.chained.min.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>

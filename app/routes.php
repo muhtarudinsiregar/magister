@@ -15,6 +15,15 @@ View::composer(array('jadwalTes.edit','jadwaltes.create'), function($view)
 {
     $view->with('tes', JadwalTes::sesiTes());
 });
+View::composer(array('datapribadis.edit','datapribadis.create'), function($view)
+{
+    $view->with('agama', DataPribadi::agama());
+});
+View::composer(array('pendanaans.edit','pendanaans.create'), function($view)
+{
+    $view->with('beasiswa', Pendanaan::beasiswa());
+});
+
 
 Event::listen('illuminate.query', function($query)
 {

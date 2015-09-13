@@ -86,7 +86,8 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$data = DataPribadi::find($id);
+		return View::make('datapribadis.edit')->withEdit($data);
 	}
 
 	/**

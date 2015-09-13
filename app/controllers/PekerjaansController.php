@@ -100,7 +100,8 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$edit = Pekerjaan::find($id);
+		return View::make('pekerjaans.edit')->withEdit($edit);
 	}
 
 	/**

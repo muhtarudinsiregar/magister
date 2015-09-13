@@ -98,7 +98,8 @@ class PendidikansController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$edit = Pendidikan::find($id);
+		return View::make('pendidikans.edit')->withEdit($edit);
 	}
 
 	/**
