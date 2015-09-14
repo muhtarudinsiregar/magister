@@ -100,8 +100,9 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id)->get();
 		$edit = Pekerjaan::find($id);
-		return View::make('pekerjaans.edit')->withEdit($edit);
+		return View::make('pekerjaans.edit')->withEdit($edit)->withData($riwayat);
 	}
 
 	/**

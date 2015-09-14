@@ -51,7 +51,7 @@ class BerandasController extends \BaseController {
 			// $passwd= Input::get('passwd');
 			if (Auth::attempt($credentials)) {
 				
-				return Redirect::to('datapribadis/'.Auth::id().'/edit');
+				return Redirect::to('programstudis/'.Auth::id().'/edit');
 			}else{
 				Session::flash('notif','Email atau Password Salah!');
 				echo Session::get('notif');

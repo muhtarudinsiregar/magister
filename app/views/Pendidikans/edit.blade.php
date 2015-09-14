@@ -82,16 +82,19 @@
 			</div>
 
 			<div id="profesi">
-				<div class="form-group">
+				@foreach ($profesi as $element)
+					<div class="form-group">
 						<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
 						<div class="col-sm-3">
-							<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi">
+							<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi" value="{{ $element->asosiasi }}">
 						</div>
 						<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
 						<div class="col-sm-2" id="no_anggota">
-							<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota">
+							<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota" value="{{ $element->noAnggota }}">
 						</div>
-				</div>
+						<button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button>
+					</div>
+				@endforeach
 			</div>
 			<div class="form-group">
 				<div class="col-sm-3">

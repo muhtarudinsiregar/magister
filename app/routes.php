@@ -23,6 +23,10 @@ View::composer(array('pendanaans.edit','pendanaans.create'), function($view)
 {
     $view->with('beasiswa', Pendanaan::beasiswa());
 });
+View::composer(array('pendidikans.edit','pendidikans.create'), function($view)
+{
+    $view->with('akreditasi', Pendidikan::akreditasi());
+});
 
 
 Event::listen('illuminate.query', function($query)

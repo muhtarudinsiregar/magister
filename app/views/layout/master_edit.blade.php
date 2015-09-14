@@ -26,15 +26,15 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="{{ url ('beranda')}}">Beranda</a></li>
-							<li><a href="{{ url ('programstudi')}}">Program Studi</a></li>
-							<li><a href="{{ url('data-pribadi')}}">Data Pribadi</a></li>
-							<li><a href="{{ url('pendidikan')}}">Pendidikan</a></li>
-							<li><a href="{{ url('pekerjaan')}}">Pekerjaan</a></li>
-							<li><a href="{{ url('pendanaan')}}">Pendanaan</a></li>
-							<li><a href="{{ url('kontak')}}">Kontak</a></li>
-							<li><a href="{{ url('jadwal')}}">Jadwal Tes</a></li>
-							<li><a href="{{ url('pernyataan')}}">Pernyataan</a></li>
+							<li><a href="{{ url ('berandas/'.Auth::id().'/edit')}}">Beranda</a></li>
+							<li><a href="{{ url ('programstudis/'.Auth::id().'/edit')}}">Program Studi</a></li>
+							<li><a href="{{ url('datapribadis/'.Auth::id().'/edit')}}">Data Pribadi</a></li>
+							<li><a href="{{ url('pendidikans/'.Auth::id().'/edit')}}">Pendidikan</a></li>
+							<li><a href="{{ url('pekerjaans/'.Auth::id().'/edit')}}">Pekerjaan</a></li>
+							<li><a href="{{ url('pendanaans/'.Auth::id().'/edit')}}">Pendanaan</a></li>
+							<li><a href="{{ url('kontaks/'.Auth::id().'/edit')}}">Kontak</a></li>
+							<li><a href="{{ url('jadwals/'.Auth::id().'/edit')}}">Jadwal Tes</a></li>
+							<li><a href="{{ url('pernyataans/'.Auth::id().'/edit')}}">Pernyataan</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">

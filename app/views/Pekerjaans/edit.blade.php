@@ -89,21 +89,24 @@
 				<h5>Riwayat Pekerjaan (Jika Ada)</h5>
 			</div>
 			<div id="riwayat">
-				<div class="form-group">
-					<label for="" class="col-sm-1 control-label">Posisi </label>
-					<div class="col-sm-2">
-						<input type="text" name="pos_riw[]" id="input" class="form-control" required="required">
+				@foreach ($data as $element)
+					<div class="form-group">
+						<label for="" class="col-sm-1 control-label">Posisi </label>
+						<div class="col-sm-2">
+							<input type="text" name="pos_riw[]" id="input" class="form-control" required="required" value="{{ $element->posisi }}">
+						</div>
+						<label for="" class="col-sm-1 control-label">Institusi </label>
+						<div class="col-sm-3">
+							<input type="text" name="ins_riw[]" id="input" class="form-control" required="required" value="{{ $element->institusi }}">
+						</div>
+						<label for="" class="col-sm-2 control-label">Masa Kerja </label>
+						<div class="col-lg-1">
+							<input type="text" name="th_riw[]" id="input" class="form-control" required="required" value="{{ $element->masaKerja }}">
+						</div>
+						<label for="" class="col-sm-1 control-label">tahun</label> 
+						<button class="btn btn-danger" type="button" id="hapusPekerjaan"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<label for="" class="col-sm-1 control-label">Institusi </label>
-					<div class="col-sm-3">
-						<input type="text" name="ins_riw[]" id="input" class="form-control" required="required">
-					</div>
-					<label for="" class="col-sm-2 control-label">Masa Kerja </label>
-					<div class="col-lg-1">
-						<input type="text" name="th_riw[]" id="input" class="form-control" required="required">
-					</div>
-					<label for="" class="col-sm-1 control-label">tahun</label>
-				</div>
+				@endforeach
 			</div>
 			<div class="form-group">
 				<div class="col-sm-3">

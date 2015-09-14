@@ -98,8 +98,9 @@ class PendidikansController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		$profesi = Profesi::where('id_pendaftar','=',$id)->get();
 		$edit = Pendidikan::find($id);
-		return View::make('pendidikans.edit')->withEdit($edit);
+		return View::make('pendidikans.edit')->withEdit($edit)->withProfesi($profesi);
 	}
 
 	/**
