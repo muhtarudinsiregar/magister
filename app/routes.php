@@ -49,6 +49,7 @@ View::composer(array('pendidikans.edit','pendidikans.create'), function($view)
 
 // });
 Route::get('/','BerandasController@create');
+Route::get('konfirmasi','PendaftaranController@konfirmasi');
 Route::resource('beranda', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
 Route::resource('data-pribadi', "DataPribadisController");

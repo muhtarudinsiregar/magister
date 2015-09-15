@@ -46,13 +46,7 @@ class ProgramStudisController extends \BaseController {
 		// 	return Redirect::back()->withErrors($validator)->withInput();
 
 		// }
-		// $program = new ProgramStudi;
-		// $program->no = 2;
-		// $program->tahun = date('Y');
-		// $program->gelombang = Input::get('gel');
-		// $program->id_prodi = Input::get('pro');
-		// $program->id_konsentrasi = Input::get('kon');
-		// $program->save();
+		
 		$data_gel = Input::get('gel');
 		$data_pro= Input::get('pro');
 		$data_kon = Input::get('kon');
