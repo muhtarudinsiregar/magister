@@ -10,7 +10,9 @@ class PendanaansController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		var_dump(Session::get('mail'));
+		$beasiswa = Pendanaan::beasiswa();
+		return View::make('pendanaans.create')->withBeasiswa($beasiswa);
 	}
 
 	/**
@@ -21,8 +23,7 @@ class PendanaansController extends \BaseController {
 	 */
 	public function create()
 	{
-		$beasiswa = Pendanaan::beasiswa();
-		return View::make('pendanaans.create')->withBeasiswa($beasiswa);
+		
 	}
 
 	/**
@@ -40,15 +41,20 @@ class PendanaansController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        $data_beasiswa = DataPribadi::find(1);
+        $email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+        
+        $data_beasiswa = DataPribadi::find($id_pendaftar['id']);
         // var_dump($data_beasiswa);
         $data_beasiswa->danaBeasiswa = Input::get('dana');
         $data_beasiswa->id_beasiswa = Input::get('beasiswa');
         $data_beasiswa->statusBeasiswa = Input::get('sttsbea');
 		$data_beasiswa->save();
 
+		
+
         $sponsor = new Pendanaan;
-        $sponsor->id_pendaftar = 1;
+        $sponsor->id_pendaftar = $id_pendaftar['id'];
         $sponsor->sponsor = Input::get('pemberi');
         $sponsor->alamat = Input::get('almt');
         $sponsor->kotakab = Input::get('kotakab');

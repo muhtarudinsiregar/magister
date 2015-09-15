@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		<form action="{{ url('pendidikans') }}" method="POST" class="form-horizontal" role="form">
+		<form action="{{ url('pendidikan') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 			</div>

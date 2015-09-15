@@ -3,7 +3,7 @@
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
 
-		<form action=" {{ url('jadwals') }} " method="POST" class="form-horizontal" role="form">
+		<form action=" {{ url('jadwal') }} " method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
 			</div>

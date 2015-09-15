@@ -13,4 +13,5 @@ class ProgramStudi extends \Eloquent {
 	{
 		return DB::table('konsentrasi')->get();
 	}
+
 }

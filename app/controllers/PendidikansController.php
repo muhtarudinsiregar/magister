@@ -10,7 +10,9 @@ class PendidikansController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		var_dump(Session::get('mail'));
+		$akreditasi = Pendidikan::akreditasi();
+		return View::make('Pendidikans.create')->with('akreditasi',$akreditasi);
 	}
 
 	/**
@@ -21,8 +23,7 @@ class PendidikansController extends \BaseController {
 	 */
 	public function create()
 	{
-		$akreditasi = Pendidikan::akreditasi();
-		return View::make('Pendidikans.create')->with('akreditasi',$akreditasi);
+		
 	}
 
 	/**
@@ -42,8 +43,11 @@ class PendidikansController extends \BaseController {
         }
         // var_dump(Input::all());
 
+        $email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+
         $user = new Pendidikan;
-        $user->id_pendaftar = 1;
+        $user->id_pendaftar = $id_pendaftar['id'];
         $user->jenjang = Input::get('jnjg');
         $user->programStudi = Input::get('prgrmstd');
         $user->akreditasi = Input::get('akrdts');
@@ -68,11 +72,13 @@ class PendidikansController extends \BaseController {
 			{
 				DB::table('profesi')->insert(
 					[
-						'id_pendaftar'=>1,
+						'id_pendaftar'=>$id_pendaftar['id'],
 						'asosiasi'=>$asos[$key],
 						'noAnggota'=>$no[$key]
 					]);
 			}	
+        }else{
+        	echo "Error";
         }
         return Redirect::to('pekerjaan');
 	}

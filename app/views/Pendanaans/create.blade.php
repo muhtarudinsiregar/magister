@@ -11,7 +11,7 @@
 				</ul>
 			</div>
 		<?php endif ?>
-		<form action="{{ url('pendanaans') }}" method="POST" class="form-horizontal" role="form">
+		<form action="{{ url('pendanaan') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
 			</div>

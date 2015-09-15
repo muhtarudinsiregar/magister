@@ -10,7 +10,8 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		var_dump(Session::get('mail'));
+		return View::make('jadwaltes.create');
 	}
 
 	/**
@@ -21,7 +22,7 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('jadwaltes.create');
+
 	}
 
 	/**
@@ -39,9 +40,11 @@ class JadwalTesController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        // var_dump(Input::all());
-        	$user = JadwalTes::find(1);
-        	$user->id_pendaftar = 1;
+        	$email = Session::get('mail');
+        	$id_pendaftar = DataPribadi::get_id($email);
+
+        	$user = JadwalTes::find($id_pendaftar['id']);
+        	$user->id_pendaftar = $id_pendaftar['id'];
         	$user->id_pendaftarOK = 1;
     	    $user->tanggalTes = Input::get('tgglTes');
     	    $user->sesiTes = Input::get('jTes');

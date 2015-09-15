@@ -10,7 +10,8 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		var_dump(Session::get('mail'));
+		return View::make('pekerjaans.create');
 	}
 
 	/**
@@ -21,7 +22,7 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pekerjaans.create');
+		
 	}
 
 	/**
@@ -43,9 +44,11 @@ class PekerjaansController extends \BaseController {
 		$status_kerja = Input::get('sttskrja');
 		if ($status_kerja != 'y') 
 		{
+			$email = Session::get('mail');
+        	$id_pendaftar = DataPribadi::get_id($email);
 
         	$user = new Pekerjaan;
-        	$user->id_pendaftar = 1;
+        	$user->id_pendaftar = $id_pendaftar['id'];
         	$user->posisi = Input::get('pos');
         	$user->institusi = Input::get('ins');
         	$user->alamat = Input::get('almt');

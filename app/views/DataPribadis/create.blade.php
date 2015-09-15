@@ -5,7 +5,7 @@
 @endif
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		<form action="{{ url('datapribadis') }}" method="POST" class="form-horizontal" role="form">
+		<form action="{{ url('data-pribadi') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 2 : Data Pribadi</strong></h4>
 			</div>
@@ -116,7 +116,7 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalYk" id="dalamYogya" value="0" checked="checked"> Sekarang tinggal di Yogyakarta
+						<input type="radio" name="tinggalYk" id="dalamYogya" value="1" checked="checked"> Sekarang tinggal di Yogyakarta
 					</label>
 				</div>
 			</div>
@@ -162,7 +162,7 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalYk" id="luarYogya" value="1"> Sekarang tinggal di luar Yogyakarta
+						<input type="radio" name="tinggalYk" id="luarYogya" value="0"> Sekarang tinggal di luar Yogyakarta
 					</label>
 				</div>
 			</div>

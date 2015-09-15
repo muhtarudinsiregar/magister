@@ -2,20 +2,25 @@
 @section('content')
 	<div class="col-lg-12">
 		<div class="col-lg-10 col-lg-offset-1">
-			<form action="{{ url('programstudis') }}" method="POST" class="form-horizontal" role="form">
+			<form action="{{ url('programstudi') }}" method="POST" class="form-horizontal" role="form">
 				<div class="form-group">
 					<h4 class=""><strong>Langkah 1 : Program Studi</strong></h4>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Tahun Akademik</label>
 					<div class="col-sm-8">
-						<h5><b>2015/2016</b></h5>
+						<h5><b>{{ $data1 = $data['tahungelombang']['tahun'] }}
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Semester</label>
 					<div class="col-sm-8">
-						<h5><b>1 - Ganjil</b></h5>
+						<h5><b>{{$data1=$data['tahungelombang']['semester']}}  - 
+						@if ($data1 % 2 == 0)
+							Genap
+						@else
+							Ganjil
+						@endif</b></h5></b></h5>
 					</div>
 				</div>
 				<div class="form-group">
@@ -35,7 +40,7 @@
 						<select name="pro" id="jurusan" class="form-control" required="required">
 							<option value="--">--</option>
 							@foreach ($data['jurusan'] as $element)
-								<option selected=""value="{{ $element->id }}">{{ $element->prodi }}</option>
+								<option value="{{ $element->id }}">{{ $element->prodi }}</option>
 							@endforeach
 						</select>
 					</div>

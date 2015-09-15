@@ -10,7 +10,14 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function index()
 	{
-		
+
+		$data = [
+		'jurusan' => ProgramStudi::prodi(),
+		'konsentrasi' => ProgramStudi::konsentrasi(),
+		'tahungelombang'=>TahunGelombang::where('tahun','=','2015/2016')->first()
+		];
+		// var_dump($data['tahungelombang']);
+		return View::make('programstudis.create')->with('data',$data);
 	}
 
 	/**
@@ -21,11 +28,7 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function create()
 	{
-		$data = [
-			'jurusan' => ProgramStudi::prodi(),
-			'konsentrasi' => ProgramStudi::konsentrasi()
-		];
-		return View::make('programstudis.create')->with('data',$data);
+
 	}
 
 	/**
@@ -36,20 +39,27 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+		// $validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
+		// if ($validator->fails())
+		// {
+		// 	return Redirect::back()->withErrors($validator)->withInput();
 
-        }
-        $program = new ProgramStudi;
-        $program->no = 2;
-        $program->tahun = date('Y');
-        $program->gelombang = Input::get('gel');
-        $program->id_prodi = Input::get('pro');
-        $program->id_konsentrasi = Input::get('kon');
-        $program->save();
+		// }
+		// $program = new ProgramStudi;
+		// $program->no = 2;
+		// $program->tahun = date('Y');
+		// $program->gelombang = Input::get('gel');
+		// $program->id_prodi = Input::get('pro');
+		// $program->id_konsentrasi = Input::get('kon');
+		// $program->save();
+		$data_gel = Input::get('gel');
+		$data_pro= Input::get('pro');
+		$data_kon = Input::get('kon');
+
+		Session::get('gel', $data_gel);
+		Session::get('pro', $data_pro);
+		Session::get('kon', $data_kon);
 
 		return Redirect::to('data-pribadi');
 	}
@@ -76,8 +86,8 @@ class ProgramStudisController extends \BaseController {
 	public function edit($id)
 	{
 		$data = [
-			'jurusan' => ProgramStudi::prodi(),
-			'konsentrasi' => ProgramStudi::konsentrasi()
+		'jurusan' => ProgramStudi::prodi(),
+		'konsentrasi' => ProgramStudi::konsentrasi()
 		];
 		$edit = ProgramStudi::find($id);
 		return View::make('programstudis.edit')->withEdit($edit)->withData($data);

@@ -10,7 +10,11 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		// Session::flush();
+		var_dump(Session::all());
+		var_dump(Session::get('programstudis',0));
+		$agama = DataPribadi::agama();
+		return View::make('datapribadis.create')->with('agama',$agama);
 	}
 
 	/**
@@ -21,9 +25,7 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function create()
 	{
-		$agama = DataPribadi::agama();
-		// var_dump($agama);
-		return View::make('datapribadis.create')->with('agama',$agama);
+		
 	}
 
 	/**
@@ -36,33 +38,50 @@ class DataPribadisController extends \BaseController {
 	{
 		$validator = Validator::make($data = Input::all(), DataPribadi::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
 
-        }
+		}
         	// var_dump(Input::all());
+		$mail = Input::get('mail');
+		$user = new DataPribadi;
+		$user->email = $mail;
+		$user->password = Input::get('pin');
+		$user->nama = Input::get('nm');
+		$user->tempatLahir = Input::get('tlhr');
+		$user->tanggalLahir = Input::get('tglhr');
+		$user->jenisKelamin = Input::get('jenisK');
+		$user->id_agama = Input::get('agama');
+		$user->noHP = Input::get('no_hp');
+		$user->alamatYK = Input::get('almtYk');
+		$user->kotakabYK = Input::get('kotakabYk');
+		$user->noTelpYK = Input::get('no_telYk');
+		$user->tinggalYK = Input::get('tinggalYk');
+		$user->alamat = Input::get('almtNyk');
+		$user->kotakab = Input::get('kotakabNyk');
+		$user->propinsi = Input::get('prop');
+		$user->negara = Input::get('neg');
+		$user->noTelepon = Input::get('no_telNyk');
+		$user->save();
 
-        	$user = new DataPribadi;
-        	$user->email = Input::get('mail');
-    	    $user->password = Hash::make(Input::get('pin'));
-    	    $user->nama = Input::get('nm');
-    	    $user->tempatLahir = Input::get('tlhr');
-    	    $user->tanggalLahir = Input::get('tglhr');
-    	    $user->jenisKelamin = Input::get('jenisK');
-    	    $user->id_agama = Input::get('agama');
-    	    $user->noHP = Input::get('no_hp');
-    	    $user->alamatYK = Input::get('almtYk');
-    	    $user->kotakabYK = Input::get('kotakabYk');
-    	    $user->noTelpYK = Input::get('no_telYk');
-    	    $user->tinggalYK = Input::get('tinggalYk');
-    	    $user->alamat = Input::get('almtNyk');
-    	    $user->kotakab = Input::get('kotakabNyk');
-    	    $user->propinsi = Input::get('prop');
-    	    $user->negara = Input::get('neg');
-    	    $user->noTelepon = Input::get('no_telNyk');
-	       	$user->save();
-        	return Redirect::to('pendidikan');
+		$data = DataPribadi::get_id($mail);
+		Session::put('mail', $mail);
+
+		$tahun = TahunGelombang::where('tahun','=','2015/2016')->first();//ambil tahun
+
+		$email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+
+		$program = new ProgramStudi;
+		$program->tahun = $tahun['tahun'];
+		$program->semester = $tahun['semester'];
+		$program->id_pendaftar = $id_pendaftar['id'];
+		$program->gelombang = Session::get('gel');
+		$program->id_prodi = Session::get('pro');
+		$program->id_konsentrasi = Session::get('kon');
+		$program->save();
+		return Redirect::to('pendidikan');
 	}
 
 	/**

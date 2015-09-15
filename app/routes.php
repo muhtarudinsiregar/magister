@@ -29,10 +29,11 @@ View::composer(array('pendidikans.edit','pendidikans.create'), function($view)
 });
 
 
-Event::listen('illuminate.query', function($query)
-{
-    var_dump($query);
-});
+// Event::listen('illuminate.query', function($query)
+// {
+//     var_dump($query);
+// });
+
 // Route::get('mail', function(){
 // 	$data = ['prize' => 'Peke', 'total' => 3 ];
 // 	Mail::send('tests.create', $data, function($mail){
@@ -48,24 +49,13 @@ Event::listen('illuminate.query', function($query)
 
 // });
 Route::get('/','BerandasController@create');
-
-Route::get('beranda', "BerandasController@create");
-Route::get('programstudi', "ProgramStudisController@create");
-Route::get('data-pribadi', "DataPribadisController@create");
-Route::get('pendidikan', "PendidikansController@create");
-Route::get('pekerjaan', "PekerjaansController@create");
-Route::get('pendanaan', "PendanaansController@create");
-Route::get('kontak',"KontaksController@create");
-Route::get('jadwal',"JadwalTesController@create");
-Route::get('pernyataan',"PendaftaranController@create");
-Route::get('konfirmasi',"PendaftaranController@konfirmasi");
-Route::get('tes',"PendaftaranController@tes");
-Route::resource('berandas', 'BerandasController');
+Route::resource('beranda', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
-Route::resource('datapribadis', "DataPribadisController");
-Route::resource('programstudis', "ProgramStudisController");
-Route::resource('pendidikans', "PendidikansController");
-Route::resource('pekerjaans', "PekerjaansController");
-Route::resource('pendanaans', "PendanaansController");
-Route::resource('kontaks', "KontaksController");
-Route::resource('jadwals', "JadwalTesController");
+Route::resource('data-pribadi', "DataPribadisController");
+Route::resource('programstudi', "ProgramStudisController");
+Route::resource('pendidikan', "PendidikansController");
+Route::resource('pekerjaan', "PekerjaansController");
+Route::resource('pendanaan', "PendanaansController");
+Route::resource('kontak', "KontaksController");
+Route::resource('jadwal', "JadwalTesController");
+Route::resource('pernyataan',"PendaftaranController");

@@ -10,7 +10,8 @@ class KontaksController extends \BaseController {
 	 */
 	public function index()
 	{
-		echo "sukses";
+		var_dump(Session::get('mail'));
+		return View::make('kontaks.create');
 	}
 
 	/**
@@ -21,7 +22,7 @@ class KontaksController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('kontaks.create');
+		
 	}
 
 	/**
@@ -40,10 +41,11 @@ class KontaksController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
 
         }
-        // var_dump(Input::all());
-        // Kontak::create($data);
+      	$email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+
         $user = new Kontak;
-        $user->id_pendaftar = 1;
+        $user->id_pendaftar = $id_pendaftar['id'];
         $user->nama = Input::get('nama');
         $user->hubungan = Input::get('hubungan');
         $user->alamat = Input::get('alamat');
@@ -54,7 +56,8 @@ class KontaksController extends \BaseController {
         $user->email = Input::get('email');
 
         $user->save();
-        // return Redirect::to('kontaks');
+        return Redirect::to('jadwal');
+        var_dump(Input::all());
 	}
 
 	/**

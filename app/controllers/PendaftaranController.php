@@ -12,35 +12,37 @@ class PendaftaranController extends \BaseController {
 
 	public function konfirmasi()
 	{
-		$id = 1;
-		// $pribadi = DataPribadi::all()->find(1);
-		// $data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find(1);
+		$email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+		
+		$pribadi = DataPribadi::all()->find($id_pendaftar['id']);
+		$data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find(1);
 		
 		
-		// Pendaftaran::pendaftar($pribadi);
-		// foreach ($data['pekerjaan']as $value)
-		// 	{
-		// 		Pendaftaran::pekerjaan($value);
-		// 	}
-		// foreach ($data['pendidikan']as $value)
-		// 	{
-		// 		Pendaftaran::pendidikan($value);
-		// 	}
-		// foreach ($data['sponsor']as $value)
-		// 	{
-		// 		Pendaftaran::sponsor($value);
-		// 	}
-		// foreach ($data['riwayatpekerjaan']as $value)
-		// 	{
-		// 		Pendaftaran::riwayatpekerjaan($value);
-		// 	}
+		Pendaftaran::pendaftar($pribadi);
+		foreach ($data['pekerjaan']as $value)
+			{
+				Pendaftaran::pekerjaan($value);
+			}
+		foreach ($data['pendidikan']as $value)
+			{
+				Pendaftaran::pendidikan($value);
+			}
+		foreach ($data['sponsor']as $value)
+			{
+				Pendaftaran::sponsor($value);
+			}
+		foreach ($data['riwayatpekerjaan']as $value)
+			{
+				Pendaftaran::riwayatpekerjaan($value);
+			}
 		
-		// Pendaftaran::kontakdarurat($data->kontakdarurat);
+		Pendaftaran::kontakdarurat($data->kontakdarurat);
 			
-		// foreach ($data['profesi']as $value)
-		// 	{
-		// 		Pendaftaran::profesi($value);
-		// 	}	
+		foreach ($data['profesi']as $value)
+			{
+				Pendaftaran::profesi($value);
+			}	
 
 		return View::make('pendaftaran.konfirmasi');
 	}
@@ -51,7 +53,8 @@ class PendaftaranController extends \BaseController {
 
 	public function index()
 	{
-		
+		var_dump(Session::get('mail'));
+		return View::make('pendaftaran.pernyataan');
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -61,12 +64,7 @@ class PendaftaranController extends \BaseController {
 	 */
 	public function create()
 	{
-		// $data = Pendaftaran::where('id_pendaftar','=','1')->firstOrFail();
-		// $data = Pendaftaran::lists('konfirm');
 
-		// echo $data['konfirm'];
-		// dd($data);
-		return View::make('pendaftaran.pernyataan');
 	}
 
 	/**
