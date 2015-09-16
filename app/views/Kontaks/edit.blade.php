@@ -14,7 +14,7 @@
 <?php endif ?>
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		{{ Form::model($kontak, array('method'=>'PUT','class'=>'form-horizontal','route' => array('kontaks.update', $kontak->id))) }}
+		{{ Form::model($kontak, array('method'=>'PUT','class'=>'form-horizontal','route' => array('kontak.update', $kontak->id))) }}
 		<div class="form-group">
 			<h4><strong>Langkah 6 : Kontak Darurat</strong></h4>
 		</div>
@@ -32,11 +32,10 @@
 			<div class="col-sm-3">
 				<select name="hubungan" id="input" class="form-control" required="required">
 					<option value=""></option>
-					<option value="Orang Tua">Orang tua</option>
-					<option value="Suami/istri">Suami/istri</option>
-					<option value="Saudara">Saudara</option>
-					<option value="Atasan/rekan kerja">Atasan/rekan kerja</option>
-					<option value="Atasan/rekan kerja">Lainnya</option>
+					@foreach ($hub as $element)
+					<?php $selected = ($element->id == $kontak->id)? 'selected="selected"':'';  ?>
+					<option value="{{$element->id}}" {{$selected}}>{{$element->hubungan}}</option>
+					@endforeach
 				</select>
 			</div>
 		</div>

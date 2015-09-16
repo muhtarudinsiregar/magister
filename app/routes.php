@@ -48,7 +48,7 @@ View::composer(array('pendidikans.edit','pendidikans.create'), function($view)
 // 	});
 
 // });
-Route::get('/','BerandasController@create');
+Route::get('/','BerandasController@index');
 Route::get('konfirmasi','PendaftaranController@konfirmasi');
 Route::resource('beranda', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
@@ -59,4 +59,4 @@ Route::resource('pekerjaan', "PekerjaansController");
 Route::resource('pendanaan', "PendanaansController");
 Route::resource('kontak', "KontaksController");
 Route::resource('jadwal', "JadwalTesController");
-Route::resource('pernyataan',"PendaftaranController");
+Route::get('pernyataan',"PendaftaranController@index");

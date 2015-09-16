@@ -83,9 +83,9 @@ class KontaksController extends \BaseController {
 	public function edit($id)
 	{
 
-		$kontak = Kontak::find(1);
-		
-		return View::make('kontaks.edit')->withKontak($kontak);
+		$kontak = Kontak::where('id_pendaftar','=',$id)->first();
+		$hub = Hubungan::all();
+		return View::make('kontaks.edit')->withKontak($kontak)->withHub($hub);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class KontaksController extends \BaseController {
 
 		$kontak->update($data);
 
-		return Redirect::to('jadwals/'.$id.'/edit');
+		return Redirect::to('jadwal/'.Auth::id().'/edit');
 	}
 
 	/**

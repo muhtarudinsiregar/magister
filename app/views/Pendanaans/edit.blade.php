@@ -11,7 +11,7 @@
 				</ul>
 			</div>
 		<?php endif ?>
-		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendanaans.update', $edit->id))) }}
+		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendanaan.update', $edit->id_pendaftaran))) }}
 			<div class="form-group">
 				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
 			</div>
@@ -19,10 +19,10 @@
 				<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>
 				<div class="col-sm-3" id="pendanaan">
 					<label class="radio-inline" >
-						<input type="radio" value="0" name="dana" id="sendiri"> Sendiri
+						<input type="radio" value="0" name="dana" id="sendiri"{{($data_beasiswa->danaBeasiswa=='0')?'checked':''}}> Sendiri
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" value="1" name="dana" id="beasiswa"> Beasiswa
+						<input type="radio" value="1" name="dana" id="beasiswa" {{($data_beasiswa->danaBeasiswa=='1')?'checked':''}}> Beasiswa
 					</label>
 				</div>
 			</div>
@@ -33,8 +33,8 @@
 						<select name="beasiswa" id="input" class="form-control" required="required">
 							<option value="">--</option>
 							@foreach ($beasiswa as $element)
-							
-							<option value="{{$element->id}}"> {{ $element->beasiswa }} </option>
+							<?php $selected = ($element->id == $data_beasiswa->id_beasiswa)? 'selected="selected"':'';  ?>
+							<option value="{{$element->id}}" {{$selected}}> {{ $element->beasiswa }} </option>
 							@endforeach
 						</select>
 					</div>
@@ -45,7 +45,7 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Pemberi beasiswa </label>
 					<div class="col-sm-4">
-						<input type="text" name="pemberi" id="input" class="form-control" required="required"  value="{{ $edit->sponsor }}">
+						<input type="text" name="pemberi" id="input" class="form-control" required="required"  value="{{$edit->sponsor}}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -94,10 +94,10 @@
 					<label for="program" class="col-sm-2 control-label">Status Beasiswa</label>
 					<div class="col-sm-4">
 						<label class="radio-inline">
-							<input type="radio" name="sttsbea" id="inlineRadio1" value="0"> Dalam proses
+							<input type="radio" name="sttsbea" id="inlineRadio1" value="0" {{($data_beasiswa->statusBeasiswa=='0')?'checked':''}}> Dalam proses
 						</label>
 						<label for="" class="radio-inline">
-							<input type="radio" name="sttsbea" id="inlineRadio1" value="1"> Sudah disetujui
+							<input type="radio" name="sttsbea" id="inlineRadio1" value="1" {{($data_beasiswa->statusBeasiswa=='1')?'checked':''}}> Sudah disetujui
 						</label>
 					</div>
 				</div>

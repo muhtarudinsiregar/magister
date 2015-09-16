@@ -14,7 +14,7 @@
 <?php endif ?>
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		{{ Form::model($jadwal, array('method'=>'PUT','class'=>'form-horizontal','route' => array('jadwals.update', $jadwal->no))) }}
+		{{ Form::model($jadwal, array('method'=>'PUT','class'=>'form-horizontal','route' => array('jadwal.update', $jadwal->no))) }}
 		<div class="form-group">
 			<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
 		</div>

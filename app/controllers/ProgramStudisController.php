@@ -83,7 +83,8 @@ class ProgramStudisController extends \BaseController {
 		'jurusan' => ProgramStudi::prodi(),
 		'konsentrasi' => ProgramStudi::konsentrasi()
 		];
-		$edit = ProgramStudi::find($id);
+		$edit = ProgramStudi::where('id_pendaftar','=',$id)->first();
+		// dd($edit);
 		return View::make('programstudis.edit')->withEdit($edit)->withData($data);
 	}
 

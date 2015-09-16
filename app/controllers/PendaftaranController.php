@@ -12,8 +12,6 @@ class PendaftaranController extends \BaseController {
 
 	public function konfirmasi()
 	{
-		
-
 		return View::make('pendaftaran.konfirmasi');
 	}
 	public function tes()

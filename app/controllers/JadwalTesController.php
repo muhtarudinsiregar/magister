@@ -78,7 +78,8 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$jadwal = JadwalTes::find($id);
+		$jadwal = JadwalTes::where('id_pendaftar','=',$id)->first();
+		// dd($jadwal->no);
 		return View::make('jadwalTes.edit')->withJadwal($jadwal);
 	}
 
@@ -91,7 +92,7 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		var_dump(Input::all());
+		// var_dump(Input::all());
 		$jadwal = JadwalTes::findOrFail($id);
 
 		$validator = Validator::make($data = Input::all(), JadwalTes::$rules);
@@ -100,12 +101,12 @@ class JadwalTesController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-
+			$jadwal = JadwalTes::find($id);
 			$jadwal->tanggalTes = Input::get('tgglTes');
     	    $jadwal->sesiTes = Input::get('jTes');
 	      	$jadwal->save();
 
-		// return Redirect::to('beranda');
+		return Redirect::to('pernyataan');
 	}
 
 	/**

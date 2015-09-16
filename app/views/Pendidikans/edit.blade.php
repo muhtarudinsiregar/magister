@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
-		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendidikans.update', $edit->id))) }}
+		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendidikan.update', $edit->id))) }}
 			<div class="form-group">
 				<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 			</div>

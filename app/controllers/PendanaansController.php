@@ -92,8 +92,10 @@ class PendanaansController extends \BaseController {
 	public function edit($id)
 	{
 		$data_beasiswa = DataPribadi::all(['danaBeasiswa','id_beasiswa','statusBeasiswa'])->find($id);
-		$edit = Pendanaan::find($id);
-		return View::make('pendanaans.edit')->withEdit($edit)->withData($data_beasiswa);
+		$edit = Pendanaan::where('id_pendaftar','=',$id)->first();
+		$data_beasiswa = DataPribadi::where('id','=',$id)->first(['danaBeasiswa','id_beasiswa','statusBeasiswa']);
+		return View::make('pendanaans.edit')->withEdit($edit)->withData_beasiswa($data_beasiswa);
+		// dd($data_beasiswa);
 	}
 
 	/**

@@ -46,12 +46,11 @@ class BerandasController extends \BaseController {
 				'email'=>Input::get('mail'),
 				'password'=>Input::get('passwd')
 			];
-			// dd(Auth::attempt($credentials));
-			// $email = Input::get('email');
-			// $passwd= Input::get('passwd');
-			if (Auth::attempt($credentials)) {
-				
-				return Redirect::to('programstudis/'.Auth::id().'/edit');
+			$auth = User::where('email', '=', Input::get('mail'))->where('password', '=',Input::get('passwd'))->first(['id']);
+
+			if ($auth) {
+				Auth::login($auth);
+				return Redirect::to('programstudi/'.$auth->id.'/edit');
 			}else{
 				Session::flash('notif','Email atau Password Salah!');
 				echo Session::get('notif');

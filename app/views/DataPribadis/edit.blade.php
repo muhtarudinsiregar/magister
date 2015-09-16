@@ -6,7 +6,7 @@
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
 		{{-- <form action="{{ url('datapribadis') }}" method="POST" class="form-horizontal" role="form"> --}}
-		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('datapribadis.update', $edit->id))) }}
+		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('data-pribadi.update', $edit->id))) }}
 			<div class="form-group">
 				<h4><strong>Langkah 2 : Data Pribadi</strong></h4>
 			</div>
