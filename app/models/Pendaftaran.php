@@ -91,7 +91,7 @@ class Pendaftaran extends \Eloquent {
 		DB::table('riwayatpekerjaanok')->insert(
 			[
 			'id_pendaftar'=>$value->id_pendaftar,
-			'posisi'=>$value->posisi,
+			'posisi'=>$value->posisi,	
 			'institusi'=>$value->institusi,
 			'masaKerja'=>$value->masaKerja
 			]);

@@ -46,14 +46,14 @@ class ProgramStudisController extends \BaseController {
 		// 	return Redirect::back()->withErrors($validator)->withInput();
 
 		// }
-		
+		// Input::flash();
 		$data_gel = Input::get('gel');
 		$data_pro= Input::get('pro');
 		$data_kon = Input::get('kon');
 
-		Session::get('gel', $data_gel);
-		Session::get('pro', $data_pro);
-		Session::get('kon', $data_kon);
+		Session::put('gel', $data_gel);
+		Session::put('pro', $data_pro);
+		Session::put('kon', $data_kon);
 
 		return Redirect::to('data-pribadi');
 	}

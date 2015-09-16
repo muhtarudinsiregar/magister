@@ -12,37 +12,7 @@ class PendaftaranController extends \BaseController {
 
 	public function konfirmasi()
 	{
-		$email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
 		
-		$pribadi = DataPribadi::all()->find($id_pendaftar['id']);
-		$data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find(1);
-		
-		
-		Pendaftaran::pendaftar($pribadi);
-		foreach ($data['pekerjaan']as $value)
-			{
-				Pendaftaran::pekerjaan($value);
-			}
-		foreach ($data['pendidikan']as $value)
-			{
-				Pendaftaran::pendidikan($value);
-			}
-		foreach ($data['sponsor']as $value)
-			{
-				Pendaftaran::sponsor($value);
-			}
-		foreach ($data['riwayatpekerjaan']as $value)
-			{
-				Pendaftaran::riwayatpekerjaan($value);
-			}
-		
-		Pendaftaran::kontakdarurat($data->kontakdarurat);
-			
-		foreach ($data['profesi']as $value)
-			{
-				Pendaftaran::profesi($value);
-			}	
 
 		return View::make('pendaftaran.konfirmasi');
 	}
@@ -86,6 +56,39 @@ class PendaftaranController extends \BaseController {
 		$pernyataan = Pendaftaran::find(1);
 		$pernyataan->konfirm = Input::get('pernyataan');
 		$pernyataan->save();
+
+		$email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+		
+		$pribadi = DataPribadi::all()->find($id_pendaftar['id']);
+		$data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find($id_pendaftar['id']);
+		
+		
+		Pendaftaran::pendaftar($pribadi);
+		foreach ($data['pekerjaan']as $value)
+			{
+				Pendaftaran::pekerjaan($value);
+			}
+		foreach ($data['pendidikan']as $value)
+			{
+				Pendaftaran::pendidikan($value);
+			}
+		foreach ($data['sponsor']as $value)
+			{
+				Pendaftaran::sponsor($value);
+			}
+		foreach ($data['riwayatpekerjaan']as $value)
+			{
+				Pendaftaran::riwayatpekerjaan($value);
+			}
+		
+		Pendaftaran::kontakdarurat($data->kontakdarurat);
+			
+		foreach ($data['profesi']as $value)
+			{
+				Pendaftaran::profesi($value);
+			}	
+
 		return Redirect::to('konfirmasi');
 	}
 

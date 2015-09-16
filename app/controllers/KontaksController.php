@@ -11,7 +11,8 @@ class KontaksController extends \BaseController {
 	public function index()
 	{
 		var_dump(Session::get('mail'));
-		return View::make('kontaks.create');
+		$hub = Hubungan::all();
+		return View::make('kontaks.create')->withHub($hub);
 	}
 
 	/**

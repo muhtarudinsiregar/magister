@@ -19,12 +19,10 @@
 				<label for="input" class="col-sm-2 control-label">Hubungan *</label>
 				<div class="col-sm-3">
 					<select name="hubungan" id="input" class="form-control" required="required">
-						<option value=""></option>
-						<option value="Orang Tua">Orang tua</option>
-						<option value="Suami/istri">Suami/istri</option>
-						<option value="Saudara">Saudara</option>
-						<option value="Atasan/rekan kerja">Atasan/rekan kerja</option>
-						<option value="Atasan/rekan kerja">Lainnya</option>
+							<option value="">--</option>
+						@foreach ($hub as $element)
+							<option value="{{$element->id}}">{{$element->hubungan}}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>

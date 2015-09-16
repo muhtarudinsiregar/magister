@@ -36,35 +36,37 @@ class PendanaansController extends \BaseController {
 	{
 		$validator = Validator::make($data = Input::all(), Pendanaan::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
 
-        }
-        $email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
-        
-        $data_beasiswa = DataPribadi::find($id_pendaftar['id']);
+		}
+		$email = Session::get('mail');
+		$id_pendaftar = DataPribadi::get_id($email);
+		
+		$data_beasiswa = DataPribadi::find($id_pendaftar['id']);
         // var_dump($data_beasiswa);
-        $data_beasiswa->danaBeasiswa = Input::get('dana');
-        $data_beasiswa->id_beasiswa = Input::get('beasiswa');
-        $data_beasiswa->statusBeasiswa = Input::get('sttsbea');
+		$data_beasiswa->danaBeasiswa = Input::get('dana');
+		$data_beasiswa->id_beasiswa = Input::get('beasiswa');
+		$data_beasiswa->statusBeasiswa = Input::get('sttsbea');
 		$data_beasiswa->save();
 
-		
+		if (Input::get('dana') !=0) {
+			$sponsor = new Pendanaan;
+			$sponsor->id_pendaftar = $id_pendaftar['id'];
+			$sponsor->sponsor = Input::get('pemberi');
+			$sponsor->alamat = Input::get('almt');
+			$sponsor->kotakab = Input::get('kotakab');
+			$sponsor->propinsi = Input::get('prop');
+			$sponsor->negara = Input::get('neg');
+			$sponsor->noTelepon = Input::get('notel');
+			$sponsor->noFaksimili = Input::get('nofax');
+			$sponsor->email = Input::get('mail');
+			$sponsor->save();
+		}	
 
-        $sponsor = new Pendanaan;
-        $sponsor->id_pendaftar = $id_pendaftar['id'];
-        $sponsor->sponsor = Input::get('pemberi');
-        $sponsor->alamat = Input::get('almt');
-        $sponsor->kotakab = Input::get('kotakab');
-        $sponsor->propinsi = Input::get('prop');
-        $sponsor->negara = Input::get('neg');
-        $sponsor->noTelepon = Input::get('notel');
-        $sponsor->noFaksimili = Input::get('nofax');
-        $sponsor->email = Input::get('mail');
-        $sponsor->save();
-        return Redirect::to('kontak');
+		
+		return Redirect::to('kontak');
 
 	}
 

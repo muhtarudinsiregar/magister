@@ -1,7 +1,7 @@
 <?php
 
 class JadwalTes extends \Eloquent {
-	protected $fillable = ['asas','sesiTes'];
+	protected $fillable = [];
 
 	protected $table ='pendaftaran';
 	public static $rules = [];
@@ -9,5 +9,9 @@ class JadwalTes extends \Eloquent {
 	public static function sesiTes()
 	{
 		return DB::table('sesites')->get();
+	}
+	public static function find_id_pendaftar($id)
+	{
+		return JadwalTes::where('id_pendaftar','=',$id)->first(['no']);
 	}
 }

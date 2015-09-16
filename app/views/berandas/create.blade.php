@@ -36,7 +36,7 @@
 		<hr>
 		<div class="row">
 			<div class="col-lg-6">
-				<form action="{{url('berandas')}}" method="POST" class="form-horizontal" role="form">
+				<form action="{{url('beranda')}}" method="POST" class="form-horizontal" role="form">
 					<div class="form-group">
 						<label for="tahun_akademik" class="col-sm-2 control-label">Email </label>
 						<div class="col-sm-8">

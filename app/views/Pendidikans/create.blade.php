@@ -101,7 +101,8 @@
 			{{-- ==============================================BUTTON ============================================= --}}
 			<div class="form-group">
 				<div class="col-sm-offset-9 col-sm-3">
-					<button type="submit" class="btn btn-default">Sebelumnya </button>
+					{{-- <button type="submit" class="btn btn-default">Sebelumnya </button> --}}
+					<button type="button" class="btn btn-default" onClick="history.go(-1)">Sebelumnya </button>
 					<button type="submit" class="btn btn-default">Berikutnya</button>
 				</div>
 			</div>

@@ -73,7 +73,7 @@ class PekerjaansController extends \BaseController {
 			{
 				DB::table('riwayatpekerjaan')->insert(
 					[
-						'id_pendaftar'=>1,
+						'id_pendaftar'=>$id_pendaftar['id'],
 						'posisi'=>$posi[$key],
 						'institusi'=>$insitut[$key],
 						'masaKerja'=>$tahun[$key]
