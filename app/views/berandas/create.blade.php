@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-lg-8">
 			@if (Session::has('notif'))
-				<div class="alert alert-warning">
+				<div class="alert alert-danger">
 				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				    <strong>{{ Session::get('notif')}}!</strong>
 				</div>

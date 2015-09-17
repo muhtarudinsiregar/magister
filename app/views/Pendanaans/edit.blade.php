@@ -139,19 +139,22 @@
 				$('#sponsor :input').prop('disabled', true);		
 			}
 		});
-		// $('input[name="dana"]').is("checked",true)
-		// {
-		// 	if ($("input[value='1']") && $("option[value='3']"))
-		// 	{
-		// 		$('#inputPendanaan :input').prop('disabled', false);
-		// 	}else if($("input[value='1']") && $("option[value='1']") || $("option[value='2']"))
-		// 	{
-		// 		$('#sponsor :input').prop('disabled', true);
-		// 	}else
-		// 	{
-		// 		$('#inputPendanaan :input').prop('disabled', true);
-		// 	}
-		// }
+		$('#sendiri').is("checked",true)
+		{
+			$('#inputPendanaan :input').prop('disabled', true);
+		}
+		$('#beasiswa').is("checked",true)
+		{
+			$('#inputPendanaan :input').prop('disabled', false);
+			var a = $('#jenisBeasiswa :selected').val();
+			if (a == 3)
+			{
+				$('#sponsor :input').prop('disabled', false);
+			}else{
+				$('#sponsor :input').prop('disabled', true);		
+			}
+		}
+
 		
 	});
 </script>
