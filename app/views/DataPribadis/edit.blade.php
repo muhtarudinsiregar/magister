@@ -64,7 +64,7 @@
 						<input type="radio" name="jenisK" value="Pria" checked="checked" {{($edit->jenisKelamin=='P')?'checked':''}}> Pria
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="jenisK" value="Wanita" {{ ($edit->jenisKelamin=='M')?'checked':'' }}> Wanita
+						<input type="radio" name="jenisK" value="Wanita" {{ ($edit->jenisKelamin=='W')?'checked':'' }}> Wanita
 					</label>
 				</div>
 			</div>
@@ -118,7 +118,7 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalYk" id="dalamYogya" value="0" checked="checked" {{ ($edit->tinggalYK=='1')?'checked':'' }}> Sekarang tinggal di Yogyakarta
+						<input type="radio" name="tinggalYk" id="dalamYogya" value="1" checked="checked" {{ ($edit->tinggalYK=='1')?'checked':'' }}> Sekarang tinggal di Yogyakarta
 					</label>
 				</div>
 			</div>
@@ -164,7 +164,7 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalYk" id="luarYogya" value="1" {{ ($edit->tinggalYK=='0')?'checked':'' }}> Sekarang tinggal di luar Yogyakarta
+						<input type="radio" name="tinggalYk" id="luarYogya" value="0" {{ ($edit->tinggalYK=='0')?'checked':'' }}> Sekarang tinggal di luar Yogyakarta
 					</label>
 				</div>
 			</div>

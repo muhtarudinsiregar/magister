@@ -119,7 +119,45 @@ class PendidikansController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+		// dd(Input::all());
+		$user = Pendidikan::find($id);
+        $user->jenjang = Input::get('jnjg');
+        $user->programStudi = Input::get('prgrmstd');
+        $user->akreditasi = Input::get('akrdts');
+        $user->PT = Input::get('pt');
+        $user->tahunMasuk = Input::get('thmsk');
+        $user->tahunLulus = Input::get('thlls');
+        $user->noIjazah = Input::get('noijzh');
+        $user->IPK = Input::get('ipk');
+        $user->skala = Input::get('skala');
+        $user->save();
+
+        // line utk perulangan profesi
+        $asosia = Input::get('asosiasi');
+        if ($asosia!='')
+        {
+        	$pekerjaan = Input::only('asosiasi','no_anggota');
+			$asos = $pekerjaan['asosiasi'];
+			$no = $pekerjaan['no_anggota'];
+
+			foreach ($asos as $key => $value)
+			{
+				DB::table('profesi')->where('id_pendaftar',$id)->update(
+					[
+						'asosiasi'=>$asos[$key],
+						'noAnggota'=>$no[$key]
+					]);
+			}	
+        }else{
+   
+        }
+        return Redirect::to('pekerjaan/'.Auth::id().'/edit');
 	}
 
 	/**

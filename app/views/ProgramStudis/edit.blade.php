@@ -1,8 +1,9 @@
-@extends('layout.master_edit')
+ @extends('layout.master_edit')
 @section('content')
 	<div class="col-lg-12">
 		<div class="col-lg-10 col-lg-offset-1">
-			{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('programstudi.update', $edit->id))) }}
+			
+		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('programstudi.update', $edit->no))) }}
 				<div class="form-group">
 					<h4 class=""><strong>Langkah 1 : Program Studi</strong></h4>
 				</div>
@@ -22,9 +23,10 @@
 					<label for="tahun_akademik" class="col-sm-2 control-label">Gelombang</label>
 					<div class="col-sm-2">
 						<select name="gel" id="input" class="form-control" required="required">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
+							@foreach ($tahun as $element)
+								<?php $selected = ($element->gelombang == $edit->gelombang)? 'selected="selected"':'';  ?>
+							 	<option value="{{ $element->gelombang }}" {{$selected}}>{{ $element->gelombang }}</option>
+							@endforeach
 						</select>
 					</div>
 				</div>
@@ -36,7 +38,7 @@
 							<option value="--">--</option>
 							@foreach ($data['jurusan'] as $element)
 								<?php $selected = ($element->id == $edit->id_prodi)? 'selected="selected"':'';  ?>
-								<option selected=""value="{{ $element->id }}" {{$selected}}>{{ $element->prodi }}</option>
+								<option value="{{ $element->id }}" {{$selected}}>{{ $element->prodi }}</option>
 							@endforeach
 						</select>
 					</div>

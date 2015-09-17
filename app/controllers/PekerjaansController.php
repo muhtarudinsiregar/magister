@@ -118,7 +118,47 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validator = Validator::make($data = Input::all(), Kontak::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+		$status_kerja = Input::get('sttskrja');
+		if ($status_kerja != 'y') 
+		{
+        	$user = Pekerjaan::find($id);
+        	$user->posisi = Input::get('pos');
+        	$user->institusi = Input::get('ins');
+        	$user->alamat = Input::get('almt');
+        	$user->kotakab = Input::get('kotkab');
+        	$user->propinsi = Input::get('prop');
+        	$user->negara = Input::get('neg');
+        	$user->noTelepon = Input::get('notel');
+        	$user->noFaximile = Input::get('nofax');
+        	$user->email = Input::get('mail');
+        	$user->tahunMulai = Input::get('thnkrj');
+	        $user->save();
+
+		}
+		
+			
+			$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
+			$posi = $pekerjaan['pos_riw'];
+			$insitut = $pekerjaan['ins_riw'];
+			$tahun = $pekerjaan['th_riw'];
+
+			// foreach ($posi as $key => $value)
+			// {
+				// DB::table('riwayatpekerjaan')->insert(
+				// 	[
+				// 		'id_pendaftar'=>$id_pendaftar['id'],
+				// 		'posisi'=>$posi[$key],
+				// 		'institusi'=>$insitut[$key],
+				// 		'masaKerja'=>$tahun[$key]
+				// 	]);
+			// }
+			return Redirect::to('pendanaan/'.Auth::id().'/edit');
 	}
 
 	/**

@@ -26,7 +26,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="{{ url ('beranda/'.Auth::id().'/edit')}}">Beranda</a></li>
+							<li><a href="{{ url ('beranda')}}">Beranda</a></li>
 							<li><a href="{{ url ('programstudi/'.Auth::id().'/edit')}}">Program Studi</a></li>
 							<li><a href="{{ url('data-pribadi/'.Auth::id().'/edit')}}">Data Pribadi</a></li>
 							<li><a href="{{ url('pendidikan/'.Auth::id().'/edit')}}">Pendidikan</a></li>

@@ -124,7 +124,6 @@
 			{
 				$('#jenisBeasiswa').prop('disabled', false);
 				$('#sponsor :input').prop('disabled', true);
-				
 			}
 			else
 			{

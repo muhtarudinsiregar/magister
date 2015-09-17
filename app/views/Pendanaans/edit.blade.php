@@ -11,37 +11,38 @@
 				</ul>
 			</div>
 		<?php endif ?>
-		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendanaan.update', $edit->id_pendaftaran))) }}
-			<div class="form-group">
-				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
+		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendanaan.update', $edit->id))) }}
+		<div class="form-group">
+			<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
+		</div>
+		<div class="form-group">
+			<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>
+			<div class="col-sm-3" id="pendanaan">
+				<label class="radio-inline" >
+					<input type="radio" value="0" name="dana" id="sendiri"{{($data_beasiswa->danaBeasiswa=='0')?'checked':''}}> Sendiri
+				</label>
+				<label for="" class="radio-inline">
+					<input type="radio" value="1" name="dana" id="beasiswa" {{($data_beasiswa->danaBeasiswa=='1')?'checked':''}}> Beasiswa
+				</label>
+			</div>
+		</div>
+		<div id="inputPendanaan">
+			<div class="form-group">	
+				<label for="input" class="col-sm-2 control-label">Beasiswa</label>
+				<div class="col-sm-3">
+					<select name="beasiswa" id="jenisBeasiswa" class="form-control" required="required">
+						<option value="">--</option>
+						@foreach ($beasiswa as $element)
+						<?php $selected = ($element->id == $data_beasiswa->id_beasiswa)? 'selected="selected"':'';  ?>
+						<option value="{{$element->id}}" {{$selected}}> {{ $element->beasiswa }} </option>
+						@endforeach
+					</select>
+				</div>
 			</div>
 			<div class="form-group">
-				<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>
-				<div class="col-sm-3" id="pendanaan">
-					<label class="radio-inline" >
-						<input type="radio" value="0" name="dana" id="sendiri"{{($data_beasiswa->danaBeasiswa=='0')?'checked':''}}> Sendiri
-					</label>
-					<label for="" class="radio-inline">
-						<input type="radio" value="1" name="dana" id="beasiswa" {{($data_beasiswa->danaBeasiswa=='1')?'checked':''}}> Beasiswa
-					</label>
-				</div>
+				<label for="" class="col-sm-6 i-custom control-label"><i>Beasiswa alumni hanya diperuntukkan bagi pendaftar yang merupakan alumni Teknik Industri atau Teknik Informatika Universitas Islam Indonesia.</i></label>
 			</div>
-			<div id="inputPendanaan">
-				<div class="form-group">	
-					<label for="input" class="col-sm-2 control-label">Beasiswa</label>
-					<div class="col-sm-3">
-						<select name="beasiswa" id="input" class="form-control" required="required">
-							<option value="">--</option>
-							@foreach ($beasiswa as $element)
-							<?php $selected = ($element->id == $data_beasiswa->id_beasiswa)? 'selected="selected"':'';  ?>
-							<option value="{{$element->id}}" {{$selected}}> {{ $element->beasiswa }} </option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="col-sm-6 i-custom control-label"><i>Beasiswa alumni hanya diperuntukkan bagi pendaftar yang merupakan alumni Teknik Industri atau Teknik Informatika Universitas Islam Indonesia.</i></label>
-				</div>
+			<div id="sponsor">
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Pemberi beasiswa </label>
 					<div class="col-sm-4">
@@ -102,30 +103,56 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-9 col-sm-3">
-					<button type="submit" class="btn btn-default">Sebelumnya </button>
-					<button type="submit" class="btn btn-default">Berikutnya</button>
-				</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-9 col-sm-3">
+				<button type="submit" class="btn btn-default">Sebelumnya </button>
+				<button type="submit" class="btn btn-default">Berikutnya</button>
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
+</div>
 </div>
 @stop
 @section('script')
 <script>
 	$(function(){
-		$('input[type="radio"]').change(function(e)
+		$('input[name="dana"]').change(function(e)
 		{
 			if ($("#beasiswa").is(':checked'))
 			{
-				$('#inputPendanaan :input').prop('disabled', false);
+				$('#jenisBeasiswa').prop('disabled', false);
+				$('#sponsor :input').prop('disabled', true);
+				
 			}
 			else
 			{
 				$('#inputPendanaan :input').prop('disabled', true);
 			};
 		});
+		$('#jenisBeasiswa').change(function(){
+			var a = $('#jenisBeasiswa :selected').val();
+			if (a == 3)
+			{
+				$('#sponsor :input').prop('disabled', false);
+			}else{
+				$('#sponsor :input').prop('disabled', true);		
+			}
+		});
+		// $('input[name="dana"]').is("checked",true)
+		// {
+		// 	if ($("input[value='1']") && $("option[value='3']"))
+		// 	{
+		// 		$('#inputPendanaan :input').prop('disabled', false);
+		// 	}else if($("input[value='1']") && $("option[value='1']") || $("option[value='2']"))
+		// 	{
+		// 		$('#sponsor :input').prop('disabled', true);
+		// 	}else
+		// 	{
+		// 		$('#inputPendanaan :input').prop('disabled', true);
+		// 	}
+		// }
+		
 	});
 </script>
 @stop

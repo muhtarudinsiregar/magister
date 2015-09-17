@@ -81,11 +81,20 @@ class ProgramStudisController extends \BaseController {
 	{
 		$data = [
 		'jurusan' => ProgramStudi::prodi(),
-		'konsentrasi' => ProgramStudi::konsentrasi()
+		'konsentrasi' => ProgramStudi::konsentrasi(),
+		'tahungelombang'=>TahunGelombang::where('tahun','=','2015/2016')->first()
 		];
+		$tahun = TahunGelombang::all(['gelombang']);
 		$edit = ProgramStudi::where('id_pendaftar','=',$id)->first();
-		// dd($edit);
-		return View::make('programstudis.edit')->withEdit($edit)->withData($data);
+		if (is_null($edit))
+		{
+			return View::make('programstudis.create')->withData($data);	
+		}else
+		{
+
+			return View::make('programstudis.edit')->withEdit($edit)->withData($data)->withTahun($tahun);
+		}
+		dd($edit);
 	}
 
 	/**
@@ -97,7 +106,24 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
+		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$tahun = TahunGelombang::where('tahun','=','2015/2016')->first();
+		$update = ProgramStudi::findOrFail($id);
+		$update->tahun = $tahun['tahun'];
+		$update->semester = $tahun['semester'];
+		$update->gelombang = Input::get('gel');
+		$update->id_prodi = Input::get('pro');
+		$update->id_konsentrasi = Input::get('kon');
+		$update->save();
+
+		return Redirect::to('data-pribadi/'.Auth::id().'/edit');
 	}
 
 	/**

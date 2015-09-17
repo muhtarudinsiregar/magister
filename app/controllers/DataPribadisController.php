@@ -118,7 +118,32 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		// dd($data);
+		$user = DataPribadi::findOrFail($id);
+		$user->nama = Input::get('nm');
+		$user->tempatLahir = Input::get('tlhr');
+		$user->tanggalLahir = Input::get('tglhr');
+		$user->jenisKelamin = Input::get('jenisK');
+		$user->id_agama = Input::get('agama');
+		$user->noHP = Input::get('no_hp');
+		$user->alamatYK = Input::get('almtYk');
+		$user->kotakabYK = Input::get('kotakabYk');
+		$user->noTelpYK = Input::get('no_telYk');
+		$user->tinggalYK = Input::get('tinggalYk');
+		$user->alamat = Input::get('almtNyk');
+		$user->kotakab = Input::get('kotakabNyk');
+		$user->propinsi = Input::get('prop');
+		$user->negara = Input::get('neg');
+		$user->noTelepon = Input::get('no_telNyk');
+		$user->save();
+		return Redirect::to('pendidikan/'.Auth::id().'/edit');
 	}
 
 	/**

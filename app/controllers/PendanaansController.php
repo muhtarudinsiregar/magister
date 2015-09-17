@@ -107,7 +107,34 @@ class PendanaansController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
+		$validator = Validator::make($data = Input::all(), Kontak::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$data_beasiswa = DataPribadi::find(Auth::id());
+        // var_dump($data_beasiswa);
+		$data_beasiswa->danaBeasiswa = Input::get('dana');
+		$data_beasiswa->id_beasiswa = Input::get('beasiswa');
+		$data_beasiswa->statusBeasiswa = Input::get('sttsbea');
+		$data_beasiswa->save();
+
+		if (Input::get('beasiswa') == 3) {
+			$sponsor = Sponsor::findOrFail($id);
+			$sponsor->sponsor = Input::get('pemberi');
+			$sponsor->alamat = Input::get('almt');
+			$sponsor->kotakab = Input::get('kotakab');
+			$sponsor->propinsi = Input::get('prop');
+			$sponsor->negara = Input::get('neg');
+			$sponsor->noTelepon = Input::get('notel');
+			$sponsor->noFaksimili = Input::get('nofax');
+			$sponsor->email = Input::get('mail');
+			$sponsor->save();
+		}
+		return Redirect::to('kontak/'.Auth::id()."/edit");	
 	}
 
 	/**
