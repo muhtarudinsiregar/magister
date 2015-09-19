@@ -10,14 +10,23 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function index()
 	{
-
-		$data = [
+		$email = Session::get('mail');
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
+		$data_program = [
 		'jurusan' => ProgramStudi::prodi(),
 		'konsentrasi' => ProgramStudi::konsentrasi(),
-		'tahungelombang'=>TahunGelombang::where('tahun','=','2015/2016')->first()
+		'tahungelombang'=>TahunGelombang::where('aktif','=','Y')->first(),
 		];
-		// var_dump($data['tahungelombang']);
-		return View::make('programstudis.create')->with('data',$data);
+
+		if (is_null($id))
+		{
+			return View::make('programstudis.create')->with('data_program',$data_program);	
+		}else
+		{
+			$edit = ProgramStudi::where('id_pendaftar','=',$id['id'])->first();
+			// dd($edit);
+			return View::make('programstudis.back_edit')->withEdit($edit)->withData($data_program);
+		}
 	}
 
 	/**
@@ -47,10 +56,11 @@ class ProgramStudisController extends \BaseController {
 
 		// }
 		// Input::flash();
-		$data_gel = Input::get('gel');
+		$data = TahunGelombang::where('aktif','=','Y')->first(['gelombang']);
+		$data_gel = $data['gelombang'];
 		$data_pro= Input::get('pro');
 		$data_kon = Input::get('kon');
-
+		
 		Session::put('gel', $data_gel);
 		Session::put('pro', $data_pro);
 		Session::put('kon', $data_kon);
@@ -123,7 +133,12 @@ class ProgramStudisController extends \BaseController {
 		$update->id_konsentrasi = Input::get('kon');
 		$update->save();
 
-		return Redirect::to('data-pribadi/'.Auth::id().'/edit');
+		if (is_null(Auth::id())) {
+			return Redirect::to('data-pribadi');
+		}else{
+			return Redirect::to('data-pribadi/'.Auth::id().'/edit');
+		}
+		// return Redirect::to('data-pribadi/'.Auth::id().'/edit');
 	}
 
 	/**

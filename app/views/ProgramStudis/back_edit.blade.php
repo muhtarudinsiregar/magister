@@ -1,21 +1,22 @@
-@extends('layout.master')
+ @extends('layout.master')
 @section('content')
 	<div class="col-lg-12">
 		<div class="col-lg-10 col-lg-offset-1">
-			<form action="{{ url('programstudi') }}" method="POST" class="form-horizontal" role="form">
+			
+		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('programstudi.update', $edit->no))) }}
 				<div class="form-group">
 					<h4 class=""><strong>Langkah 1 : Program Studi</strong></h4>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Tahun Akademik</label>
 					<div class="col-sm-8">
-						<h5><b>{{ $data1 = $data_program['tahungelombang']['tahun'] }}
+						<h5><b>{{ $data1 = $data['tahungelombang']['tahun'] }}</b></h5>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Semester</label>
 					<div class="col-sm-8">
-						<h5><b>{{$data1=$data_program['tahungelombang']['semester']}}  - 
+						<h5><b>{{$data1=$data['tahungelombang']['semester']}}  - 
 						@if ($data1 % 2 == 0)
 							Genap
 						@else
@@ -26,7 +27,7 @@
 				<div class="form-group">
 					<label for="tahun_akademik" class="col-sm-2 control-label">Gelombang</label>
 					<div class="col-sm-2">
-						<h5><b>{{$data1=$data_program['tahungelombang']['gelombang']}} </b>
+						<h5><b>{{$data1=$data['tahungelombang']['gelombang']}} </b>
 					</div>
 				</div>
 				<hr>
@@ -35,8 +36,9 @@
 					<div class="col-sm-4">
 						<select name="pro" id="jurusan" class="form-control" required="required">
 							<option value="--">--</option>
-							@foreach ($data_program['jurusan'] as $element)
-								<option value="{{ $element->id }}">{{ $element->prodi }}</option>
+							@foreach ($data['jurusan'] as $element)
+								<?php $selected = ($element->id == $edit->id_prodi)? 'selected="selected"':'';  ?>
+								<option value="{{ $element->id }}" {{$selected}}>{{ $element->prodi }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -46,9 +48,11 @@
 					<div class="col-sm-4">
 						<select name="kon" id="konsentrasi" class="form-control" required="required">
 							<option value="--">--</option>
-							@foreach ($data_program['konsentrasi'] as $konsentrasi)
-								<option value="{{ $konsentrasi->id }}" class="{{ $konsentrasi->id_prodi}}">{{ $konsentrasi->konsentrasi }}</option>
+							@foreach ($data['konsentrasi'] as $konsentrasi)
+								<?php $selected = ($konsentrasi->id == $edit->id_konsentrasi)? 'selected="selected"':'';  ?>
+								<option value="{{ $konsentrasi->id }}" class="{{ $konsentrasi->id_prodi}}" {{$selected}}>{{ $konsentrasi->konsentrasi }}</option>
 							@endforeach
+							
 						</select>
 					</div>
 				</div>
@@ -57,7 +61,7 @@
 						<button type="submit" class="btn btn-default">Berikutnya</button>
 					</div>
 				</div>
-		</form>
+			{{Form::close()}}
 		</div>
 	</div>
 @stop

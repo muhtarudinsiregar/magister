@@ -9,9 +9,9 @@ class TestsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$tests = Test::all();
-
-		return View::make('tests.index', compact('tests'));
+		// $tests = Test::all();
+		$akreditasi = Pendidikan::akreditasi();
+		return View::make('tests.index')->with('akreditasi',$akreditasi);
 	}
 
 	/**

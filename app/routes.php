@@ -15,7 +15,7 @@ View::composer(array('jadwalTes.edit','jadwaltes.create'), function($view)
 {
     $view->with('tes', JadwalTes::sesiTes());
 });
-View::composer(array('datapribadis.edit','datapribadis.create'), function($view)
+View::composer(array('datapribadis.edit','datapribadis.create','datapribadis.back_edit'), function($view)
 {
     $view->with('agama', DataPribadi::agama());
 });
@@ -23,10 +23,11 @@ View::composer(array('pendanaans.edit','pendanaans.create'), function($view)
 {
     $view->with('beasiswa', Pendanaan::beasiswa());
 });
-View::composer(array('pendidikans.edit','pendidikans.create'), function($view)
+View::composer(array('pendidikans.edit','pendidikans.create','pendidikans.back_edit'), function($view)
 {
     $view->with('akreditasi', Pendidikan::akreditasi());
 });
+
 
 
 // Event::listen('illuminate.query', function($query)
@@ -60,3 +61,4 @@ Route::resource('pendanaan', "PendanaansController");
 Route::resource('kontak', "KontaksController");
 Route::resource('jadwal', "JadwalTesController");
 Route::get('pernyataan',"PendaftaranController@index");
+Route::get('test', 'TestsController@index');

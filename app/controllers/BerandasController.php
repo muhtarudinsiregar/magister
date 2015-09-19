@@ -10,7 +10,7 @@ class BerandasController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('berandas.create');
+		return View::make('berandas.create_without_login');
 	}
 
 	/**
@@ -104,7 +104,7 @@ class BerandasController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		
 	}
 
 }

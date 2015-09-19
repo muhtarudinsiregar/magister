@@ -10,11 +10,20 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function index()
 	{
-		// Session::flush();
 		var_dump(Session::all());
-		var_dump(Session::get('programstudis',0));
 		$agama = DataPribadi::agama();
-		return View::make('datapribadis.create')->with('agama',$agama);
+		$email = Session::get('mail');
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
+		if (is_null($id))
+		{
+			return View::make('datapribadis.create')->with('agama',$agama);	
+		}else
+		{
+			$data = DataPribadi::find($id['id']);
+			// dd($data['email']);
+			return View::make('datapribadis.edit')->withEdit($data);
+		}
+		
 	}
 
 	/**
@@ -71,7 +80,7 @@ class DataPribadisController extends \BaseController {
 		$tahun = TahunGelombang::where('tahun','=','2015/2016')->first();//ambil tahun
 
 		$email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
+		$id_pendaftar = DataPribadi::get_id($email);
 
 		$program = new ProgramStudi;
 		$program->tahun = $tahun['tahun'];
@@ -143,7 +152,13 @@ class DataPribadisController extends \BaseController {
 		$user->negara = Input::get('neg');
 		$user->noTelepon = Input::get('no_telNyk');
 		$user->save();
-		return Redirect::to('pendidikan/'.Auth::id().'/edit');
+
+		if (is_null(Auth::id())) {
+			return Redirect::to('pendidikan');
+		}else{
+			return Redirect::to('pendidikan/'.Auth::id().'/edit');
+		}
+
 	}
 
 	/**

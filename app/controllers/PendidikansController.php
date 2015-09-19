@@ -11,8 +11,19 @@ class PendidikansController extends \BaseController {
 	public function index()
 	{
 		var_dump(Session::get('mail'));
-		$akreditasi = Pendidikan::akreditasi();
-		return View::make('Pendidikans.create')->with('akreditasi',$akreditasi);
+
+		$email = Session::get('mail');
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
+
+		$profesi = Profesi::where('id_pendaftar','=',$id['id'])->get();
+		$edit = Pendidikan::where('id_pendaftar','=',$id['id'])->first();
+		if (is_null($edit['id'])) {
+			return View::make('pendidikans.create');
+		}else
+		{
+			return View::make('pendidikans.back_edit')->withEdit($edit)->withProfesi($profesi);
+		}
+
 	}
 
 	/**
@@ -36,35 +47,35 @@ class PendidikansController extends \BaseController {
 	{
 		$validator = Validator::make($data = Input::all(), Pendidikan::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
 
-        }
+		}
         // var_dump(Input::all());
 
-        $email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
+		$email = Session::get('mail');
+		$id_pendaftar = DataPribadi::get_id($email);
 
-        $user = new Pendidikan;
-        $user->id_pendaftar = $id_pendaftar['id'];
-        $user->jenjang = Input::get('jnjg');
-        $user->programStudi = Input::get('prgrmstd');
-        $user->akreditasi = Input::get('akrdts');
-        $user->PT = Input::get('pt');
-        $user->tahunMasuk = Input::get('thmsk');
-        $user->tahunLulus = Input::get('thlls');
-        $user->noIjazah = Input::get('noijzh');
-        $user->IPK = Input::get('ipk');
-        $user->skala = Input::get('skala');
+		$user = new Pendidikan;
+		$user->id_pendaftar = $id_pendaftar['id'];
+		$user->jenjang = Input::get('jnjg');
+		$user->programStudi = Input::get('prgrmstd');
+		$user->akreditasi = Input::get('akrdts');
+		$user->PT = Input::get('pt');
+		$user->tahunMasuk = Input::get('thmsk');
+		$user->tahunLulus = Input::get('thlls');
+		$user->noIjazah = Input::get('noijzh');
+		$user->IPK = Input::get('ipk');
+		$user->skala = Input::get('skala');
 
-        $user->save();
+		$user->save();
 
         // line utk perulangan profesi
-        $asosia = Input::get('asosiasi');
-        if ($asosia!='')
-        {
-        	$pekerjaan = Input::only('asosiasi','no_anggota');
+		$asosia = Input::get('asosiasi');
+		if ($asosia!='')
+		{
+			$pekerjaan = Input::only('asosiasi','no_anggota');
 			$asos = $pekerjaan['asosiasi'];
 			$no = $pekerjaan['no_anggota'];
 
@@ -72,15 +83,15 @@ class PendidikansController extends \BaseController {
 			{
 				DB::table('profesi')->insert(
 					[
-						'id_pendaftar'=>$id_pendaftar['id'],
-						'asosiasi'=>$asos[$key],
-						'noAnggota'=>$no[$key]
+					'id_pendaftar'=>$id_pendaftar['id'],
+					'asosiasi'=>$asos[$key],
+					'noAnggota'=>$no[$key]
 					]);
 			}	
-        }else{
-        	echo "Error";
-        }
-        return Redirect::to('pekerjaan');
+		}else{
+			echo "Error";
+		}
+		return Redirect::to('pekerjaan');
 	}
 
 	/**
@@ -127,22 +138,22 @@ class PendidikansController extends \BaseController {
 		}
 		// dd(Input::all());
 		$user = Pendidikan::find($id);
-        $user->jenjang = Input::get('jnjg');
-        $user->programStudi = Input::get('prgrmstd');
-        $user->akreditasi = Input::get('akrdts');
-        $user->PT = Input::get('pt');
-        $user->tahunMasuk = Input::get('thmsk');
-        $user->tahunLulus = Input::get('thlls');
-        $user->noIjazah = Input::get('noijzh');
-        $user->IPK = Input::get('ipk');
-        $user->skala = Input::get('skala');
-        $user->save();
+		$user->jenjang = Input::get('jnjg');
+		$user->programStudi = Input::get('prgrmstd');
+		$user->akreditasi = Input::get('akrdts');
+		$user->PT = Input::get('pt');
+		$user->tahunMasuk = Input::get('thmsk');
+		$user->tahunLulus = Input::get('thlls');
+		$user->noIjazah = Input::get('noijzh');
+		$user->IPK = Input::get('ipk');
+		$user->skala = Input::get('skala');
+		$user->save();
 
         // line utk perulangan profesi
-        $asosia = Input::get('asosiasi');
-        if ($asosia!='')
-        {
-        	$pekerjaan = Input::only('asosiasi','no_anggota');
+		$asosia = Input::get('asosiasi');
+		if ($asosia!='')
+		{
+			$pekerjaan = Input::only('asosiasi','no_anggota');
 			$asos = $pekerjaan['asosiasi'];
 			$no = $pekerjaan['no_anggota'];
 
@@ -150,14 +161,18 @@ class PendidikansController extends \BaseController {
 			{
 				DB::table('profesi')->where('id_pendaftar',$id)->update(
 					[
-						'asosiasi'=>$asos[$key],
-						'noAnggota'=>$no[$key]
+					'asosiasi'=>$asos[$key],
+					'noAnggota'=>$no[$key]
 					]);
 			}	
-        }else{
-   
-        }
-        return Redirect::to('pekerjaan/'.Auth::id().'/edit');
+		}else{
+
+		}
+		if (is_null(Auth::id())) {
+			return Redirect::to('pekerjaan');
+		}else{
+			return Redirect::to('pekerjaan/'.Auth::id().'/edit');
+		}
 	}
 
 	/**

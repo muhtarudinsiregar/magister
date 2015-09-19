@@ -171,7 +171,7 @@
 			{{-- ==============================================BUTTON ============================================= --}}
 			<div class="form-group">
 				<div class="col-sm-offset-9 col-sm-3">
-					<button type="submit" class="btn btn-default">Sebelumnya </button>
+					<a href="{{url('programstudi')}}" class="btn btn-default">Sebelumnya</a>
 					<button type="submit" class="btn btn-default">Berikutnya</button>
 				</div>
 			</div>

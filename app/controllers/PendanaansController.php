@@ -134,7 +134,12 @@ class PendanaansController extends \BaseController {
 			$sponsor->email = Input::get('mail');
 			$sponsor->save();
 		}
-		return Redirect::to('kontak/'.Auth::id()."/edit");	
+		// return Redirect::to('kontak/'.Auth::id()."/edit");
+		if (is_null(Auth::id())) {
+				return Redirect::to('kontak');
+			}else{
+				return Redirect::to('kontak/'.Auth::id().'/edit');
+			}	
 	}
 
 	/**

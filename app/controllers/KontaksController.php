@@ -37,28 +37,28 @@ class KontaksController extends \BaseController {
 		
 		$validator = Validator::make($data = Input::all(), Kontak::$rules);
 
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
 
-        }
-      	$email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
+		}
+		$email = Session::get('mail');
+		$id_pendaftar = DataPribadi::get_id($email);
 
-        $user = new Kontak;
-        $user->id_pendaftar = $id_pendaftar['id'];
-        $user->nama = Input::get('nama');
-        $user->hubungan = Input::get('hubungan');
-        $user->alamat = Input::get('alamat');
-        $user->kotakab = Input::get('kotakab');
-        $user->propinsi = Input::get('propinsi');
-        $user->negara = Input::get('negara');
-        $user->noTelepon = Input::get('noTelpon');
-        $user->email = Input::get('email');
+		$user = new Kontak;
+		$user->id_pendaftar = $id_pendaftar['id'];
+		$user->nama = Input::get('nama');
+		$user->hubungan = Input::get('hubungan');
+		$user->alamat = Input::get('alamat');
+		$user->kotakab = Input::get('kotakab');
+		$user->propinsi = Input::get('propinsi');
+		$user->negara = Input::get('negara');
+		$user->noTelepon = Input::get('noTelpon');
+		$user->email = Input::get('email');
 
-        $user->save();
-        return Redirect::to('jadwal');
-        var_dump(Input::all());
+		$user->save();
+		return Redirect::to('jadwal');
+		var_dump(Input::all());
 	}
 
 	/**
@@ -109,7 +109,12 @@ class KontaksController extends \BaseController {
 
 		$kontak->update($data);
 
-		return Redirect::to('jadwal/'.Auth::id().'/edit');
+		// return Redirect::to('jadwal/'.Auth::id().'/edit');
+		if (is_null(Auth::id())) {
+			return Redirect::to('jadwal');
+		}else{
+			return Redirect::to('jadwal/'.Auth::id().'/edit');
+		}
 	}
 
 	/**
