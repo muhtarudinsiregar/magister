@@ -11,7 +11,7 @@
 |
 */
 
-View::composer(array('jadwalTes.edit','jadwaltes.create'), function($view)
+View::composer(array('jadwalTes.edit','jadwaltes.create','jadwaltes.back_edit'), function($view)
 {
     $view->with('tes', JadwalTes::sesiTes());
 });
@@ -19,13 +19,17 @@ View::composer(array('datapribadis.edit','datapribadis.create','datapribadis.bac
 {
     $view->with('agama', DataPribadi::agama());
 });
-View::composer(array('pendanaans.edit','pendanaans.create'), function($view)
+View::composer(array('pendanaans.edit','pendanaans.create','pendanaans.back_edit','pendanaans.create_edit'), function($view)
 {
     $view->with('beasiswa', Pendanaan::beasiswa());
 });
 View::composer(array('pendidikans.edit','pendidikans.create','pendidikans.back_edit'), function($view)
 {
     $view->with('akreditasi', Pendidikan::akreditasi());
+});
+View::composer(array('kontaks.edit','kontaks.create','kontaks.back_edit'), function($view)
+{
+    $view->with('hub', Hubungan::all());
 });
 
 

@@ -113,7 +113,7 @@
 			{{-- butttonnnnnnnnnnnnnnnnnnnnnnnnnnn --}}
 			<div class="form-group">
 				<div class="col-sm-offset-9 col-sm-3">
-					<button type="button" class="btn btn-default">Sebelumnya </button>
+					<a href="{{url('pendidikan')}}" class="btn btn-default">Sebelumnya</a>
 					<button type="submit" class="btn btn-default">Berikutnya</button>
 				</div>
 			</div>

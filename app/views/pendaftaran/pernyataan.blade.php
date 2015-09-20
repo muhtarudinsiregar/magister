@@ -35,7 +35,7 @@
 			<div id="buttonPernyataan">
 				<div class="form-group">
 					<div class="col-sm-offset-9 col-sm-3">
-						<button type="submit" class="btn btn-default">Sebelumnya </button>
+						<a href="{{url('jadwal')}}" class="btn btn-default">Sebelumnya</a>
 						<button type="submit" class="btn btn-default" id="kirim" disabled="disable">Kirim</button>
 					</div>
 				</div>

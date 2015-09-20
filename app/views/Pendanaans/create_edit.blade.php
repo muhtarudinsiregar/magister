@@ -13,16 +13,16 @@
 		<?php endif ?>
 		<form action="{{ url('pendanaan') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
+				<h4><strong>Langkah 5 : Pendanaan Beasiswa [Create-edit]</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>
 				<div class="col-sm-3" id="pendanaan">
 					<label class="radio-inline" >
-						<input type="radio" value="0" name="dana" id="sendiri"  checked="checked"> Sendiri
+						<input type="radio" value="0" name="dana" id="sendiri"{{($data_beasiswa->danaBeasiswa=='0')?'checked':''}}> Sendiri
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" value="1" name="dana" id="beasiswa"  checked="checked"> Beasiswa
+						<input type="radio" value="1" name="dana" id="beasiswa" {{($data_beasiswa->danaBeasiswa=='1')?'checked':''}}> Beasiswa
 					</label>
 				</div>
 			</div>
@@ -33,7 +33,8 @@
 						<select name="beasiswa" id="jenisBeasiswa" class="form-control" required="required">
 							<option value="">--</option>
 							@foreach ($beasiswa as $element)
-							<option value="{{$element->id}}"> {{ $element->beasiswa }} </option>
+							<?php $selected = ($element->id == $data_beasiswa->id_beasiswa)? 'selected="selected"':'';?>
+							<option value="{{$element->id}}" {{$selected}}> {{ $element->beasiswa }} </option>
 							@endforeach
 						</select>
 					</div>
@@ -118,7 +119,7 @@
 @section('script')
 <script>
 	$(function(){
-		$('input[type="radio"]').change(function(e)
+		$('input[name="dana"]').change(function()
 		{
 			if ($("#beasiswa").is(':checked'))
 			{
@@ -139,10 +140,13 @@
 				$('#sponsor :input').prop('disabled', true);		
 			}
 		});
-		$('input[type="radio"]').is("checked",true)
+		$('input[name="beasiswa"]').is("checked",true)
 		{
-			$('#sponsor :input').prop('disabled', true);
+			$('#inputPendanaan :input').prop('disabled', true);
 		}
+		// if ($("#sendiri").prop("checked")) {
+		// 	$('#inputPendanaan :input').prop('disabled', true);
+		// };
 	});
 </script>
 @stop

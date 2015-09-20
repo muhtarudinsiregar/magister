@@ -121,4 +121,9 @@ class Pendaftaran extends \Eloquent {
 			]);
 	}
 
+	public static function pendaftarok($id)
+	{
+		return DB::table('pendaftarok')->where('email', $id)->pluck('id');
+	}
+
 }

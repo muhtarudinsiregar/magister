@@ -1,4 +1,4 @@
-@extends('layout.master_edit')
+@extends('layout.master')
 @section('content')
 <div class="col-lg-12">
 	<div class="col-lg-10 col-lg-offset-1">
@@ -142,7 +142,6 @@
 		$('#sendiri').is("checked",true)
 		{
 			$('#inputPendanaan :input').prop('disabled', true);
-			$('#jenisBeasiswa').prop('disabled', true);
 		}
 		$('#beasiswa').is("checked",true)
 		{
@@ -155,6 +154,8 @@
 				$('#sponsor :input').prop('disabled', true);		
 			}
 		}
+
+		
 	});
 </script>
 @stop

@@ -21,7 +21,7 @@ class DataPribadisController extends \BaseController {
 		{
 			$data = DataPribadi::find($id['id']);
 			// dd($data['email']);
-			return View::make('datapribadis.edit')->withEdit($data);
+			return View::make('datapribadis.back_edit')->withEdit($data);
 		}
 		
 	}

@@ -51,12 +51,16 @@ class PendaftaranController extends \BaseController {
 
 		}
 
-		$pernyataan = Pendaftaran::find(1);
+		$email = Session::get('mail');
+        $id_pendaftar = DataPribadi::get_id($email);
+
+        $id = DataPribadi::where('email','=',$email)->first(['id']);
+		$no = Pendaftaran::where('id_pendaftar','=',$id['id'])->first(['no']);
+		$pernyataan = Pendaftaran::find($no['no']);
 		$pernyataan->konfirm = Input::get('pernyataan');
 		$pernyataan->save();
 
-		$email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
+		
 		
 		$pribadi = DataPribadi::all()->find($id_pendaftar['id']);
 		$data = DataPribadi::with('pekerjaan','pendidikan','sponsor','riwayatpekerjaan','kontakdarurat')->find($id_pendaftar['id']);
@@ -86,7 +90,15 @@ class PendaftaranController extends \BaseController {
 			{
 				Pendaftaran::profesi($value);
 			}	
+		
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
 
+		$ok = DB::table('pendaftarok')->where('email', $email)->pluck('id');
+		
+		$daftar = Pendaftaran::where('id_pendaftar','=',$id['id'])->first(['no']);
+		$update = Pendaftaran::find($daftar['no']);
+		$update->id_pendaftarOK = $ok;
+		$update->save();
 		return Redirect::to('konfirmasi');
 	}
 

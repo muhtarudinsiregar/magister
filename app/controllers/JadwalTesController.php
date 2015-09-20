@@ -11,7 +11,19 @@ class JadwalTesController extends \BaseController {
 	public function index()
 	{
 		var_dump(Session::get('mail'));
-		return View::make('jadwaltes.create');
+
+		$email = Session::get('mail');
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
+
+		$jadwal = JadwalTes::where('id_pendaftar','=',$id['id'])->first();
+		if (empty($jadwal))
+		{
+			return View::make('jadwaltes.create');
+		}else
+		{
+			return View::make('jadwaltes.back_edit')->withJadwal($jadwal);
+		}
+
 	}
 
 	/**
@@ -79,7 +91,6 @@ class JadwalTesController extends \BaseController {
 	public function edit($id)
 	{
 		$jadwal = JadwalTes::where('id_pendaftar','=',$id)->first();
-		// dd($jadwal->no);
 		return View::make('jadwalTes.edit')->withJadwal($jadwal);
 	}
 

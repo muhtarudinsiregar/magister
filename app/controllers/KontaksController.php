@@ -11,8 +11,18 @@ class KontaksController extends \BaseController {
 	public function index()
 	{
 		var_dump(Session::get('mail'));
-		$hub = Hubungan::all();
-		return View::make('kontaks.create')->withHub($hub);
+		$email = Session::get('mail');
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
+
+		$kontak = Kontak::where('id_pendaftar','=',$id['id'])->first();
+		if (empty($kontak))
+		{
+			return View::make('kontaks.create');
+		}else
+		{
+			return View::make('kontaks.back_edit')->withKontak($kontak);
+		}
+
 	}
 
 	/**
@@ -83,8 +93,8 @@ class KontaksController extends \BaseController {
 	public function edit($id)
 	{
 
+		// $hub = Hubungan::all();
 		$kontak = Kontak::where('id_pendaftar','=',$id)->first();
-		$hub = Hubungan::all();
 		return View::make('kontaks.edit')->withKontak($kontak)->withHub($hub);
 	}
 
