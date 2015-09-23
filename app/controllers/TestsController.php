@@ -9,9 +9,13 @@ class TestsController extends \BaseController {
 	 */
 	public function index()
 	{
-		// $tests = Test::all();
-		$akreditasi = Pendidikan::akreditasi();
-		return View::make('tests.index')->with('akreditasi',$akreditasi);
+		$email = Session::get('mail');
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
+
+		$profesi = Profesi::where('id_pendaftar','=',$id['id'])->get();
+		$edit = Pendidikan::where('id_pendaftar','=',$id['id'])->first();
+
+		return View::make('tests.create')->withEdit($edit)->withProfesi($profesi);
 	}
 
 	/**
@@ -21,7 +25,7 @@ class TestsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('tests.create');
+		// return View::make('tests.create');
 	}
 
 	/**

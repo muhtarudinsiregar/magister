@@ -83,7 +83,7 @@
 
 			<div id="profesi">
 				@foreach ($profesi as $element)
-					<div class="form-group">
+					<div id="tes"class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?" ic-target="closest .form-group">
 						<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
 						<div class="col-sm-3">
 							<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi" value="{{ $element->asosiasi }}">
@@ -92,13 +92,20 @@
 						<div class="col-sm-2" id="no_anggota">
 							<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota" value="{{ $element->noAnggota }}">
 						</div>
-						<button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button>
+						<button class="btn btn-danger"  type="button" id="hapusProfesi1" ic-delete-from="pendidikan/{{ $element->id}}">
+							Hapus
+							<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
+						</button>
+						{{-- <a href="{{url('pendidikan/'.$element->id)}}" class="btn btn-danger" ic-delete-from="" >Hapus</a> --}}
 					</div>
 				@endforeach
 			</div>
 			<div class="form-group">
 				<div class="col-sm-3">
-					<button type="button" class="btn btn-primary" id="tambahProfesi">Tambah Profesi </button>
+					<button type="button" class="btn btn-primary" id="tambahProfesi">
+						Tambah Profesi
+						{{-- <i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i> --}}
+					</button>
 				</div>
 			</div>
 
@@ -112,4 +119,9 @@
 		{{Form::close()}}
 	</div>
 </div>
+@stop
+@section('script')
+	<script>
+
+	</script>
 @stop

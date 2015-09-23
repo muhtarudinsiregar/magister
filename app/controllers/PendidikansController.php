@@ -11,7 +11,7 @@ class PendidikansController extends \BaseController {
 	public function index()
 	{
 		var_dump(Session::get('mail'));
-
+		Session::put('mail', 'tes@gmail.com');
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 
@@ -184,7 +184,22 @@ class PendidikansController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+
+		// header('X-IC-Remove',true);
+		$user = Profesi::find($id);
+		$user->delete();
+		Request::header('X-IC-Remove',true);
+		echo "
+		<div class='col-sm-8' ic-remove-after='2s'>
+		<div class='alert alert-success alert-dismissible' role='alert'>
+		<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<strong>Berhasil </strong> Menghapus Data.
+			</div>
+		</div>
+		";
+		// return Redirect::to('Pendidikan');
+		// dd($user);
+		// Response::header('X-IC-Remove',true);
 	}
 
 }
