@@ -126,4 +126,12 @@ class Pendaftaran extends \Eloquent {
 		return DB::table('pendaftarok')->where('email', $id)->pluck('id');
 	}
 
+	public static function konsentrasi($id)
+	{
+		return DB::table('konsentrasi')->where('id', $id)->pluck('konsentrasi');
+	}
+	public static function prodi($id)
+	{
+		return DB::table('programstudi')->where('id', $id)->pluck('prodi');
+	}
 }

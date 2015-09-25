@@ -52,9 +52,9 @@ class PendaftaranController extends \BaseController {
 		}
 
 		$email = Session::get('mail');
-        $id_pendaftar = DataPribadi::get_id($email);
+		$id_pendaftar = DataPribadi::get_id($email);
 
-        $id = DataPribadi::where('email','=',$email)->first(['id']);
+		$id = DataPribadi::where('email','=',$email)->first(['id']);
 		$no = Pendaftaran::where('id_pendaftar','=',$id['id'])->first(['no']);
 		$pernyataan = Pendaftaran::find($no['no']);
 		$pernyataan->konfirm = Input::get('pernyataan');
@@ -68,28 +68,28 @@ class PendaftaranController extends \BaseController {
 		
 		Pendaftaran::pendaftar($pribadi);
 		foreach ($data['pekerjaan']as $value)
-			{
-				Pendaftaran::pekerjaan($value);
-			}
+		{
+			Pendaftaran::pekerjaan($value);
+		}
 		foreach ($data['pendidikan']as $value)
-			{
-				Pendaftaran::pendidikan($value);
-			}
+		{
+			Pendaftaran::pendidikan($value);
+		}
 		foreach ($data['sponsor']as $value)
-			{
-				Pendaftaran::sponsor($value);
-			}
+		{
+			Pendaftaran::sponsor($value);
+		}
 		foreach ($data['riwayatpekerjaan']as $value)
-			{
-				Pendaftaran::riwayatpekerjaan($value);
-			}
+		{
+			Pendaftaran::riwayatpekerjaan($value);
+		}
 		
 		Pendaftaran::kontakdarurat($data->kontakdarurat);
-			
+
 		foreach ($data['profesi']as $value)
-			{
-				Pendaftaran::profesi($value);
-			}	
+		{
+			Pendaftaran::profesi($value);
+		}	
 		
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 
@@ -109,6 +109,45 @@ class PendaftaranController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	public function sendmail()
+	{
+		$email = Session::get('mail');
+		$data_pribadi = DataPribadi::where('email','=',$email)->first(['id','nama','tanggalLahir','noTelepon','email']);
+
+		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['tahun','semester','gelombang','id_prodi','id_konsentrasi']);
+		$prodi = Pendaftaran::prodi($pendaftaran['id_prodi']);
+		$konsentrasi = Pendaftaran::konsentrasi($pendaftaran['id_konsentrasi']);
+		// dd($konsentrasi);
+		// $data_pendaftaran = (array) $pendaftaran;
+		// $data_pri = (array) $data_pribadi;
+		$data = [
+		'nama'=>$data_pribadi['nama'],
+		'tanggalLahir'=>$data_pribadi['tanggalLahir'],
+		'noTelepon'=>$data_pribadi['noTelepon'],
+		'email'=>$data_pribadi['email'],
+		'tahun'=>$pendaftaran['tahun'],
+		'semester'=>$pendaftaran['semester'],
+		'gelombang'=>$pendaftaran['gelombang'],
+		'prodi'=>$prodi,
+		'konsentrasi'=>$konsentrasi
+		];
+		
+		// dd($data['email']);
+		Mail::send('emails.confirm', $data, function($mail) use ($data){
+		// Email dikirimkan ke address "momo@deviluke.com" 
+    	  // dengan nama penerima "Momo Velia Deviluke"
+			// dd($data);
+			$mail->to($data['email'],$data['nama']);
+
+      // Copy carbon dikirimkan ke address "haruna@sairenji" 
+      // dengan nama penerima "Haruna Sairenji"
+			// $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
+			$mail->subject('Konfirmasi Email');
+
+		});
+
+		// return View::make('emails.confirm')->with('data',$data);
+	}
 	public function show($id)
 	{
 		//

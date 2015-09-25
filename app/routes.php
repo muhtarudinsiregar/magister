@@ -39,20 +39,7 @@ View::composer(array('kontaks.edit','kontaks.create','kontaks.back_edit'), funct
 //     var_dump($query);
 // });
 
-// Route::get('mail', function(){
-// 	$data = ['prize' => 'Peke', 'total' => 3 ];
-// 	Mail::send('tests.create', $data, function($mail){
-// 		// Email dikirimkan ke address "momo@deviluke.com" 
-//     	  // dengan nama penerima "Momo Velia Deviluke"
-//       $mail->to('redcar.studious@gmail.com', 'Momo Velia Deviluke');
- 
-//       // Copy carbon dikirimkan ke address "haruna@sairenji" 
-//       // dengan nama penerima "Haruna Sairenji"
-//       $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
-//       $mail->subject('Hello World!');
-// 	});
-
-// });
+Route::get('mail', 'PendaftaranController@sendmail');
 Route::get('/','BerandasController@index');
 Route::get('konfirmasi','PendaftaranController@konfirmasi');
 Route::resource('beranda', 'BerandasController');

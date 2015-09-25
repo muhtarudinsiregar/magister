@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mandrillapp.com',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'JKyhZ1afhN96AWc5xrVIMQ',
+	'password' => 'Ragnarokonline1',
 
 	/*
 	|--------------------------------------------------------------------------
