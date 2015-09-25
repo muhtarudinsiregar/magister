@@ -99,7 +99,7 @@ class PendaftaranController extends \BaseController {
 		$update = Pendaftaran::find($daftar['no']);
 		$update->id_pendaftarOK = $ok;
 		$update->save();
-		return Redirect::to('konfirmasi');
+		return Redirect::to('mail');
 	}
 
 	/**
@@ -133,7 +133,7 @@ class PendaftaranController extends \BaseController {
 		];
 		
 		// dd($data['email']);
-		Mail::send('emails.confirm', $data, function($mail) use ($data){
+		Mail::send('emails.boilerplate_inliner', $data, function($mail) use ($data){
 		// Email dikirimkan ke address "momo@deviluke.com" 
     	  // dengan nama penerima "Momo Velia Deviluke"
 			// dd($data);
@@ -145,8 +145,8 @@ class PendaftaranController extends \BaseController {
 			$mail->subject('Konfirmasi Email');
 
 		});
-
-		// return View::make('emails.confirm')->with('data',$data);
+		return Redirect::to('konfirmasi');
+		// return View::make('emails.boilerplate');
 	}
 	public function show($id)
 	{

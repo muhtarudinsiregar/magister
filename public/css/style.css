@@ -12,6 +12,7 @@
 }
 body{
     /*background: #ECECEE;*/
+    height: 1000px;
 }
 .caret-up {
     width: 0; 

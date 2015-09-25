@@ -151,8 +151,27 @@ class PendidikansController extends \BaseController {
 
         // line utk perulangan profesi
 		$asosia = Input::get('asosiasi');
-		if ($asosia!='')
+
+		$email = Session::get('mail');
+		$id_pendaftar = DataPribadi::get_id($email);
+		$profesi_id = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->first(['id']);
+
+		if (empty($profesi_id))
 		{
+			$pekerjaan = Input::only('asosiasi','no_anggota');
+			$asos = $pekerjaan['asosiasi'];
+			$no = $pekerjaan['no_anggota'];
+
+			foreach ($asos as $key => $value)
+			{
+				DB::table('profesi')->insert(
+					[
+					'id_pendaftar'=>$id_pendaftar['id'],
+					'asosiasi'=>$asos[$key],
+					'noAnggota'=>$no[$key]
+					]);
+			}	
+		}else{
 			$pekerjaan = Input::only('asosiasi','no_anggota');
 			$asos = $pekerjaan['asosiasi'];
 			$no = $pekerjaan['no_anggota'];
@@ -165,9 +184,8 @@ class PendidikansController extends \BaseController {
 					'noAnggota'=>$no[$key]
 					]);
 			}	
-		}else{
-
 		}
+
 		if (is_null(Auth::id())) {
 			return Redirect::to('pekerjaan');
 		}else{
@@ -190,7 +208,7 @@ class PendidikansController extends \BaseController {
 		$user->delete();
 		Request::header('X-IC-Remove',true);
 		echo "
-		<div class='col-sm-8' ic-remove-after='2s'>
+		<div class='col-sm-8' ic-remove-after='100s'>
 		<div class='alert alert-success alert-dismissible' role='alert'>
 		<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
 				<strong>Berhasil </strong> Menghapus Data.

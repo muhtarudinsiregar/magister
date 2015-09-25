@@ -16,13 +16,12 @@ class PekerjaansController extends \BaseController {
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 		$edit = Pekerjaan::where('id_pendaftar','=',$id['id'])->first();
 		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id['id'])->get();
-		// dd(is_null($edit['id']));
-		$a = is_null($edit['id']);
-		$b = $riwayat->isEmpty();
-		var_dump($a and $b);
-		if ($riwayat->isEmpty()) {
+		// dd($riwayat);
+
+		if ($riwayat->isEmpty() and empty($edit)) {
 			return View::make('pekerjaans.create');
-		}else
+		}
+		else
 		{	
 			return View::make('pekerjaans.back_edit')->withEdit($edit)->withData($riwayat);
 		}
@@ -75,29 +74,25 @@ class PekerjaansController extends \BaseController {
 			$user->tahunMulai = Input::get('thnkrj');
 			$user->save();
 
-		}else
-		{
-			$user = new Pekerjaan;
-			$user->id_pendaftar = $id_pendaftar['id'];
-			$user->save();
+		}
+		if (!empty(Input::get('pos_riw'))) {
+			$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
+			$posi = $pekerjaan['pos_riw'];
+			$insitut = $pekerjaan['ins_riw'];
+			$tahun = $pekerjaan['th_riw'];
+
+			foreach ($posi as $key => $value)
+			{
+				DB::table('riwayatpekerjaan')->insert(
+					[
+					'id_pendaftar'=>$id_pendaftar['id'],
+					'posisi'=>$posi[$key],
+					'institusi'=>$insitut[$key],
+					'masaKerja'=>$tahun[$key]
+					]);
+			}
 		}
 		
-
-		$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
-		$posi = $pekerjaan['pos_riw'];
-		$insitut = $pekerjaan['ins_riw'];
-		$tahun = $pekerjaan['th_riw'];
-
-		foreach ($posi as $key => $value)
-		{
-			DB::table('riwayatpekerjaan')->insert(
-				[
-				'id_pendaftar'=>$id_pendaftar['id'],
-				'posisi'=>$posi[$key],
-				'institusi'=>$insitut[$key],
-				'masaKerja'=>$tahun[$key]
-				]);
-		}
 		return Redirect::to('pendanaan');
 	}
 
@@ -197,7 +192,18 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		header('X-IC-Remove',true);
+		$user = RiwayatPekerjaan::find($id);
+		$user->delete();
+		// Request::header('X-IC-Remove',true);
+		echo "
+		<div class='col-lg-12' ic-remove-after='2s'>
+			<div class='alert alert-success alert-dismissible' role='alert'>
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<strong>Berhasil </strong> Menghapus Data.
+			</div>
+		</div>
+		";
 	}
 
 }

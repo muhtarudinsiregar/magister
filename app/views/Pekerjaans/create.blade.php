@@ -10,7 +10,7 @@
 				<div class="col-sm-3">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" value="y" id="statusKerja" name="sttskrja">
+							<input type="checkbox" value="y" id="statusKerja" name="sttskrja" checked="checked">
 							Saat ini tidak bekerja
 						</label>
 					</div>
@@ -131,6 +131,11 @@
             $(document).on("click","#hapusPekerjaan",function(){
                 $(this).parent().remove();
             });
+         $('#statusKerja').is("checked",true)
+		{
+			$('#inputPekerjaan :input').prop('disabled', true);
+		}
+
 	});	
 </script>
 

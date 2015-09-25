@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendidikan.update', $edit->id))) }}
 			<div class="form-group">
-				<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
+				<h4><strong>Langkah 3 : Pendidikan Sebelumnya [Back-Edit]</strong></h4>
 			</div>
 			
 			<div class="form-group">
@@ -83,7 +83,7 @@
 
 			<div id="profesi">
 				@foreach ($profesi as $element)
-					<div id="tes"class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?" ic-target="closest .form-group">
+					<div id="tes" class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?" ic-target="closest .form-group">
 						<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
 						<div class="col-sm-3">
 							<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi" value="{{ $element->asosiasi }}">
@@ -93,10 +93,9 @@
 							<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota" value="{{ $element->noAnggota }}">
 						</div>
 						<button class="btn btn-danger"  type="button" id="hapusProfesi1" ic-delete-from="pendidikan/{{ $element->id}}">
-							Hapus
+							<i class="glyphicon glyphicon-remove"></i>
 							<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
 						</button>
-						{{-- <a href="{{url('pendidikan/'.$element->id)}}" class="btn btn-danger" ic-delete-from="" >Hapus</a> --}}
 					</div>
 				@endforeach
 			</div>
