@@ -32,6 +32,36 @@ class PendidikansController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function profesiSaved()
+	{
+		$email = Session::get('mail');
+		$id_pendaftar = DataPribadi::get_id($email);
+		
+		$pekerjaan = Input::only('asosiasi2','no_anggota2');
+		$asos = $pekerjaan['asosiasi2'];
+		$no = $pekerjaan['no_anggota2'];
+
+		foreach ($asos as $key => $value)
+		{
+			DB::table('profesi')->insert(
+				[
+				'id_pendaftar'=>$id_pendaftar['id'],
+				'asosiasi'=>$asos[$key],
+				'noAnggota'=>$no[$key]
+				]);
+		}
+		Request::header('X-IC-Remove',true);
+		echo "
+		<div class='col-sm-12' ic-remove-after='2s'>
+			<div class='alert alert-success alert-dismissible' role='alert'>
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<strong>Berhasil </strong> Menambahkan Data.
+			</div>
+		</div>
+		";
+		$header = ['X-IC-Remove'=>true];
+		Redirect::to('pendidikan', $status, $headers);
+	}
 	public function create()
 	{
 		
@@ -154,9 +184,11 @@ class PendidikansController extends \BaseController {
 
 		$email = Session::get('mail');
 		$id_pendaftar = DataPribadi::get_id($email);
-		$profesi_id = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->first(['id']);
+		$profesi_id = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
 
-		if (empty($profesi_id))
+		
+
+		if ($profesi_id->isEmpty())
 		{
 			$pekerjaan = Input::only('asosiasi','no_anggota');
 			$asos = $pekerjaan['asosiasi'];
@@ -172,18 +204,18 @@ class PendidikansController extends \BaseController {
 					]);
 			}	
 		}else{
+
 			$pekerjaan = Input::only('asosiasi','no_anggota');
+			// dd($profesi_id);
 			$asos = $pekerjaan['asosiasi'];
 			$no = $pekerjaan['no_anggota'];
-
-			foreach ($asos as $key => $value)
-			{
-				DB::table('profesi')->where('id_pendaftar',$id)->update(
+			foreach ($profesi_id as $key => $value) {
+				DB::table('profesi')->where('id',$value->id)->update(
 					[
 					'asosiasi'=>$asos[$key],
 					'noAnggota'=>$no[$key]
 					]);
-			}	
+			}
 		}
 
 		if (is_null(Auth::id())) {
@@ -208,9 +240,9 @@ class PendidikansController extends \BaseController {
 		$user->delete();
 		Request::header('X-IC-Remove',true);
 		echo "
-		<div class='col-sm-8' ic-remove-after='100s'>
-		<div class='alert alert-success alert-dismissible' role='alert'>
-		<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+		<div class='col-sm-8' ic-remove-after='3s'>
+			<div class='alert alert-success alert-dismissible' role='alert'>
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
 				<strong>Berhasil </strong> Menghapus Data.
 			</div>
 		</div>

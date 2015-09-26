@@ -38,7 +38,7 @@ View::composer(array('kontaks.edit','kontaks.create','kontaks.back_edit'), funct
 // {
 //     var_dump($query);
 // });
-
+Route::post('profesiSaved', 'PendidikansController@profesiSaved');
 Route::get('mail', 'PendaftaranController@sendmail');
 Route::get('/','BerandasController@index');
 Route::get('konfirmasi','PendaftaranController@konfirmasi');
