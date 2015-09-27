@@ -81,55 +81,55 @@
 			<tr>
 				<td class="kolom">TAHUN</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$tahun}}</td>
 			</tr>
 			<tr>
 				<td>SEMESTER</td>
 				<td>:</td>
-				<td>2</td>
+				<td>{{$semester}}</td>
 			</tr>
 			<tr>
 				<td>GELOMBANG</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$gelombang}}</td>
 			</tr>
 			<tr class="batas">
 				<td>PROGRAM</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$prodi}}</td>
 			</tr>
 			<tr>
 				<td>KONSENTRASI</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$konsentrasi}}</td>
 			</tr>
 			<tr>
 				<td>Nama</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$nama}}</td>
 			</tr>
 			<tr>
 				<td>Tempat Lahir</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$tempatLahir}}</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>Tanggal Lahir</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$tanggalLahir}}</td>
 				<td>Jenis Kelamin :</td>
-				<td>Pria</td>
+				<td>{{$jenisKelamin}}</td>
 			</tr>
 			<tr>
 				<td>No Telp</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$noHP}}</td>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td>:</td>
-				<td>2015/2016</td>
+				<td>{{$email}}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -138,10 +138,10 @@
 			</tr>
 			<tr>
 				<td style="height:60px;" colspan="3">
-					Perum Tegal Sari Indah, Jalan Cempaka Blok L-09 RT/04 , RW/10 Desa Ledug, kecamatan Kembaran, Purwokerto.
+					{{$alamatYk}}
 				</td>
 				<td><strong>Telp:</strong></td>
-				<td>081229546981</td>
+				<td>{{$noTelpYK}}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -150,10 +150,10 @@
 			</tr>
 			<tr>
 				<td style="height:60px;" colspan="3">
-					Perum Tegal Sari Indah, Jalan Cempaka Blok L-09 RT/04 , RW/10 Desa Ledug, kecamatan Kembaran, Purwokerto.
+					{{$alamat}}, {{$kotakab}}, {{$propinsi}}, {{$negara}} 
 				</td>
 				<td><strong>Telp:</strong></td>
-				<td>081229546981</td>
+				<td>{{$noTelepon}}</td>
 			</tr>
 			<tr>
 				<td colspan="7">
@@ -185,7 +185,7 @@
 			</tr>
 			<tr>
 				<td>
-					<p style="margin-top:5em">[Nama]</p>
+					<p style="margin-top:5em">{{$nama}}</p>
 				</td>
 			</tr>
 		</tbody>

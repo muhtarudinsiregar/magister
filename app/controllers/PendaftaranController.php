@@ -112,7 +112,23 @@ class PendaftaranController extends \BaseController {
 	public function sendmail()
 	{
 		$email = Session::get('mail');
-		$data_pribadi = DataPribadi::where('email','=',$email)->first(['id','nama','tanggalLahir','noTelepon','email']);
+		$data_pribadi = DataPribadi::where('email','=',$email)->first([
+			'id',
+			'nama',
+			'tempatLahir',
+			'tanggalLahir',
+			'noHP',
+			'noTelpYK',
+			'noTelepon',
+			'email',
+			'alamatYk',
+			'alamat',
+			'jenisKelamin',
+			'kotakabYK',
+			'kotakab',
+			'propinsi',
+			'negara'
+			]);
 
 		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['tahun','semester','gelombang','id_prodi','id_konsentrasi']);
 		$prodi = Pendaftaran::prodi($pendaftaran['id_prodi']);
@@ -122,31 +138,59 @@ class PendaftaranController extends \BaseController {
 		// $data_pri = (array) $data_pribadi;
 		$data = [
 		'nama'=>ucwords(strtolower($data_pribadi['nama'])),
+		'tempatLahir'=>$data_pribadi['tempatLahir'],
 		'tanggalLahir'=>$data_pribadi['tanggalLahir'],
+		'noTelpYK'=>$data_pribadi['noTelpYK'],
+		'jenisKelamin'=>$data_pribadi['jenisKelamin'],
+		'noTelpYK'=>$data_pribadi['noTelpYK'],
+		'alamatYk'=>$data_pribadi['alamatYk'],
+		'kotakabYK'=>$data_pribadi['kotakabYK'],
+		'alamat'=>$data_pribadi['alamat'],
 		'noTelepon'=>$data_pribadi['noTelepon'],
+		'kotakab'=>$data_pribadi['kotakab'],
+		'negara'=>$data_pribadi['negara'],
+		'propinsi'=>$data_pribadi['propinsi'],
 		'email'=>$data_pribadi['email'],
+		'noHP'=>$data_pribadi['noHP'],
 		'tahun'=>$pendaftaran['tahun'],
 		'semester'=>$pendaftaran['semester'],
 		'gelombang'=>$pendaftaran['gelombang'],
 		'prodi'=>$prodi,
 		'konsentrasi'=>$konsentrasi
 		];
+		// dd($data);
+
+		//===================generate pdf===============
+
+
+		$pdf = PDF::loadView('emails.attachment_pdf',$data);
+		$data1 = [
+			'data'=>$data,
+			'pdf'=>$pdf->output()
+		];
+		// return $pdf->download('laporan.pdf');
+		// dd($pdf);
+		// =====================email==================
 		
-		dd($data);
-		// Mail::send('emails.boilerplate_inliner', $data, function($mail) use ($data){
-		// // Email dikirimkan ke address "momo@deviluke.com" 
-  //   	  // dengan nama penerima "Momo Velia Deviluke"
-		// 	// dd($data);
-		// 	$mail->to($data['email'],$data['nama']);
+		Mail::send('emails.boilerplate_inliner', $data, function($mail) use ($data1){
+		// Email dikirimkan ke address "momo@deviluke.com" 
+    	  // dengan nama penerima "Momo Velia Deviluke"
+			// dd($data);
+			$mail->to($data1['data']['email'],$data1['data']['nama']);
 
-  //     // Copy carbon dikirimkan ke address "haruna@sairenji" 
-  //     // dengan nama penerima "Haruna Sairenji"
-		// 	// $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
-		// 	$mail->subject('Konfirmasi Pendaftaran PPs FTI UII');
+      // Copy carbon dikirimkan ke address "haruna@sairenji" 
+      // dengan nama penerima "Haruna Sairenji"
+			// $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
+			$mail->subject('Konfirmasi Pendaftaran PPs FTI UII');
+			$mail->attachData($data1['pdf'],'formulir.pdf',['mime'=>'application/pdf']);
 
-		// });
+		});
 		// return Redirect::to('konfirmasi');
-		return View::make('emails.boilerplate');
+		// return View::make('emails.boilerplate');
+	}
+	public function generatePDF()
+	{
+		
 	}
 	public function show($id)
 	{
