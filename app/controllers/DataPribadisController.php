@@ -90,7 +90,7 @@ class DataPribadisController extends \BaseController {
 		$program->id_prodi = Session::get('pro');
 		$program->id_konsentrasi = Session::get('kon');
 		$program->save();
-		return Redirect::to('pendidikan');
+		// return Redirect::to('pendidikan');
 	}
 
 	/**

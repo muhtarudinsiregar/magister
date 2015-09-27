@@ -91,15 +91,15 @@
 				<div class="form-group">
 					<label for="" class="col-sm-1 control-label">Posisi </label>
 					<div class="col-sm-2">
-						<input type="text" name="pos_riw[]" id="input" class="form-control" required="required">
+						<input type="text" name="pos_riw[]" id="input" class="form-control">
 					</div>
 					<label for="" class="col-sm-1 control-label">Institusi </label>
 					<div class="col-sm-3">
-						<input type="text" name="ins_riw[]" id="input" class="form-control" required="required">
+						<input type="text" name="ins_riw[]" id="input" class="form-control">
 					</div>
 					<label for="" class="col-sm-2 control-label">Masa Kerja </label>
 					<div class="col-lg-1">
-						<input type="text" name="th_riw[]" id="input" class="form-control" required="required">
+						<input type="text" name="th_riw[]" id="input" class="form-control">
 					</div>
 					<label for="" class="col-sm-1 control-label">tahun</label>
 				</div>

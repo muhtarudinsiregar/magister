@@ -91,9 +91,9 @@
 				
 			</div>
 		</div>
-		<div id="riwayat">
+		<div id="riwayat" ic-confirm="Anda yakin akan menghapus data ini?" ic-target="closest .form-group">
 			@foreach ($data as $element)
-			<div class="form-group" ic-confirm="Anda yakin akan menghapus data ini?" ic-target=".notif">
+			<div class="form-group">
 				<label for="" class="col-sm-1 control-label">Posisi </label>
 				<div class="col-sm-2">
 					<input type="text" name="pos_riw[]" id="input" class="form-control" required="required" value="{{ $element->posisi }}">
@@ -112,16 +112,46 @@
 					<i class="glyphicon glyphicon-remove"></i>
 					<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
 				</button>
-
 			</div>
-			
 			@endforeach
 		</div>
 		<div class="form-group">
 			<div class="col-sm-3">
-				<button type="button" class="btn btn-default" id="tambahPekerjaan">Tambah Pekerjaan</button>
+				<button type="button" class="btn btn-default" id="tambahPekerjaan" data-toggle="modal" data-target="#myModal">
+					Tambah Riwayat Pekerjaan
+				</button>
 			</div>
 		</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel" align="center">Tambah Profesi</h4>
+					</div>
+					<div class="modal-body" id="#modalTambah">
+						<div id="notifProfesi">
+
+						</div>
+						<div id="riwayatModal" ic-target="#notifProfesi">
+
+						</div>
+						<div class="form-group">
+							<div class="col-sm-3">
+								<button type="button" class="btn btn-primary" id="tambahRiwayatButton">
+									<i class="glyphicon glyphicon-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ic-target="#notifProfesi" ic-post-to="RiwayatPekerjaanSaved" onclick="setTimeout(function () { window.location.reload(); }, 1)">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 	{{-- butttonnnnnnnnnnnnnnnnnnnnnnnnnnn --}}
 	<div class="form-group">
@@ -137,11 +167,10 @@
 @section('script')
 <script type="text/javascript">
 	$(function() {		
-		$("#tambahPekerjaan ").click(function(e){
-			e.preventDefault();
-			$("#riwayat").append('<div class="form-group"><label for="" class="col-sm-1 control-label">Posisi </label><div class="col-sm-2"><input type="text" name="pos_riw[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">Institusi </label><div class="col-sm-3"><input type="text" name="ins_riw[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-2 control-label">Masa Kerja </label><div class="col-lg-1"><input type="text" name="th_riw[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">tahun</label><button class="btn btn-danger" type="button" id="hapusPekerjaan"><i class="glyphicon glyphicon-remove"></i></button></div>');
+		$("#tambahRiwayatButton ").click(function(){
+			$("#riwayatModal").append('<div class="form-group"><label for="" class="col-sm-1 control-label">Posisi </label><div class="col-sm-2"><input type="text" name="pos_riw2[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">Institusi </label><div class="col-sm-3"><input type="text" name="ins_riw2[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-2 control-label">Masa Kerja </label><div class="col-lg-1"><input type="text" name="th_riw2[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">tahun</label><button class="btn btn-danger" type="button" id="hapusPekerjaanModal"><i class="glyphicon glyphicon-remove"></i></button></div>');
 		});
-		$(document).on("click","#hapusPekerjaan",function(){
+		$(document).on("click","#hapusPekerjaanModal",function(){
 			$(this).parent().remove();
 		});
 	});	

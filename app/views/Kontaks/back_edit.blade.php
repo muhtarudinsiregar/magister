@@ -70,9 +70,9 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">Email* </label>
+			<label for="" class="col-sm-2 control-label">Email </label>
 			<div class="col-sm-4">
-				{{ Form::text('email',null,['class'=>'form-control','required'=>'required']); }}
+				{{ Form::text('email',null,['class'=>'form-control']); }}
 			</div>
 		</div>
 		<div class="form-group">

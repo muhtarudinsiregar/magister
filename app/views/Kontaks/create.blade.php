@@ -57,9 +57,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="" class="col-sm-2 control-label">Email* </label>
+				<label for="" class="col-sm-2 control-label">Email </label>
 				<div class="col-sm-4">
-					<input type="email" name="email" id="input" class="form-control" required="required">
+					<input type="email" name="email" id="input" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">

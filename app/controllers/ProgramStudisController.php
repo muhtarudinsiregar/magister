@@ -124,7 +124,7 @@ class ProgramStudisController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$tahun = TahunGelombang::where('tahun','=','2015/2016')->first();
+		$tahun = TahunGelombang::where('aktif','=','y')->first();
 		$update = ProgramStudi::findOrFail($id);
 		$update->tahun = $tahun['tahun'];
 		$update->semester = $tahun['semester'];
@@ -138,7 +138,7 @@ class ProgramStudisController extends \BaseController {
 		}else{
 			return Redirect::to('data-pribadi/'.Auth::id().'/edit');
 		}
-		// return Redirect::to('data-pribadi/'.Auth::id().'/edit');
+		return Redirect::to('data-pribadi/'.Auth::id().'/edit');
 	}
 
 	/**

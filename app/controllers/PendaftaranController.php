@@ -121,7 +121,7 @@ class PendaftaranController extends \BaseController {
 		// $data_pendaftaran = (array) $pendaftaran;
 		// $data_pri = (array) $data_pribadi;
 		$data = [
-		'nama'=>$data_pribadi['nama'],
+		'nama'=>ucwords(strtolower($data_pribadi['nama'])),
 		'tanggalLahir'=>$data_pribadi['tanggalLahir'],
 		'noTelepon'=>$data_pribadi['noTelepon'],
 		'email'=>$data_pribadi['email'],
@@ -132,21 +132,21 @@ class PendaftaranController extends \BaseController {
 		'konsentrasi'=>$konsentrasi
 		];
 		
-		// dd($data['email']);
-		Mail::send('emails.boilerplate_inliner', $data, function($mail) use ($data){
-		// Email dikirimkan ke address "momo@deviluke.com" 
-    	  // dengan nama penerima "Momo Velia Deviluke"
-			// dd($data);
-			$mail->to($data['email'],$data['nama']);
+		dd($data);
+		// Mail::send('emails.boilerplate_inliner', $data, function($mail) use ($data){
+		// // Email dikirimkan ke address "momo@deviluke.com" 
+  //   	  // dengan nama penerima "Momo Velia Deviluke"
+		// 	// dd($data);
+		// 	$mail->to($data['email'],$data['nama']);
 
-      // Copy carbon dikirimkan ke address "haruna@sairenji" 
-      // dengan nama penerima "Haruna Sairenji"
-			// $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
-			$mail->subject('Konfirmasi Email');
+  //     // Copy carbon dikirimkan ke address "haruna@sairenji" 
+  //     // dengan nama penerima "Haruna Sairenji"
+		// 	// $mail->cc('redcar.studious@gmail.com', 'Haruna Sairenji');
+		// 	$mail->subject('Konfirmasi Pendaftaran PPs FTI UII');
 
-		});
-		return Redirect::to('konfirmasi');
-		// return View::make('emails.boilerplate');
+		// });
+		// return Redirect::to('konfirmasi');
+		return View::make('emails.boilerplate');
 	}
 	public function show($id)
 	{
@@ -187,6 +187,11 @@ class PendaftaranController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function pdf()
+	{
+		return View::make('emails.attachment_pdf');
 	}
 
 }

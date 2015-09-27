@@ -18,9 +18,10 @@ class PekerjaansController extends \BaseController {
 		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id['id'])->get();
 		// dd($riwayat);
 
-		if ($riwayat->isEmpty() and empty($edit)) {
+		if ($riwayat->isEmpty() or empty($edit)) {
 			return View::make('pekerjaans.create');
 		}
+
 		else
 		{	
 			return View::make('pekerjaans.back_edit')->withEdit($edit)->withData($riwayat);
@@ -33,6 +34,42 @@ class PekerjaansController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function RiwayatPekerjaanSaved()
+	{
+		$email = Session::get('mail');
+		$id_pendaftar = DataPribadi::where('email','=',$email)->first(['id']);
+
+		$pekerjaan = Input::only('pos_riw2','ins_riw2','th_riw2');
+		$posi = $pekerjaan['pos_riw2'];
+		$insitut = $pekerjaan['ins_riw2'];
+		$tahun = $pekerjaan['th_riw2'];
+
+		// dd(Input::all());
+
+		foreach ($posi as $key => $value)
+		{
+			DB::table('riwayatpekerjaan')->insert(
+				[
+				'id_pendaftar'=>$id_pendaftar['id'],
+				'posisi'=>$posi[$key],
+				'institusi'=>$insitut[$key],
+				'masaKerja'=>$tahun[$key]
+				]);
+		}
+		// Request::header('X-IC-Remove',true);
+		echo "
+		<div class='col-sm-12' ic-remove-after='2s'>
+			<div class='alert alert-success alert-dismissible' role='alert'>
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<strong>Berhasil </strong> Menambahkan Data.
+			</div>
+		</div>
+		";
+		$header = ['X-IC-Remove'=>true];
+		Redirect::to('pekerjaan', $status, $headers);
+
+
+	}
 	public function create()
 	{
 		
@@ -163,17 +200,32 @@ class PekerjaansController extends \BaseController {
 		$posi = $pekerjaan['pos_riw'];
 		$insitut = $pekerjaan['ins_riw'];
 		$tahun = $pekerjaan['th_riw'];
-
-		foreach ($posi as $key => $value)
+		$riwayat_id = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
+		if ($riwayat_id->isEmpty())
 		{
-			DB::table('riwayatpekerjaan')->insert(
-				[
-				'id_pendaftar'=>$id_pendaftar['id'],
-				'posisi'=>$posi[$key],
-				'institusi'=>$insitut[$key],
-				'masaKerja'=>$tahun[$key]
-				]);
+			foreach ($posi as $key => $value)
+			{
+				DB::table('riwayatpekerjaan')->insert(
+					[
+					'id_pendaftar'=>$id_pendaftar['id'],
+					'posisi'=>$posi[$key],
+					'institusi'=>$insitut[$key],
+					'masaKerja'=>$tahun[$key]
+					]);
+			}
+		}else
+		{
+			foreach ($riwayat_id as $key => $value)
+			{
+				DB::table('riwayatpekerjaan')->where('id',$value->id)->update(
+					[
+					'posisi'=>$posi[$key],
+					'institusi'=>$insitut[$key],
+					'masaKerja'=>$tahun[$key]
+					]);
+			}
 		}
+		
 
 			// return Redirect::to('pendanaan/'.Auth::id().'/edit');
 		if (is_null(Auth::id())) {
@@ -195,11 +247,11 @@ class PekerjaansController extends \BaseController {
 		header('X-IC-Remove',true);
 		$user = RiwayatPekerjaan::find($id);
 		$user->delete();
-		// Request::header('X-IC-Remove',true);
+		Request::header('X-IC-Remove',true);
 		echo "
 		<div class='col-lg-12' ic-remove-after='2s'>
 			<div class='alert alert-success alert-dismissible' role='alert'>
-			<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
 				<strong>Berhasil </strong> Menghapus Data.
 			</div>
 		</div>
