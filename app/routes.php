@@ -41,6 +41,7 @@ View::composer(array('kontaks.edit','kontaks.create','kontaks.back_edit'), funct
 Route::post('profesiSaved', 'PendidikansController@profesiSaved');
 Route::post('RiwayatPekerjaanSaved', 'PekerjaansController@RiwayatPekerjaanSaved');
 Route::get('mail', 'PendaftaranController@sendmail');
+Route::post('mail', 'PendaftaranController@sendmail');
 Route::get('/','BerandasController@index');
 Route::get('konfirmasi','PendaftaranController@konfirmasi');
 Route::resource('beranda', 'BerandasController');

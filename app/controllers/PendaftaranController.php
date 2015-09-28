@@ -235,7 +235,7 @@ class PendaftaranController extends \BaseController {
 
 	public function pdf()
 	{
-		return View::make('emails.attachment_pdf');
+		return View::make('emails.tes');
 	}
 
 }
