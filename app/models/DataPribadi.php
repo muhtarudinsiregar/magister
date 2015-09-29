@@ -22,14 +22,32 @@ class DataPribadi extends \Eloquent {
     'neg'=>'required|string',
     'no_telNyk'=>'required|numeric'
     ];
+    public static $rules2 = [
+    'email'=>'required',
+    'nm'=>'required|string',
+    'tlhr'=>'required',
+    'tglhr'=>'required',
+    'jenisK'=>'required',
+    'agama'=>'required',
+    'no_hp'=>'required|numeric',
+    'almtYk'=>'required|string',
+    'kotakabYk'=>'required|string',
+    'no_telYk'=>'required|numeric',
+    'tinggalYk'=>'required|string',
+    'almtNyk'=>'required|string',
+    'kotakabNyk'=>'required|string',
+    'prop'=>'required|string',
+    'neg'=>'required|string',
+    'no_telNyk'=>'required|numeric'
+    ];
 
     public static function get_id($mail)
     {
-     return DataPribadi::where('email','=',$mail)->first(['id']);
- }
+       return DataPribadi::where('email','=',$mail)->first(['id']);
+   }
 
- public function pekerjaan()
- {
+   public function pekerjaan()
+   {
     return $this->hasMany('Pekerjaan', 'id_pendaftar');
 }
 public function pendidikan()

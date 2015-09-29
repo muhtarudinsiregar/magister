@@ -10,7 +10,7 @@ class KontaksController extends \BaseController {
 	 */
 	public function index()
 	{
-		var_dump(Session::get('mail'));
+		var_dump(Session::all());
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 
@@ -46,7 +46,7 @@ class KontaksController extends \BaseController {
 	{
 		
 		$validator = Validator::make($data = Input::all(), Kontak::$rules);
-
+		$validator->setAttributeNames(Kontak::$niceNames);
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
@@ -63,7 +63,7 @@ class KontaksController extends \BaseController {
 		$user->kotakab = Input::get('kotakab');
 		$user->propinsi = Input::get('propinsi');
 		$user->negara = Input::get('negara');
-		$user->noTelepon = Input::get('noTelpon');
+		$user->noTelepon = Input::get('noTelepon');
 		$user->email = Input::get('email');
 
 		$user->save();
@@ -111,6 +111,7 @@ class KontaksController extends \BaseController {
 		$kontak = Kontak::findOrFail($id);
 
 		$validator = Validator::make($data = Input::all(), Kontak::$rules);
+		$validator->setAttributeNames(Kontak::$niceNames);
 
 		if ($validator->fails())
 		{

@@ -40,7 +40,7 @@ class PendidikansController extends \BaseController {
 		$pekerjaan = Input::only('asosiasi2','no_anggota2');
 		$asos = $pekerjaan['asosiasi2'];
 		$no = $pekerjaan['no_anggota2'];
-		dd(Input::get('no_anggota2'));
+		// dd(Input::all());
 
 		foreach ($asos as $key => $value)
 		{
@@ -52,16 +52,16 @@ class PendidikansController extends \BaseController {
 				]);
 		}
 		// Request::header('X-IC-Remove',true);
-		// echo "
-		// <div class='col-sm-12' ic-remove-after='2s'>
-		// 	<div class='alert alert-success alert-dismissible' role='alert'>
-		// 		<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-		// 		<strong>Berhasil </strong> Menambahkan Data.
-		// 	</div>
-		// </div>
-		// ";
-		// $header = ['X-IC-Remove'=>true];
-		// Redirect::to('pendidikan', $status, $header);
+		echo "
+		<div class='col-sm-12' ic-remove-after='2s'>
+			<div class='alert alert-success alert-dismissible' role='alert'>
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<strong>Berhasil </strong> Menambahkan Data.
+			</div>
+		</div>
+		";
+		$header = ['X-IC-Remove'=>true];
+		Redirect::to('pendidikan', $status, $header);
 	}
 	public function create()
 	{
@@ -183,6 +183,7 @@ class PendidikansController extends \BaseController {
 		'ipk'=>'IPK', 
 		'skala'=>'Skala'
 		];
+		
 		$validator = Validator::make($data = Input::all(), Pendidikan::$rules);
 		$validator->setAttributeNames($niceNames);
 

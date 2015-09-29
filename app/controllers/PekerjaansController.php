@@ -84,7 +84,7 @@ class PekerjaansController extends \BaseController {
 	public function store()
 	{
 		$validator = Validator::make($data = Input::all(), Pekerjaan::$rules);
-
+		$validator->setAttributeNames(Pekerjaan::$niceNames);
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
@@ -169,7 +169,7 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$validator = Validator::make($data = Input::all(), Kontak::$rules);
+		$validator = Validator::make($data = Input::all(), Pekerjaan::$rules);
 		$email = Session::get('mail');
 		$id_pendaftar = DataPribadi::get_id($email);
 

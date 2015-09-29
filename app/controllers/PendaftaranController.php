@@ -163,7 +163,7 @@ class PendaftaranController extends \BaseController {
 		//===================generate pdf===============
 
 
-		$pdf = PDF::loadView('emails.attachment_pdf',$data);
+		$pdf = PDF::loadView('emails.new_pdf_generate',$data);
 		$data1 = [
 			'data'=>$data,
 			'pdf'=>$pdf->output()
@@ -185,13 +185,10 @@ class PendaftaranController extends \BaseController {
 			$mail->attachData($data1['pdf'],'formulir.pdf',['mime'=>'application/pdf']);
 
 		});
-		// return Redirect::to('konfirmasi');
+		return Redirect::to('konfirmasi');
 		// return View::make('emails.boilerplate');
 	}
-	public function generatePDF()
-	{
-		
-	}
+
 	public function show($id)
 	{
 		//

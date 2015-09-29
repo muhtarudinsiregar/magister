@@ -22,7 +22,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Email* </label>
 				<div class="col-sm-4">
-					<input type="text" name="email" id="input" class="form-control" required="required" value=" {{ Input::old('email') }}">
+					<input type="text" name="email" id="input" class="form-control" required="required" value="{{Input::old('email') }}">
 				</div>
 				<label for="tahun_akademik" class="col-sm-5 control-label i-custom"></label>
 			</div>
@@ -60,10 +60,16 @@
 				<label for="program" class="col-sm-2 control-label">Jenis Kelamin</label>
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="jenisK" value="Laki" checked="checked" {{ Input::old("jenisK") }}> Pria
+						<input type="radio" name="jenisK" value="Laki" checked="checked"> Pria
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="jenisK" value="Perempuan" {{ Input::old("jenisK") }}> Wanita
+						<input type="radio" name="jenisK" value="Perempuan" 
+						<?php 
+							if(Input::old('jenisK')== "Perempuan") { 
+								echo "checked='checked'";
+							}
+						 ?>
+						> Wanita
 					</label>
 				</div>
 			</div>
@@ -73,7 +79,13 @@
 				<div class="col-sm-3">
 					<select name="agama" id="input" class="form-control" required="required">
 						@foreach ($agama as $element)
-							<option value="{{ $element->id }} {{ Input::old('agama') }}">{{ $element->agama }}</option>
+							<option value="{{ $element->id }}" 
+							<?php 
+							if(Input::old('agama') == $element->id) { 
+								echo "selected='selected'";
+							}
+							?>
+							>{{ $element->agama }}</option>
 						@endforeach
 					</select>
 				</div>
@@ -162,7 +174,11 @@
 			<div class="form-group">
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="tinggalYk" id="luarYogya" value="0"> Sekarang tinggal di luar Yogyakarta
+						<input type="radio" name="tinggalYk" id="luarYogya" value="0"<?php 
+							if(Input::old('tinggalYk')== "0") { 
+								echo "checked='checked'";
+							}
+						 ?> > Sekarang tinggal di luar Yogyakarta
 					</label>
 				</div>
 			</div>

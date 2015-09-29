@@ -5,6 +5,15 @@
 		<form action="{{ url('pekerjaan') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 				<h4><strong>Langkah 4 : Pekerjaan</strong></h4>
+				<?php if ($errors->has()): ?>
+					<div class="alert alert-danger">
+					<ul class="square">
+						<?php foreach ($errors->all() as $error): ?>
+							<li><?php echo $error; ?></li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			<?php endif ?>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-3">
@@ -21,32 +30,32 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Posisi </label>
 					<div class="col-sm-4">
-						<input type="text" name="pos" id="input" class="form-control" required="required">
+						<input type="text" name="pos" id="input" class="form-control" required="required" value="{{Input::old('pos')}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Institusi </label>
 					<div class="col-sm-4">
-						<input type="text" name="ins" id="input" class="form-control" required="required">
+						<input type="text" name="ins" id="input" class="form-control" required="required" value="{{Input::old('ins')}}">
 					</div>
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Alamat </label>
 					<div class="col-sm-4">
-						<input type="text" name="almt" id="input" class="form-control" required="required">
+						<input type="text" name="almt" id="input" class="form-control" required="required" value="{{Input::old('almt')}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Kabupaten/kota </label>
 					<div class="col-sm-4">
-						<input type="text" name="kotkab" id="input" class="form-control" required="required">
+						<input type="text" name="kotkab" id="input" class="form-control" required="required" value="{{Input::old('kotkab')}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Propinsi </label>
 					<div class="col-sm-4">
-						<input type="text" name="prop" id="input" class="form-control" required="required">
+						<input type="text" name="prop" id="input" class="form-control" required="required" value="{{Input::old('prop')}}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -58,26 +67,26 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">No. telepon </label>
 					<div class="col-sm-4">
-						<input type="text" name="notel" id="input" class="form-control" required="required">
+						<input type="text" name="notel" id="input" class="form-control" required="required" value="{{Input::old('notel')}}">
 					</div>
 				</div>
 		
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">No. faksimili </label>
 					<div class="col-sm-4">
-						<input type="text" name="nofax" id="input" class="form-control" required="required">
+						<input type="text" name="nofax" id="input" class="form-control" required="required" value="{{Input::old('nofax')}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Email </label>
 					<div class="col-sm-4">
-						<input type="text" name="mail" id="input" class="form-control" required="required">
+						<input type="text" name="mail" id="input" class="form-control" required="required" value="{{Input::old('mail')}}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="col-sm-2 control-label">Tahun Kerja </label>
+					<label for="" class="col-sm-2 control-label">Lama Bekerja </label>
 					<div class="col-sm-2">
-						<input type="text" name="thnkrj" id="input" class="form-control" required="required">
+						<input type="text" name="thnkrj" id="input" class="form-control" required="required" value="{{Input::old('thnkrj')}}">
 					</div>
 				</div>
 			</div>

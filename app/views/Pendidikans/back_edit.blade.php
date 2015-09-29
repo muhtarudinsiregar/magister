@@ -142,7 +142,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" ic-post-to="profesiSaved">Submit</button>
+							<button type="button" class="btn btn-primary" ic-target="#notifProfesi" ic-post-to="profesiSaved" onclick="setTimeout(function () { window.location.reload(); }, 1)">Submit</button>
 						</div>
 					</div>
 				</div>

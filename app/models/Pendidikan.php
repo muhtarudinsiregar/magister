@@ -11,7 +11,7 @@ class Pendidikan extends \Eloquent {
 		'thmsk' => 'required|numeric',
 		'thlls' => 'required|numeric',
 		'noijzh' => 'required|string',
-		'ipk' => 'required|between:0,10',
+		'ipk' => 'required|numeric',
 		'skala' => 'required|numeric'
 		// 'asosiasi' => 'required',
 		// 'no_anggota' => 'required'

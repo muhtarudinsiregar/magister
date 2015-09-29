@@ -5,6 +5,15 @@
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pekerjaan.update', $edit->id))) }}
 		<div class="form-group">
 			<h4><strong>Langkah 4 : Pekerjaan [Back1-Edit]</strong></h4>
+			<?php if ($errors->has()): ?>
+					<div class="alert alert-danger">
+					<ul class="square">
+						<?php foreach ($errors->all() as $error): ?>
+							<li><?php echo $error; ?></li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			<?php endif ?>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-3">
@@ -75,7 +84,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="" class="col-sm-2 control-label">Tahun Kerja </label>
+				<label for="" class="col-sm-2 control-label">Lama Bekerja </label>
 				<div class="col-sm-1">
 					<input type="text" name="thnkrj" id="input" class="form-control" required="required" value="{{ $edit->tahunMulai }}">
 				</div>

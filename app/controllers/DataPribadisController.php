@@ -45,8 +45,22 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), DataPribadi::$rules);
+		$niceNames = [
+		'nm'=>'Nama',
+		'tlhr'=>'Tempat Lahir',
+		'no_hp'=>'No HP',
+		'almtYk'=>'Alamat di Yogya',
+		'kotakabYk'=>'Kota/Kabupaten',
+		'no_telYk'=>'No Telepon Yogyakarta',
+		'almtNyk'=>'Alamat di Luar Yogya',
+		'kotakabNyk'=>'Kota/Kabupaten',
+		'prop'=>'Propinsi',
+		'neg'=>'Negara',
+		'no_telNyk'=>'No Telepon Alamat Luar Yogya'
+		];
 
+		$validator = Validator::make($data = Input::all(), DataPribadi::$rules);
+		$validator->setAttributeNames($niceNames); 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
@@ -115,7 +129,7 @@ class DataPribadisController extends \BaseController {
 	public function edit($id)
 	{
 		$data = DataPribadi::find($id);
-		return View::make('datapribadis.edit')->withEdit($data);
+		return View::make('datapribadis.back_edit')->withEdit($data);
 	}
 
 	/**
@@ -127,8 +141,23 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+		$niceNames = [
+		'nm'=>'Nama',
+		'tlhr'=>'Tempat Lahir',
+		'no_hp'=>'No HP',
+		'almtYk'=>'Alamat di Yogya',
+		'kotakabYk'=>'Kota/Kabupaten',
+		'no_telYk'=>'No Telepon Yogyakarta',
+		'almtNyk'=>'Alamat di Luar Yogya',
+		'kotakabNyk'=>'Kota/Kabupaten',
+		'prop'=>'Propinsi',
+		'neg'=>'Negara',
+		'no_telNyk'=>'No Telepon Alamat Luar Yogya'
+		];
 
+		$validator = Validator::make($data = Input::all(), DataPribadi::$rules2);
+
+		$validator->setAttributeNames($niceNames); 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();

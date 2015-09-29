@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'tes@magister.net', 'name' => 'Magister Test'),
+	'from' => array('address' => 'tes@magister.net', 'name' => 'Konfirmasi Pendaftaran PPs FTI UII'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'redcar.studious@gmail.com',
+	'username' => 'admisi.pps.fti.uii@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'Ragnarokonline1',
+	'password' => 'admisi2015',
 
 	/*
 	|--------------------------------------------------------------------------

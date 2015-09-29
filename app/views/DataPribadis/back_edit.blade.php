@@ -8,7 +8,7 @@
 
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('data-pribadi.update', $edit->id))) }}
 			<div class="form-group">
-				<h4><strong>Langkah 2 : Data Pribadi</strong></h4>
+				<h4><strong>Langkah 2 : Data Pribadi [Back-Edit]</strong></h4>
 			</div>
 			<?php if ($errors->has()): ?>
 					<div class="alert alert-danger">
@@ -61,10 +61,10 @@
 				<label for="program" class="col-sm-2 control-label">Jenis Kelamin</label>
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="jenisK" value="Pria" checked="checked" {{($edit->jenisKelamin=='P')?'checked':''}}> Pria
+						<input type="radio" name="jenisK" value="Laki" checked="checked" {{($edit->jenisKelamin=='L')?'checked':''}}> Pria
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="jenisK" value="Wanita" {{ ($edit->jenisKelamin=='W')?'checked':'' }}> Wanita
+						<input type="radio" name="jenisK" value="Perempuan" {{ ($edit->jenisKelamin=='P')?'checked':'' }}> Wanita
 					</label>
 				</div>
 			</div>
