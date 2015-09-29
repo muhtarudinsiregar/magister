@@ -53,7 +53,7 @@ class DataPribadisController extends \BaseController {
 
 		}
         	// var_dump(Input::all());
-		$mail = Input::get('mail');
+		$mail = Input::get('email');
 		$user = new DataPribadi;
 		$user->email = $mail;
 		$user->password = Input::get('pin');
@@ -136,6 +136,7 @@ class DataPribadisController extends \BaseController {
 
 		// dd($data);
 		$user = DataPribadi::findOrFail($id);
+		$user->email = Input::get('email');
 		$user->nama = Input::get('nm');
 		$user->tempatLahir = Input::get('tlhr');
 		$user->tanggalLahir = Input::get('tglhr');

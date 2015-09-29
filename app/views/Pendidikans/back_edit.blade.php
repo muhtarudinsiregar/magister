@@ -6,7 +6,15 @@
 		<div class="form-group">
 			<h4><strong>Langkah 3 : Pendidikan Sebelumnya [Back-Edit]</strong></h4>
 		</div>
-
+		<?php if ($errors->has()): ?>
+			<div class="alert alert-danger">
+				<ul class="square">
+					<?php foreach ($errors->all() as $error): ?>
+						<li><?php echo $error; ?></li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+		<?php endif ?>
 		<div class="form-group">
 			<label for="program" class="col-sm-2 control-label">Jenjang *</label>
 			<div class="col-sm-4">
@@ -67,7 +75,7 @@
 		<div class="form-group">
 			<label for="tahun_akademik" class="col-sm-2 control-label">IPK* </label>
 			<div class="col-sm-2">
-				<input type="text" name="ipk" id="input" class="form-control" required="required" value="{{ $edit->IPK }}">
+				<input type="text" name="ipk" id="input" class="form-control" required="required" value="{{number_format($edit->IPK, 2, '.', ''); }}"> 
 			</div>
 			<label for="tahun_akademik" class="col-sm-1 control-label">Skala* </label>
 			<div class="col-sm-2">
@@ -127,7 +135,7 @@
 							<div class="form-group">
 								<div class="col-sm-3">
 									<button type="button" class="btn btn-primary" id="tambahProfesiButton">
-									<i class="glyphicon glyphicon-plus"></i>
+										<i class="glyphicon glyphicon-plus"></i>
 									</button>
 								</div>
 							</div>
@@ -153,9 +161,9 @@
 	@stop
 	@section('script')
 	<script>
-		  $("#tambahProfesiButton").click(function(e){
-                e.preventDefault();
-                $("#profesiModal").append('<div class="form-group"><label for="tahun_akademik" class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi"></div><label for="" class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button></div>');
-            });
+		$("#tambahProfesiButton").click(function(e){
+			e.preventDefault();
+			$("#profesiModal").append('<div class="form-group"><label for="tahun_akademik" class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi"></div><label for="" class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button></div>');
+		});
 	</script>
 	@stop

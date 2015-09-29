@@ -5,17 +5,21 @@ class Pendidikan extends \Eloquent {
 	protected $table = 'pendidikan';
 	public static $rules = [
 		'jnjg' => 'required',
-		'prgrmstd' => 'required',
-		'akrdts' => 'required',
-		'pt' => 'required',
-		'thmsk' => 'required',
-		'thlls' => 'required',
-		'noijzh' => 'required',
-		'ipk' => 'required',
-		'skala' => 'required'
+		'prgrmstd' => 'required|regex:/^[\pL\s]+$/u',//buat alfabet dgn spasi
+		'akrdts' => 'required|regex:/^[\pL\s]+$/u',
+		'pt' => 'required|regex:/^[\pL\s]+$/u',
+		'thmsk' => 'required|numeric',
+		'thlls' => 'required|numeric',
+		'noijzh' => 'required|string',
+		'ipk' => 'required|between:0,10',
+		'skala' => 'required|numeric'
 		// 'asosiasi' => 'required',
 		// 'no_anggota' => 'required'
 	];
+	public static $messages = [
+		'required' => 'Bagian :attribute Harus diisi '
+	];
+
 	public function pendaftar()
     {
         return $this->hasOne('DataPribadi','id');

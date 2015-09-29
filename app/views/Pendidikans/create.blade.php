@@ -6,15 +6,35 @@
 			<div class="form-group">
 				<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 			</div>
-			
+			<?php if ($errors->has()): ?>
+					<div class="alert alert-danger">
+					<ul class="square">
+						<?php foreach ($errors->all() as $error): ?>
+							<li><?php echo $error; ?></li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			<?php endif ?>
 			<div class="form-group">
 				<label for="program" class="col-sm-2 control-label">Jenjang *</label>
 				<div class="col-sm-4">
 					<label class="radio-inline">
-						<input type="radio" name="jnjg" id="inlineRadio1" value="S1"> S1
+						<input type="radio" name="jnjg" id="inlineRadio1" value="S1" 
+						<?php 
+							if(Input::old('jnjg')== "S1") { 
+								echo "checked='checked'";
+							}
+						 ?>
+						> S1
 					</label>
 					<label for="" class="radio-inline">
-						<input type="radio" name="jnjg" id="inlineRadio1" value="D4"> D4
+						<input type="radio" name="jnjg" id="inlineRadio1" value="D4"
+						<?php 
+							if(Input::old('jnjg')== "D4") { 
+								echo "checked='checked'";
+							}
+						 ?>
+						> D4
 					</label>
 				</div>
 			</div>
@@ -22,16 +42,18 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Program Studi* </label>
 				<div class="col-sm-4">
-					<input type="text" name="prgrmstd" id="input" class="form-control" required="required">
+					<input type="text" name="prgrmstd" id="input" class="form-control" required="required" value="{{Input::old('prgrmstd')}}">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Akreditasi * </label>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<select name="akrdts" id="input" class="form-control" required="required">
 						@foreach ($akreditasi as $element)
-							<option value="{{ $element->id }}">{{ $element->akreditasi }}</option>
+							<option value="{{ $element->id }}"
+								<?php if(Input::old('akrdts')== $element->id) { echo 'checked="checked"'; } ?>
+							>{{ $element->akreditasi }}</option>
 						@endforeach
 					</select>
 				</div>
@@ -40,37 +62,37 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Perguruan Tinggi* </label>
 				<div class="col-sm-4">
-					<input type="text" name="pt" id="input" class="form-control" required="required">
+					<input type="text" name="pt" id="input" class="form-control" required="required" value="{{Input::old('pt')}}">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tahun masuk* </label>
 				<div class="col-sm-2">
-					<input type="text" name="thmsk" id="input" class="form-control" required="required">
+					<input type="text" name="thmsk" id="input" class="form-control" required="required" value="{{Input::old('thmsk')}}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Tahun lulus* </label>
 				<div class="col-sm-2">
-					<input type="text" name="thlls" id="input" class="form-control" required="required">
+					<input type="text" name="thlls" id="input" class="form-control" required="required" value="{{Input::old('thlls')}}">
 				</div>
 			</div>
 		
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">No. ijazah  </label>
 				<div class="col-sm-4">
-					<input type="text" name="noijzh" id="input" class="form-control" required="required">
+					<input type="text" name="noijzh" id="input" class="form-control" required="required" value="{{Input::old('noijzh')}}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">IPK* </label>
 				<div class="col-sm-2">
-					<input type="text" name="ipk" id="input" class="form-control" required="required">
+					<input type="text" name="ipk" id="input" class="form-control" required="required" value="{{Input::old('ipk')}}">
 				</div>
 				<label for="tahun_akademik" class="col-sm-1 control-label">Skala* </label>
 				<div class="col-sm-2">
-					<input type="text" name="skala" id="input" class="form-control" required="required" value="4">
+					<input type="text" name="skala" id="input" class="form-control" required="required" value="4" value="{{Input::old('skala')}}">
 				</div>
 			</div>
 

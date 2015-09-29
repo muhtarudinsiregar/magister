@@ -23,7 +23,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Email* </label>
 				<div class="col-sm-4">
-					<input type="text" name="mail" id="input" class="form-control" disabled="disable" value="{{ $edit->email }}">
+					<input type="text" name="email" id="input" class="form-control" value="{{ $edit->email }}">
 				</div>
 				<label for="tahun_akademik" class="col-sm-5 control-label i-custom"><i>Email digunakan untuk login ke sistem ini</i></label>
 			</div>

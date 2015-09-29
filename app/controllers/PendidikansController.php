@@ -76,14 +76,25 @@ class PendidikansController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Pendidikan::$rules);
+		$niceNames = [
+		'jnjg'=>'Jenjang',
+		'prgrmstd'=>'Program Studi',
+		'akrdts'=>'Akreditasi',
+		'pt'=>'Perguruan Tinggi',
+		'thmsk'=>'Tahun Masuk',
+		'thlls'=>'Tahun Lulus',
+		'noijzh'=>'No Ijazah',
+		'ipk'=>'IPK', 
+		'skala'=>'Skala'
+		];
 
+		$validator = Validator::make($data = Input::all(), Pendidikan::$rules);
+		$validator->setAttributeNames($niceNames); 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 
 		}
-        // var_dump(Input::all());
 
 		$email = Session::get('mail');
 		$id_pendaftar = DataPribadi::get_id($email);
@@ -161,7 +172,19 @@ class PendidikansController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$validator = Validator::make($data = Input::all(), ProgramStudi::$rules);
+		$niceNames = [
+		'jnjg'=>'Jenjang',
+		'prgrmstd'=>'Program Studi',
+		'akrdts'=>'Akreditasi',
+		'pt'=>'Perguruan Tinggi',
+		'thmsk'=>'Tahun Masuk',
+		'thlls'=>'Tahun Lulus',
+		'noijzh'=>'No Ijazah',
+		'ipk'=>'IPK', 
+		'skala'=>'Skala'
+		];
+		$validator = Validator::make($data = Input::all(), Pendidikan::$rules);
+		$validator->setAttributeNames($niceNames);
 
 		if ($validator->fails())
 		{
