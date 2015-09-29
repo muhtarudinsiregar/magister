@@ -14,7 +14,7 @@
 		.judul{
 			font-size: 2em;
 			margin-top: 0.6em;
-			margin-bottom: 0.6em;
+			margin-bottom: 0.3em;
 		}
 		body{
 			width: 620px;
@@ -29,7 +29,7 @@
 		}
 		.col-1{
 			display: inline-block;
-			width: 25%;
+			width: 21%;
 			height: 10px;
 		}
 		p{
@@ -37,7 +37,7 @@
 		}
 		.coma{
 			display: inline-block;
-			width: 3em;
+			width: 1em;
 		}
 		.data-value{
 			width: 30%;
@@ -56,11 +56,11 @@
 			padding-left: 6em;
 		}
 		.nama-ttd{
-			margin-top: 4em;
+			margin-top: 7em;
 		}
 		.col-alamat{
 			display: inline-block;
-			/*width: 25%;*/
+			height: 7em;
 			width: 50%;
 		}
 		.alamat{
@@ -84,6 +84,7 @@
 			<div class="row">
 				<img class="logo" src="{{ asset('images/logofulls2.png') }}">
 				<p class="judul">Formulir Pendaftaran</p>
+				<hr />
 			</div>
 		</div>
 		<div class="content">
@@ -120,6 +121,7 @@
 					<p>{{$gelombang}}</p>
 				</div>
 			</div>
+			<br />
 			<div class="row">
 				<div class="col-1">
 					<p>PROGRAM </p>
@@ -141,6 +143,9 @@
 				<div class="col-1 data-value">
 					<p>{{$konsentrasi}}</p>
 				</div>
+			</div>
+			<div style="width:100%; padding-top:1em; padding-bottom:-10px;">
+				<hr />
 			</div>
 			<div class="row">
 				<div class="col-1">
@@ -174,6 +179,9 @@
 				<div class="col-1 data-value">
 					<p>{{$tanggalLahir}}</p>
 				</div>
+				<div class="col-1">
+					<p class="">Jenis Kelamin: {{$jenisKelamin}}</p>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-1">
@@ -203,7 +211,7 @@
 					<p>Alamat Rumah di Yogyakarta</p>
 					<div class="alamat">
 						<p style="text-align:justify;margin-top:-4px;">
-							{{$alamatYk}}
+							{{$alamatYk}} , {{$kotakabYK}}
 						</p>
 					</div>
 				</div>
@@ -225,6 +233,7 @@
 				</div>
 			</div>
 		</div>
+		<hr />
 		<div class="footer">
 			<div class=" row pernyataan" style="text-align:justify;">
 				<p>
