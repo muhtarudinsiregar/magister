@@ -52,7 +52,7 @@ class PendanaansController extends \BaseController {
 	public function store()
 	{
 		$validator = Validator::make($data = Input::all(), Pendanaan::$rules);
-
+		$validator->setAttributeNames(Pendanaan::$niceNames); 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
@@ -135,7 +135,7 @@ class PendanaansController extends \BaseController {
 	{
 
 		$validator = Validator::make($data = Input::all(), Kontak::$rules);
-
+		$validator->setAttributeNames(Pendanaan::$niceNames); 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();

@@ -205,6 +205,17 @@
 					<p>{{$email}}</p>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-1">
+					<p>Waktu Pendaftaran </p>
+				</div>
+				<div class="col-1 coma">
+					<p class="coma">:</p>
+				</div>
+				<div class="col-1 data-value">
+					<p>{{$waktu}}</p>
+				</div>
+			</div>
 			<br />
 			<div class="row" style="margin-bottom:-12px;">
 				<div class="col-alamat">

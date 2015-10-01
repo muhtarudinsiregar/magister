@@ -130,7 +130,11 @@ class PendaftaranController extends \BaseController {
 			'negara'
 			]);
 
-		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['tahun','semester','gelombang','id_prodi','id_konsentrasi']);
+		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['no','tahun','semester','gelombang','id_prodi','id_konsentrasi','waktu']);
+		date_default_timezone_set("Asia/Jakarta"); 
+		$update_waktu = Pendaftaran::find($pendaftaran['no']);
+		$update_waktu->waktu = date('y-m-d H:i:s');
+		$update_waktu->save();
 		$prodi = Pendaftaran::prodi($pendaftaran['id_prodi']);
 		$konsentrasi = Pendaftaran::konsentrasi($pendaftaran['id_konsentrasi']);
 		// dd($konsentrasi);
@@ -155,6 +159,7 @@ class PendaftaranController extends \BaseController {
 		'tahun'=>$pendaftaran['tahun'],
 		'semester'=>$pendaftaran['semester'],
 		'gelombang'=>$pendaftaran['gelombang'],
+		'waktu'=>$pendaftaran['waktu'],
 		'prodi'=>$prodi,
 		'konsentrasi'=>$konsentrasi
 		];
@@ -185,6 +190,7 @@ class PendaftaranController extends \BaseController {
 			$mail->attachData($data1['pdf'],'formulir.pdf',['mime'=>'application/pdf']);
 
 		});
+		Session::forget('mail');
 		return Redirect::to('konfirmasi');
 		// return View::make('emails.boilerplate');
 	}
