@@ -85,7 +85,7 @@ class PendanaansController extends \BaseController {
 		{
 			$data_beasiswa = DataPribadi::find($id_pendaftar['id']);
 			$data_beasiswa->danaBeasiswa = Input::get('dana');
-			$data_beasiswa->id_beasiswa = 0;
+			$data_beasiswa->id_beasiswa = 4;
 			$data_beasiswa->statusBeasiswa = 0;
 			$data_beasiswa->save();
 		}

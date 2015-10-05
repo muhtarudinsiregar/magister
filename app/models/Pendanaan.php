@@ -31,6 +31,6 @@ class Pendanaan extends \Eloquent {
 
 	public static function beasiswa()
 	{
-		return DB::table('beasiswa')->get();
+		return DB::table('beasiswa')->where('id','!=','4')->get();
 	}
 }

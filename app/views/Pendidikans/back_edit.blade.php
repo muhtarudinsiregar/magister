@@ -90,6 +90,7 @@
 		</div>
 
 		<div id="profesi" ic-target="closest .form-group">
+			@if (!empty($profesi))
 			@foreach ($profesi as $element)
 			<div id="tes" class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?">
 				<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
@@ -106,6 +107,7 @@
 				</button>
 			</div>
 			@endforeach
+			@endif
 		</div>
 			{{-- <div class="form-group">
 				<div class="col-sm-3">
@@ -130,7 +132,16 @@
 								
 							</div>
 							<div id="profesiModal">
-								
+								<div id="tes" class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?">
+									<label for="tahun_akademik" class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label>
+									<div class="col-sm-3">
+										<input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi">
+									</div>
+									<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
+									<div class="col-sm-2" id="no_anggota">
+										<input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota">
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-3">
@@ -142,7 +153,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" ic-target="#notifProfesi" ic-post-to="profesiSaved" onclick="setTimeout(function () { window.location.reload(); }, 1)">Submit</button>
+							<button id="submit" type="button" class="btn btn-primary" ic-target="#notifProfesi" ic-post-to="profesiSaved" onclick="redirect()">Submit</button>
 						</div>
 					</div>
 				</div>
@@ -163,7 +174,23 @@
 	<script>
 		$("#tambahProfesiButton").click(function(e){
 			e.preventDefault();
-			$("#profesiModal").append('<div class="form-group"><label for="tahun_akademik" class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi"></div><label for="" class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button></div>');
+			$("#profesiModal").append('<div class="form-group"><label class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi"></div><label class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button></div>');
 		});
+		// var data_table = "";
+		// $.ajax({
+		// 	url:'http://localhost/magister/public/load',
+		// 	data:"",
+		// 	dataType:'json',
+		// 	success: function(data){	
+		// 		for(var i=0;i<data.length;i++){
+		// 			data_table +='<div class="form-group"><label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi" value="'+data[i].asosiasi+'"></div><label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota" value="'+data[i].noAnggota+'"></div><button class="btn btn-danger"  type="button" id="hapusProfesi1" ic-delete-from="pendidikan/'+data[i].id+'"><i class="glyphicon glyphicon-remove"></i><i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i></button></div>';
+		// 		}
+		// 		$("#profesi").append(data_table);
+		// 		console.log(data);
+		// 	}
+		// });
+		function redirect(){
+			location.reload(false);
+		}
 	</script>
 	@stop

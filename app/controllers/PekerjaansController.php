@@ -19,7 +19,7 @@ class PekerjaansController extends \BaseController {
 		// dd($riwayat);
 
 		if ($riwayat->isEmpty() or empty($edit)) {
-			return View::make('pekerjaans.create');
+			return View::make('pekerjaans.create')->withEdit($edit)->withData($riwayat);
 		}
 
 		else
@@ -66,7 +66,7 @@ class PekerjaansController extends \BaseController {
 		</div>
 		";
 		$header = ['X-IC-Remove'=>true];
-		Redirect::to('pekerjaan', $status, $headers);
+		Redirect::to('pekerjaan','',$header);
 
 
 	}
@@ -112,17 +112,36 @@ class PekerjaansController extends \BaseController {
 			$user->save();
 
 		}
-		if (!empty(Input::get('pos_riw'))) {
-			$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
-			$posi = $pekerjaan['pos_riw'];
-			$insitut = $pekerjaan['ins_riw'];
-			$tahun = $pekerjaan['th_riw'];
 
-			foreach ($posi as $key => $value)
+		$riwayat_id = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
+		$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
+		$posi = $pekerjaan['pos_riw'];
+		$insitut = $pekerjaan['ins_riw'];
+		$tahun = $pekerjaan['th_riw'];
+		if ($riwayat_id->isEmpty()) {
+			if (empty($pekerjaan['pos_riw'])||empty($pekerjaan['th_riw'])||empty($pekerjaan['ins_riw']))
 			{
-				DB::table('riwayatpekerjaan')->insert(
+				Redirect::to('pendanaan');
+			}else
+			{
+				foreach ($posi as $key => $value)
+				{
+					DB::table('riwayatpekerjaan')->insert(
+						[
+						'id_pendaftar'=>$id_pendaftar['id'],
+						'posisi'=>$posi[$key],
+						'institusi'=>$insitut[$key],
+						'masaKerja'=>$tahun[$key]
+						]);
+				}
+			}
+		}
+		else
+		{
+			foreach ($riwayat_id as $key => $value)
+			{
+				DB::table('riwayatpekerjaan')->where('id',$value->id)->update(
 					[
-					'id_pendaftar'=>$id_pendaftar['id'],
 					'posisi'=>$posi[$key],
 					'institusi'=>$insitut[$key],
 					'masaKerja'=>$tahun[$key]
@@ -201,6 +220,8 @@ class PekerjaansController extends \BaseController {
 		$insitut = $pekerjaan['ins_riw'];
 		$tahun = $pekerjaan['th_riw'];
 		$riwayat_id = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
+		// dd($riwayat_id);
+
 		if ($riwayat_id->isEmpty())
 		{
 			foreach ($posi as $key => $value)
@@ -229,7 +250,7 @@ class PekerjaansController extends \BaseController {
 
 			// return Redirect::to('pendanaan/'.Auth::id().'/edit');
 		if (is_null(Auth::id())) {
-			return Redirect::to('pendanaan');
+			// return Redirect::to('pendanaan');
 		}else{
 			return Redirect::to('pendanaan/'.Auth::id().'/edit');
 		}

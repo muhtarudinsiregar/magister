@@ -238,7 +238,71 @@ class PendaftaranController extends \BaseController {
 
 	public function pdf()
 	{
+		
 		return View::make('emails.tes');
+	}
+	public function tesView()
+	{
+		$email = Session::get('mail');
+		$data_pribadi = DataPribadi::where('email','=',$email)->first([
+			'id',
+			'nama',
+			'tempatLahir',
+			'tanggalLahir',
+			'noHP',
+			'noTelpYK',
+			'noTelepon',
+			'email',
+			'alamatYk',
+			'alamat',
+			'jenisKelamin',
+			'kotakabYK',
+			'kotakab',
+			'propinsi',
+			'negara'
+			]);
+
+		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['no','tahun','semester','gelombang','id_prodi','id_konsentrasi','waktu']);
+		date_default_timezone_set("Asia/Jakarta"); 
+		$update_waktu = Pendaftaran::find($pendaftaran['no']);
+		$update_waktu->waktu = date('y-m-d H:i:s');
+		$update_waktu->save();
+		$prodi = Pendaftaran::prodi($pendaftaran['id_prodi']);
+		$konsentrasi = Pendaftaran::konsentrasi($pendaftaran['id_konsentrasi']);
+		// dd($konsentrasi);
+		// $data_pendaftaran = (array) $pendaftaran;
+		// $data_pri = (array) $data_pribadi;
+		$data = [
+		'nama'=>ucwords(strtolower($data_pribadi['nama'])),
+		'tempatLahir'=>$data_pribadi['tempatLahir'],
+		'tanggalLahir'=>$data_pribadi['tanggalLahir'],
+		'noTelpYK'=>$data_pribadi['noTelpYK'],
+		'jenisKelamin'=>$data_pribadi['jenisKelamin'],
+		'noTelpYK'=>$data_pribadi['noTelpYK'],
+		'alamatYk'=>$data_pribadi['alamatYk'],
+		'kotakabYK'=>$data_pribadi['kotakabYK'],
+		'alamat'=>$data_pribadi['alamat'],
+		'noTelepon'=>$data_pribadi['noTelepon'],
+		'kotakab'=>$data_pribadi['kotakab'],
+		'negara'=>$data_pribadi['negara'],
+		'propinsi'=>$data_pribadi['propinsi'],
+		'email'=>$data_pribadi['email'],
+		'noHP'=>$data_pribadi['noHP'],
+		'tahun'=>$pendaftaran['tahun'],
+		'semester'=>$pendaftaran['semester'],
+		'gelombang'=>$pendaftaran['gelombang'],
+		'waktu'=>$pendaftaran['waktu'],
+		'prodi'=>$prodi,
+		'konsentrasi'=>$konsentrasi
+		];
+		// dd($data);
+
+		//===================generate pdf===============
+
+
+		$pdf = PDF::loadView('emails.new_pdf_generate',$data);
+		return $pdf->download('laporan.pdf');
+		// return View::make('emails.new_pdf_generate',$data);
 	}
 
 }

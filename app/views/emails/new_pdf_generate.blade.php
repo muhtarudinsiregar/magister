@@ -4,7 +4,6 @@
 	<meta name="viewport" content="width=device-width"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="stylesheet" href=""> <!-- For testing only -->
-
 	<style type="text/css">
 		.logo{
 			width:300px;
@@ -15,32 +14,39 @@
 			font-size: 2em;
 			margin-top: 0.6em;
 			margin-bottom: 0.3em;
+			width: 288px;
 		}
 		body{
-			width: 620px;
+			width: 720px;
 		}
 		.row{
 			width: 100%;
 			height: auto;
 		}
+		header{
+			width: 100%;
+			height: auto;
+		}
 		.container{
-			
+			width: 100%;
+			padding-left: 4em;
+			padding-right: 3em;
 			margin: 0px;
 		}
 		.col-1{
 			display: inline-block;
-			width: 21%;
+			width: 25%;
 			height: 10px;
 		}
 		p{
-			/*margin-top: 10px;*/
+			width: auto;
 		}
 		.coma{
 			display: inline-block;
 			width: 1em;
 		}
 		.data-value{
-			width: 30%;
+			width: 15%;
 		}
 		*{
 			/*line-height: 0.4em;*/
@@ -50,17 +56,22 @@
 			width: 55%;
 		}
 		.tanggal{
-			width: 40%;
+			width: 100%;
 		}
 		.tgl{
-			padding-left: 6em;
+			padding-left: 0em;
 		}
 		.nama-ttd{
-			margin-top: 7em;
+			margin-top: 6em;
 		}
 		.col-alamat{
 			display: inline-block;
 			height: 7em;
+			width: 100%;
+		}
+		.col-jk{
+			display: inline-block;
+			/*width: 25%;*/
 			width: 50%;
 		}
 		.alamat{
@@ -68,7 +79,7 @@
 			margin-right: 2em;
 		}
 		.footer{
-			margin-top: 2em;
+			margin-top: 1em;
 		}
 		.no-telp{
 			padding-left: 1em;
@@ -76,16 +87,68 @@
 		.tinggi{
 			height: 0.9em;
 		}
+		.jk{
+			width: auto;
+		}
+		.titik-tanggal{
+			padding-left: 1em;
+		}
+		.col-2{
+			display: inline-block;
+			width: 20%;
+		}
+		.col-3{
+			display: inline-block;
+			width: 30%;
+		}
+		.col-4{
+			display: inline-block;
+			width: 40%;
+		}
+		.col-5{
+			display: inline-block;
+			width: 50%;
+		}
+		.col-6{
+			display: inline-block;
+			width: 60%;
+		}
+		.waktu{
+			width: 166px;
+			height: 20%;
+		}
+		.offset{
+			padding-left: 1em;
+		}
+		.col-1-offset{
+			padding-left: 29%;
+		}
+		hr{
+			margin-top: 0em;
+		}
 	</style>
+</head>
 </head>
 <body>
 	<div class="container">
 		<div class="header">
 			<div class="row">
 				<img class="logo" src="{{ asset('images/logofulls2.png') }}">
-				<p class="judul">Formulir Pendaftaran</p>
-				<hr />
 			</div>
+			<div class="row" style="margin-top:-1em;">
+				<div class="col-4">
+					<p class="judul" style="padding-top:10px">Formulir Pendaftaran</p>
+				</div>
+				<div class="col-2 col-1-offset" style="width:30%;">
+					<div class="tanggal">
+						<p style="margin-bottom:0em;">Tanggal & Jam Pendaftaran</p>
+					</div>
+					<div class="tanggal" style="padding-top:-10px; border-style: solid;border-width:1px;">
+						<p style="padding-left:2px;margin-top:-2px; margin-bottom:0em;padding-top:10px;">{{$waktu}}</p>
+					</div>
+				</div>
+			</div>
+			<hr />
 		</div>
 		<div class="content">
 			<div class="row">
@@ -129,7 +192,7 @@
 				<div class="col-1 coma">
 					<p class="coma">:</p>
 				</div>
-				<div class="col-1 data-value">
+				<div class="col-1 data-value" style="width:50%">
 					<p>{{$prodi}}</p>
 				</div>
 			</div>
@@ -140,7 +203,7 @@
 				<div class="col-1 coma">
 					<p class="coma">:</p>
 				</div>
-				<div class="col-1 data-value">
+				<div class="col-1 data-value" style="width:50%">
 					<p>{{$konsentrasi}}</p>
 				</div>
 			</div>
@@ -154,7 +217,7 @@
 				<div class="col-1 coma">
 					<p class="coma">:</p>
 				</div>
-				<div class="col-1 data-value">
+				<div class="col-1 data-value" style="width:50%">
 					<p>{{$nama}}</p>
 				</div>
 			</div>
@@ -205,17 +268,6 @@
 					<p>{{$email}}</p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-1">
-					<p>Waktu Pendaftaran </p>
-				</div>
-				<div class="col-1 coma">
-					<p class="coma">:</p>
-				</div>
-				<div class="col-1 data-value">
-					<p>{{$waktu}}</p>
-				</div>
-			</div>
 			<br />
 			<div class="row" style="margin-bottom:-12px;">
 				<div class="col-alamat">
@@ -226,43 +278,50 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-alamat" style="width:30%;">
-					<p class="no-telp">No Telp : {{$noTelpYK}}</p>
+			</div>
+			<div class="row">
+				<div class="col-1" style="width:100%;">
+					<p style="margin-top:-15px;">No Telp : {{$noTelpYK}}</p>
 				</div>
 			</div>
+			
 			<div class="row" style="margin-top:-12px;">
 				<div class="col-alamat">
 					<p>Alamat Rumah di Luar Yogyakarta</p>
 					<div class="alamat">
-						<p style="text-align:justify;margin-top:-4px;margin-bottom:0px;">
-							{{$alamat}}, {{$kotakab}}, {{$propinsi}}, {{$negara}} 
+						<p style="text-align:justify;margin-top:-4px;">
+							{{$alamat}}, {{$kotakab}}, {{$propinsi}}, {{$negara}}. 
 						</p>
 					</div>
 				</div>
-				<div class="col-1" style="width:30%;">
-					<p class="no-telp">No Telp : {{$noTelepon}}</p>
+			</div>
+			<div class="row">
+				<div class="col-1" style="margin-bottom:1em;width:100%;">
+					<p style="margin-top:-15px;">No Telp : {{$noTelepon}}</p>
 				</div>
 			</div>
 		</div>
-		<hr />
+		<hr style="margin-bottom:0em;" />
 		<div class="footer">
 			<div class=" row pernyataan" style="text-align:justify;">
-				<p>
+				<p style="margin-top:0px;">
 					Saya menyatakan bahwa semua keterangan pada 
 
 					formulir ini dan formulir online 
 
-					saya berikan dengan penuh kesadaran, kejujuran, dan kebenaran, untuk itu saya
+					saya berikan dengan penuh kesadaran, kejujuran, dan kebenaran. Saya
 
 					bertanggung-jawab atas segala akibatnya.
 				</p>
 			</div>
 			<div class="row">
 				<div class="col-1 tanda-tangan">
-					<p style="">Ditandatangani di: .....................</p>
+					<p style="margin-top:0px;">Ditandatangani di: ........................</p>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-1 tanggal">
-					<p class="tgl">Tanggal .......................</p>
+					<p style="width:20em;">Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:.........................</p>
 				</div>
 			</div>
 			<div class="row">

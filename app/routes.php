@@ -38,6 +38,7 @@ View::composer(array('kontaks.edit','kontaks.create','kontaks.back_edit'), funct
 // {
 //     var_dump($query);
 // });
+Route::get('load', 'PendidikansController@loadProfesiAjax');
 Route::post('profesiSaved', 'PendidikansController@profesiSaved');
 Route::post('RiwayatPekerjaanSaved', 'PekerjaansController@RiwayatPekerjaanSaved');
 Route::get('mail', 'PendaftaranController@sendmail');
@@ -56,3 +57,4 @@ Route::resource('jadwal', "JadwalTesController");
 Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
 Route::get('pdf', 'PendaftaranController@pdf');
+Route::get('tesView', 'PendaftaranController@TesView');

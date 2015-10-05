@@ -51,17 +51,10 @@ class PendidikansController extends \BaseController {
 				'noAnggota'=>$no[$key]
 				]);
 		}
-		// Request::header('X-IC-Remove',true);
-		echo "
-		<div class='col-sm-12' ic-remove-after='2s'>
-			<div class='alert alert-success alert-dismissible' role='alert'>
-				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-				<strong>Berhasil </strong> Menambahkan Data.
-			</div>
-		</div>
-		";
-		$header = ['X-IC-Remove'=>true];
-		Redirect::to('pendidikan', $status, $header);
+		Request::header('X-IC-Remove',true);
+		// return Response::view('tes')->header('X-IC-Redirect:pendidikan');
+		Redirect::to('pendidikan');
+		// Request::header('X-IC-Refresh:','true');
 	}
 	public function create()
 	{
@@ -114,25 +107,24 @@ class PendidikansController extends \BaseController {
 		$user->save();
 
         // line utk perulangan profesi
-		$asosia = Input::get('asosiasi');
-		if ($asosia!='')
-		{
-			$pekerjaan = Input::only('asosiasi','no_anggota');
-			$asos = $pekerjaan['asosiasi'];
-			$no = $pekerjaan['no_anggota'];
 
-			foreach ($asos as $key => $value)
-			{
-				DB::table('profesi')->insert(
-					[
-					'id_pendaftar'=>$id_pendaftar['id'],
-					'asosiasi'=>$asos[$key],
-					'noAnggota'=>$no[$key]
-					]);
-			}	
-		}else{
-			echo "Error";
-		}
+		// $asosia = Input::get('asosiasi');
+		// if ($asosia!='')
+		// {
+		// 	$pekerjaan = Input::only('asosiasi','no_anggota');
+		// 	$asos = $pekerjaan['asosiasi'];
+		// 	$no = $pekerjaan['no_anggota'];
+
+		// 	foreach ($asos as $key => $value)
+		// 	{
+		// 		DB::table('profesi')->insert(
+		// 			[
+		// 			'id_pendaftar'=>$id_pendaftar['id'],
+		// 			'asosiasi'=>$asos[$key],
+		// 			'noAnggota'=>$no[$key]
+		// 			]);
+		// 	}	
+		// }
 		return Redirect::to('pekerjaan');
 	}
 
@@ -160,8 +152,18 @@ class PendidikansController extends \BaseController {
 		$profesi = Profesi::where('id_pendaftar','=',$id)->get();
 		$edit = Pendidikan::where('id_pendaftar','=',$id)->first();
 		// dd($edit);
-		return View::make('pendidikans.edit')->withEdit($edit)->withProfesi($profesi);
+		return View::make('pendidikans.back_edit')->withEdit($edit)->withProfesi($profesi);
 	}
+
+	// public function loadProfesiAjax()
+	// {
+	// 	$profesi = Profesi::where('id_pendaftar','=','27')->get();
+	// 	// dd($profesi);
+	// 	// return Response::json($profesi);
+	// 	$profesi = json_encode($profesi);
+	// 	return $profesi;
+	// 	// $b = json_decode($a);
+	// }
 
 	/**
 	 * Update the specified resource in storage.
@@ -213,7 +215,7 @@ class PendidikansController extends \BaseController {
 
 		
 
-		if ($profesi_id->isEmpty())
+		if ($profesi_id->isEmpty() && !empty($asosia))
 		{
 			$pekerjaan = Input::only('asosiasi','no_anggota');
 			$asos = $pekerjaan['asosiasi'];
@@ -263,9 +265,9 @@ class PendidikansController extends \BaseController {
 		// header('X-IC-Remove',true);
 		$user = Profesi::find($id);
 		$user->delete();
-		Request::header('X-IC-Remove',true);
+		// Request::header('X-IC-Remove',true);
 		echo "
-		<div class='col-sm-8' ic-remove-after='3s'>
+		<div class='col-sm-12' ic-remove-after='2s'>
 			<div class='alert alert-success alert-dismissible' role='alert'>
 				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
 				<strong>Berhasil </strong> Menghapus Data.

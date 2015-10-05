@@ -35,7 +35,7 @@
 			<div class="col-sm-2">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" value="T" id="pilihJadwal">
+						<input type="checkbox" value="T" id="pilihJadwal" checked="checked">
 						Pilih Jadwal
 					</label>
 				</div>
@@ -51,7 +51,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Pukul </label>
 				<div class="col-sm-3">
-					<select name="jTes" id="input" class="form-control" required="required" disabled="disable">
+					<select name="jTes" id="inputJam" class="form-control" required="required" disabled="disable">
 						@foreach ($tes as $element)
 						<?php $selected = ($element->id == $jadwal->sesiTes)? 'selected="selected"':'';  ?>
 						<option value="{{ $element->id }}"{{ $selected }}> {{ $element->sesi }} </option>
@@ -80,5 +80,17 @@
 			dateFormat: "yy-mm-dd",
 		});
 	});
+	$("#pilihJadwal").is("checked",true)
+	{
+		$("#inputJam").prop("disabled",false);
+		$("#inputTanggal").prop("disabled",false);
+	}
+	$("#pilihJadwal").is("checked",false)
+	{
+
+		$("#inputJam").prop("disabled",true);
+		$("#inputTanggal").prop("disabled",true);
+		
+	}
 </script>
 @stop

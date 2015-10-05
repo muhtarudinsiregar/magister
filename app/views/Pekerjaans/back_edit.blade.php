@@ -30,63 +30,63 @@
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Posisi </label>
 				<div class="col-sm-4">
-					<input type="text" name="pos" id="input" class="form-control" required="required" value="{{ $edit->posisi }}">
+					<input type="text" name="pos" id="input" class="form-control" value="{{ $edit->posisi }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Institusi </label>
 				<div class="col-sm-4">
-					<input type="text" name="ins" id="input" class="form-control" required="required" value="{{ $edit->institusi }}">
+					<input type="text" name="ins" id="input" class="form-control" value="{{ $edit->institusi }}">
 				</div>
 			</div>
 			<br>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Alamat </label>
 				<div class="col-sm-4">
-					<input type="text" name="almt" id="input" class="form-control" required="required" value="{{ $edit->alamat }}">
+					<input type="text" name="almt" id="input" class="form-control" value="{{ $edit->alamat }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Kabupaten/kota </label>
 				<div class="col-sm-4">
-					<input type="text" name="kotkab" id="input" class="form-control" required="required" value="{{ $edit->kotakab }}">
+					<input type="text" name="kotkab" id="input" class="form-control" value="{{ $edit->kotakab }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Propinsi </label>
 				<div class="col-sm-4">
-					<input type="text" name="prop" id="input" class="form-control" required="required" value="{{ $edit->propinsi }}">
+					<input type="text" name="prop" id="input" class="form-control" value="{{ $edit->propinsi }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Negara </label>
 				<div class="col-sm-4">
-					<input type="text" name="neg" id="input" class="form-control" required="required" value="{{ $edit->negara }}">
+					<input type="text" name="neg" id="input" class="form-control" value="{{ $edit->negara }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">No. telepon </label>
 				<div class="col-sm-4">
-					<input type="text" name="notel" id="input" class="form-control" required="required" value="{{ $edit->noTelepon }}">
+					<input type="text" name="notel" id="input" class="form-control" value="{{ $edit->noTelepon }}">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">No. faksimili </label>
 				<div class="col-sm-4">
-					<input type="text" name="nofax" id="input" class="form-control" required="required" value="{{ $edit->noFaximile }}">
+					<input type="text" name="nofax" id="input" class="form-control" value="{{ $edit->noFaximile }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Email </label>
 				<div class="col-sm-4">
-					<input type="text" name="mail" id="input" class="form-control" required="required" value="{{ $edit->email }}">
+					<input type="text" name="mail" id="input" class="form-control" value="{{ $edit->email }}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Lama Bekerja </label>
 				<div class="col-sm-1">
-					<input type="text" name="thnkrj" id="input" class="form-control" required="required" value="{{ $edit->tahunMulai }}">
+					<input type="text" name="thnkrj" id="input" class="form-control" value="{{ $edit->tahunMulai }}">
 				</div>
 				<label for="" class="col-sm-2 control-label">Tahun </label>
 			</div>
@@ -105,15 +105,15 @@
 			<div class="form-group">
 				<label for="" class="col-sm-1 control-label">Posisi </label>
 				<div class="col-sm-2">
-					<input type="text" name="pos_riw[]" id="input" class="form-control" required="required" value="{{ $element->posisi }}">
+					<input type="text" name="pos_riw[]" id="input" class="form-control" value="{{ $element->posisi }}">
 				</div>
 				<label for="" class="col-sm-1 control-label">Institusi </label>
 				<div class="col-sm-3">
-					<input type="text" name="ins_riw[]" id="input" class="form-control" required="required" value="{{ $element->institusi }}">
+					<input type="text" name="ins_riw[]" id="input" class="form-control" value="{{ $element->institusi }}">
 				</div>
 				<label for="" class="col-sm-2 control-label">Masa Kerja </label>
 				<div class="col-lg-1">
-					<input type="text" name="th_riw[]" id="input" class="form-control" required="required" value="{{ $element->masaKerja }}">
+					<input type="text" name="th_riw[]" id="input" class="form-control" value="{{ $element->masaKerja }}">
 				</div>
 
 				<label for="" class="col-sm-1 control-label">tahun</label> 
@@ -177,7 +177,7 @@
 <script type="text/javascript">
 	$(function() {		
 		$("#tambahRiwayatButton ").click(function(){
-			$("#riwayatModal").append('<div class="form-group"><label for="" class="col-sm-1 control-label">Posisi </label><div class="col-sm-2"><input type="text" name="pos_riw2[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">Institusi </label><div class="col-sm-3"><input type="text" name="ins_riw2[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-2 control-label">Masa Kerja </label><div class="col-lg-1"><input type="text" name="th_riw2[]" id="input" class="form-control" required="required"></div><label for="" class="col-sm-1 control-label">tahun</label><button class="btn btn-danger" type="button" id="hapusPekerjaanModal"><i class="glyphicon glyphicon-remove"></i></button></div>');
+			$("#riwayatModal").append('<div class="form-group"><label for="" class="col-sm-1 control-label">Posisi </label><div class="col-sm-2"><input type="text" name="pos_riw2[]" id="input" class="form-control"></div><label for="" class="col-sm-1 control-label">Institusi </label><div class="col-sm-3"><input type="text" name="ins_riw2[]" id="input" class="form-control"></div><label for="" class="col-sm-2 control-label">Masa Kerja </label><div class="col-lg-1"><input type="text" name="th_riw2[]" id="input" class="form-control"></div><label for="" class="col-sm-1 control-label">tahun</label><button class="btn btn-danger" type="button" id="hapusPekerjaanModal"><i class="glyphicon glyphicon-remove"></i></button></div>');
 		});
 		$(document).on("click","#hapusPekerjaanModal",function(){
 			$(this).parent().remove();
