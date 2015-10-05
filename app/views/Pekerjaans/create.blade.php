@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		<form action="{{ url('pekerjaan') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4><strong>Langkah 4 : Pekerjaan</strong></h4>
+				<h4><strong>Langkah 4 : Pekerjaan[create]</strong></h4>
 				<?php if ($errors->has()): ?>
 					<div class="alert alert-danger">
 						<ul class="square">
@@ -15,6 +15,7 @@
 					</div>
 				<?php endif ?>
 			</div>
+			@if (empty($edit))
 			<div class="form-group">
 				<div class="col-sm-3">
 					<div class="checkbox">
@@ -24,9 +25,7 @@
 						</label>
 					</div>
 				</div>	
-				{{-- <label for="tahun_akademik" class="col-sm-2 control-label">Posisi </label> --}}
 			</div>
-			@if (empty($edit))
 			<div id="inputPekerjaan">
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Posisi </label>
@@ -92,6 +91,16 @@
 				</div>
 			</div>
 			@else
+			<div class="form-group">
+				<div class="col-sm-3">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="y" id="statusKerja" name="sttskrja">
+							Saat ini tidak bekerja
+						</label>
+					</div>
+				</div>	
+			</div>
 			<div id="inputPekerjaan">
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Posisi </label>
@@ -270,9 +279,24 @@
 				$(this).parent().remove();
 			});
 		});	
+		$("#statusKerja").click(function(){
+			if ($(this).is(':checked'))
+			{
+				$('#inputPekerjaan :input').prop('disabled', true);
+			}
+			else
+			{
+				$('#inputPekerjaan :input').prop('disabled', false);
+			};
+
+		});
 		$('#statusKerja').is("checked",true)
 		{
 			$('#inputPekerjaan :input').prop('disabled', true);
+		}
+		$('#statusKerja').is("checked",false)
+		{
+			$('#inputPekerjaan :input').prop('disabled', false);
 		}
 
 	});	

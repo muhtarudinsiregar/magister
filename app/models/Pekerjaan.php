@@ -4,16 +4,16 @@ class Pekerjaan extends \Eloquent {
 	protected $fillable = [];
 	protected $table = 'pekerjaan';
 	public static $rules = [
-	'pos'=>'string',
-	'ins'=>'string',
-	'almt'=>'string',
-	'kotkab'=>'string',
-	'prop'=>'alpha',
-	'neg'=>'alpha',
-	'notel'=>'numeric',
-	'nofax'=>'numeric',
-	'mail'=>'email',
-	'thnkrj'=>'numeric'
+	'pos'=>'required|string',
+	'ins'=>'required|string',
+	'almt'=>'required|string',
+	'kotkab'=>'required|string',
+	'prop'=>'required|string',
+	'neg'=>'required|alpha',
+	'notel'=>'required|numeric',
+	'nofax'=>'required|numeric',
+	'mail'=>'required|email',
+	'thnkrj'=>'required|numeric'
 	];
 
 	public static $niceNames = [

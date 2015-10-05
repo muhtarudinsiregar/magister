@@ -16,7 +16,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($jadwal, array('method'=>'PUT','class'=>'form-horizontal','route' => array('jadwal.update', $jadwal->no))) }}
 		<div class="form-group">
-			<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
+			<h4><strong>Langkah 7 : Jadwal Tes[back_edit]</strong></h4>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-7 i-custom control-label"><i>Jadwal tes bersifat tentatif. Kepastian jadwal pasti akan kami konfirmasikan melalui email/no. handphone anda. </i></label>
@@ -35,8 +35,8 @@
 			<div class="col-sm-2">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" value="T" id="pilihJadwal" checked="checked">
-						Pilih Jadwal
+						<input type="checkbox" value="T" id="pilihJadwal" {{($jadwal->tanggalTes =='0000-00-00')?'':'checked="checked"'}}>
+						Pilih Jadwal edit
 					</label>
 				</div>
 			</div>
@@ -45,13 +45,13 @@
 			<div class="form-group">
 				<label for="" class="col-sm-2 control-label">Tanggal tes </label>
 				<div class="col-sm-3">
-					<input type="text" name="tgglTes" id="inputTanggal" class="form-control" required="required" disabled="disable" value="{{ $jadwal->tanggalTes }}">
+					<input type="text" name="tgglTes" id="inputTanggal" class="form-control" required="required" value="{{ $jadwal->tanggalTes }}" {{($jadwal->tanggalTes =='0000-00-00')?'disabled':''}}>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Pukul </label>
 				<div class="col-sm-3">
-					<select name="jTes" id="inputJam" class="form-control" required="required" disabled="disable">
+					<select name="jTes" id="inputJam" class="form-control" required="required" {{($jadwal->tanggalTes =='0000-00-00')?'disabled':''}} >
 						@foreach ($tes as $element)
 						<?php $selected = ($element->id == $jadwal->sesiTes)? 'selected="selected"':'';  ?>
 						<option value="{{ $element->id }}"{{ $selected }}> {{ $element->sesi }} </option>
@@ -80,17 +80,7 @@
 			dateFormat: "yy-mm-dd",
 		});
 	});
-	$("#pilihJadwal").is("checked",true)
-	{
-		$("#inputJam").prop("disabled",false);
-		$("#inputTanggal").prop("disabled",false);
-	}
-	$("#pilihJadwal").is("checked",false)
-	{
+	
 
-		$("#inputJam").prop("disabled",true);
-		$("#inputTanggal").prop("disabled",true);
-		
-	}
 </script>
 @stop

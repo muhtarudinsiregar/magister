@@ -5,7 +5,7 @@
 
 		<form action=" {{ url('jadwal') }} " method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
+				<h4><strong>Langkah 7 : Jadwal Tes [Create]</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-7 i-custom control-label"><i>Jadwal tes bersifat tentatif. Kepastian jadwal pasti akan kami konfirmasikan melalui email/no. handphone anda. </i></label>
@@ -34,7 +34,7 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Tanggal tes </label>
 					<div class="col-sm-3">
-						<input type="text" name="tgglTes" id="inputTanggal" class="form-control" required="required" disabled="disable" >
+						<input type="text" name="tgglTes" id="inputTanggal" class="form-control" required="required" disabled="disable">
 					</div>
 				</div>
 				<div class="form-group">
@@ -43,7 +43,7 @@
 						<select name="jTes" id="input" class="form-control" required="required" disabled="disable">
 							<option value=""></option>
 							@foreach ($tes as $element)
-								<option value="{{ $element->id }}"> {{ $element->sesi }} </option>
+							<option value="{{ $element->id }}"> {{ $element->sesi }} </option>
 							@endforeach
 							
 						</select>
@@ -62,13 +62,25 @@
 </div>
 @stop
 @section('script')
-	<script>
-		$(function() {
-			$( "#inputTanggal" ).datepicker({
-				changeMonth: true,
-				minDate: 0 ,
-				dateFormat: "yy-mm-dd",
-			});
+<script>
+	$(function() {
+		$( "#inputTanggal" ).datepicker({
+			changeMonth: true,
+			minDate: 0 ,
+			dateFormat: "yy-mm-dd",
 		});
-	</script>
+	});
+	// $("#pilihJadwal").is("checked",true)
+	// {
+	// 	$("#inputJam").prop("disabled",false);
+	// 	$("#inputTanggal").prop("disabled",false);
+	// }
+	// $("#pilihJadwal").is("checked",false)
+	// {
+
+	// 	$("#inputJam").prop("disabled",true);
+	// 	$("#inputTanggal").prop("disabled",true);
+		
+	// }
+</script>
 @stop

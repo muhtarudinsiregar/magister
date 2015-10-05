@@ -16,7 +16,7 @@ class PekerjaansController extends \BaseController {
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 		$edit = Pekerjaan::where('id_pendaftar','=',$id['id'])->first();
 		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id['id'])->get();
-		// dd($riwayat);
+		// dd(empty($edit));
 
 		if ($riwayat->isEmpty() or empty($edit)) {
 			return View::make('pekerjaans.create')->withEdit($edit)->withData($riwayat);
@@ -112,42 +112,44 @@ class PekerjaansController extends \BaseController {
 			$user->save();
 
 		}
+		// dd(Input::all());
 
 		$riwayat_id = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
 		$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
 		$posi = $pekerjaan['pos_riw'];
 		$insitut = $pekerjaan['ins_riw'];
 		$tahun = $pekerjaan['th_riw'];
-		if ($riwayat_id->isEmpty()) {
-			if (empty($pekerjaan['pos_riw'])||empty($pekerjaan['th_riw'])||empty($pekerjaan['ins_riw']))
-			{
-				Redirect::to('pendanaan');
-			}else
-			{
-				foreach ($posi as $key => $value)
-				{
-					DB::table('riwayatpekerjaan')->insert(
-						[
-						'id_pendaftar'=>$id_pendaftar['id'],
-						'posisi'=>$posi[$key],
-						'institusi'=>$insitut[$key],
-						'masaKerja'=>$tahun[$key]
-						]);
-				}
-			}
-		}
-		else
-		{
-			foreach ($riwayat_id as $key => $value)
-			{
-				DB::table('riwayatpekerjaan')->where('id',$value->id)->update(
-					[
-					'posisi'=>$posi[$key],
-					'institusi'=>$insitut[$key],
-					'masaKerja'=>$tahun[$key]
-					]);
-			}
-		}
+
+		// if ($riwayat_id->isEmpty()) {
+		// 	if (empty($pekerjaan['pos_riw'])||empty($pekerjaan['th_riw'])||empty($pekerjaan['ins_riw']))
+		// 	{
+		// 		Redirect::to('pendanaan');
+		// 	}else
+		// 	{
+		// 		foreach ($posi as $key => $value)
+		// 		{
+		// 			DB::table('riwayatpekerjaan')->insert(
+		// 				[
+		// 				'id_pendaftar'=>$id_pendaftar['id'],
+		// 				'posisi'=>$posi[$key],
+		// 				'institusi'=>$insitut[$key],
+		// 				'masaKerja'=>$tahun[$key]
+		// 				]);
+		// 		}
+		// 	}
+		// }
+		// else
+		// {
+		// 	foreach ($riwayat_id as $key => $value)
+		// 	{
+		// 		DB::table('riwayatpekerjaan')->where('id',$value->id)->update(
+		// 			[
+		// 			'posisi'=>$posi[$key],
+		// 			'institusi'=>$insitut[$key],
+		// 			'masaKerja'=>$tahun[$key]
+		// 			]);
+		// 	}
+		// }
 		
 		return Redirect::to('pendanaan');
 	}
@@ -176,7 +178,7 @@ class PekerjaansController extends \BaseController {
 		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id)->get();
 		$edit = Pekerjaan::where('id_pendaftar','=',$id)->first();
 
-		return View::make('pekerjaans.edit')->withEdit($edit)->withData($riwayat);
+		return View::make('pekerjaans.back_edit')->withEdit($edit)->withData($riwayat);
 	}
 
 	/**

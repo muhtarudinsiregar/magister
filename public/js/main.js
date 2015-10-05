@@ -6,18 +6,6 @@ $(document).ready(function()
             });
 
         
-
-        $("#statusKerja").click(function(){
-            if ($(this).is(':checked'))
-            {
-                $('#inputPekerjaan :input').prop('disabled', true);
-            }
-            else
-            {
-                $('#inputPekerjaan :input').prop('disabled', false);
-            };
-
-        });
         $("#pilihJadwal").click(function(){
             if ($(this).is(':checked'))
             {

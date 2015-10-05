@@ -10,17 +10,22 @@ class JadwalTesController extends \BaseController {
 	 */
 	public function index()
 	{
-		var_dump(Session::get('mail'));
-
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 
 		$jadwal = JadwalTes::where('id_pendaftar','=',$id['id'])->first();
+
 		if (empty($jadwal))
 		{
+			if ($jadwal->tanggalTes == "0000-00-00") {
+				echo "benar";
+			}else{
+				echo "salah";
+			}	
 			return View::make('jadwaltes.create');
 		}else
 		{
+				
 			return View::make('jadwaltes.back_edit')->withJadwal($jadwal);
 		}
 
