@@ -114,9 +114,24 @@
 						</div>
 				</div>
 			</div>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Asosiasi</th>
+						<th>No.Anggota</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>tes</td>
+						<td>tes</td>
+					</tr>
+				</tbody>
+			</table>
 			<div class="form-group">
 				<div class="col-sm-3">
-					<button type="button" class="btn btn-primary" id="tambahProfesi">Tambah Profesi </button>
+					{{-- <button type="button" class="btn btn-primary" id="tambahProfesi">Tambah Profesi </button> --}}
+					<button type="button" class="btn btn-primary" id="btn">Tambah Profesi </button>
 				</div>
 			</div>
 

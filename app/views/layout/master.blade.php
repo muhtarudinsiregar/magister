@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="csrf-token" content="<?= csrf_token() ?>" />
+	<meta name="_token" content="{{ csrf_token() }}" />
 	<meta name="csrf-param" content="_token" />
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" type="text/css" media="screen">

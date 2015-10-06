@@ -17,6 +17,7 @@ class PendidikansController extends \BaseController {
 
 		$profesi = Profesi::where('id_pendaftar','=',$id['id'])->get();
 		$edit = Pendidikan::where('id_pendaftar','=',$id['id'])->first();
+		// dd($profesi);
 		if (is_null($edit['id'])) {
 			return View::make('pendidikans.create');
 		}else
@@ -34,27 +35,33 @@ class PendidikansController extends \BaseController {
 	 */
 	public function profesiSaved()
 	{
-		$email = Session::get('mail');
-		$id_pendaftar = DataPribadi::where('email','=',$email)->first(['id']);
-		
-		$pekerjaan = Input::only('asosiasi2','no_anggota2');
-		$asos = $pekerjaan['asosiasi2'];
-		$no = $pekerjaan['no_anggota2'];
-		// dd(Input::all());
+		// if (Request::ajax()) {
+			$email = Session::get('mail');
+			$id_pendaftar = DataPribadi::where('email','=',$email)->first(['id']);
 
-		foreach ($asos as $key => $value)
-		{
-			DB::table('profesi')->insert(
-				[
-				'id_pendaftar'=>$id_pendaftar['id'],
-				'asosiasi'=>$asos[$key],
-				'noAnggota'=>$no[$key]
-				]);
-		}
-		Request::header('X-IC-Remove',true);
-		// return Response::view('tes')->header('X-IC-Redirect:pendidikan');
-		Redirect::to('pendidikan');
-		// Request::header('X-IC-Refresh:','true');
+
+			$data = new Profesi;
+			$data->id_pendaftar =$id_pendaftar['id'];
+			$data->asosiasi = Input::get('asosiasi');
+			$data->noAnggota = Input::get('no_anggota');
+			$data->save();
+			
+			$last_id = $data->id;
+			$get_data = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->orderBy('id','desc')->take(1)->first();
+			$data ="<tr id='{$get_data['id']}'><td>{$get_data['asosiasi']}</td><td>{$get_data['noAnggota']}</td><td><a href='' class='btn btn-danger'>Hapus</a></td></tr>";
+			
+			$response = array(
+                'status' => 'success',
+                'msg' => 'Setting created successfully',
+                'data'=>$data,
+                'last_id'=>$get_data
+            );
+
+            return Response::json($response);
+		// }else{
+		// 	echo "error";
+		// }
+		// Redirect::to('pendidikan');
 	}
 	public function create()
 	{
@@ -151,7 +158,7 @@ class PendidikansController extends \BaseController {
 	{
 		$profesi = Profesi::where('id_pendaftar','=',$id)->get();
 		$edit = Pendidikan::where('id_pendaftar','=',$id)->first();
-		// dd($edit);
+		dd($edit);
 		return View::make('pendidikans.back_edit')->withEdit($edit)->withProfesi($profesi);
 	}
 
@@ -206,44 +213,6 @@ class PendidikansController extends \BaseController {
 		$user->skala = Input::get('skala');
 		$user->save();
 
-        // line utk perulangan profesi
-		$asosia = Input::get('asosiasi');
-
-		$email = Session::get('mail');
-		$id_pendaftar = DataPribadi::get_id($email);
-		$profesi_id = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
-
-		
-
-		if ($profesi_id->isEmpty() && !empty($asosia))
-		{
-			$pekerjaan = Input::only('asosiasi','no_anggota');
-			$asos = $pekerjaan['asosiasi'];
-			$no = $pekerjaan['no_anggota'];
-
-			foreach ($asos as $key => $value)
-			{
-				DB::table('profesi')->insert(
-					[
-					'id_pendaftar'=>$id_pendaftar['id'],
-					'asosiasi'=>$asos[$key],
-					'noAnggota'=>$no[$key]
-					]);
-			}	
-		}else{
-
-			$pekerjaan = Input::only('asosiasi','no_anggota');
-			// dd($profesi_id);
-			$asos = $pekerjaan['asosiasi'];
-			$no = $pekerjaan['no_anggota'];
-			foreach ($profesi_id as $key => $value) {
-				DB::table('profesi')->where('id',$value->id)->update(
-					[
-					'asosiasi'=>$asos[$key],
-					'noAnggota'=>$no[$key]
-					]);
-			}
-		}
 
 		if (is_null(Auth::id())) {
 			return Redirect::to('pekerjaan');

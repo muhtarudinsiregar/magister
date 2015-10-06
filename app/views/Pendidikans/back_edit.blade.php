@@ -88,109 +88,79 @@
 		<div class="form-group">
 			<label for="" class="col-sm-4 control-label	i-custom">Keanggotaan asosiasi profesi (jika ada)</label>
 		</div>
-
-		<div id="profesi" ic-target="closest .form-group">
-			@if (!empty($profesi))
-			@foreach ($profesi as $element)
-			<div id="tes" class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?">
+		<div id="profesi">
+			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
 				<div class="col-sm-3">
-					<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi" value="{{ $element->asosiasi }}">
+					<input type="text" name="asosiasi"  class="form-control" id="asos">
 				</div>
-				<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
+				<label for="tahun_akademik" class="col-sm-2 control-label" style="padding-left:40px;">No. anggota  </label>
 				<div class="col-sm-2" id="no_anggota">
-					<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota" value="{{ $element->noAnggota }}">
+					<input type="text" name="no_anggota" class="form-control" id="anggota">
 				</div>
-				<button class="btn btn-danger"  type="button" id="hapusProfesi1" ic-delete-from="pendidikan/{{ $element->id}}">
-					<i class="glyphicon glyphicon-remove"></i>
-					<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
+				<button type="button" class="btn btn-primary btn-md" id="tambah">
+					Tambah Profesi
 				</button>
 			</div>
+		</div>
+		
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Asosiasi</th>
+					<th>No.Anggota</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="output"></tbody>
+			@foreach ($profesi as $element)
+			<tr id="tr{{$element->id}}">
+				<td>{{$element->asosiasi}}</td>
+				<td>{{$element->noAnggota}}</td>
+				<td align="center"><a href="pendidikan/{{$element->id}}" class="btn btn-danger">Hapus</a></td>
+			</tr>
 			@endforeach
-			@endif
-		</div>
-			{{-- <div class="form-group">
-				<div class="col-sm-3">
-					<button type="button" class="btn btn-primary" id="tambahProfesi">
-						Tambah Profesi
-					</button>
-				</div>
-			</div> --}}
-			<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
-				Tambah Profesi
-			</button>
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel" align="center">Tambah Profesi</h4>
-						</div>
-						<div class="modal-body" id="#modalTambah">
-							<div id="notifProfesi">
-								
-							</div>
-							<div id="profesiModal">
-								<div id="tes" class="form-group"  ic-confirm="Anda yakin akan menghapus data ini?">
-									<label for="tahun_akademik" class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label>
-									<div class="col-sm-3">
-										<input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi">
-									</div>
-									<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
-									<div class="col-sm-2" id="no_anggota">
-										<input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota">
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-3">
-									<button type="button" class="btn btn-primary" id="tambahProfesiButton">
-										<i class="glyphicon glyphicon-plus"></i>
-									</button>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button id="submit" type="button" class="btn btn-primary" ic-target="#notifProfesi" ic-post-to="profesiSaved" onclick="redirect()">Submit</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+		</table>
+		<!-- Modal -->
 
-			{{-- ==============================================BUTTON ============================================= --}}
-			<div class="form-group">
-				<div class="col-sm-offset-9 col-sm-3">
-					<a href="{{url('data-pribadi')}}" class="btn btn-default">Sebelumnya</a>
-					<button type="submit" class="btn btn-default">Berikutnya</button>
-				</div>
+		{{-- ==============================================BUTTON ============================================= --}}
+		<div class="form-group">
+			<div class="col-sm-offset-9 col-sm-3">
+				<a href="{{url('data-pribadi')}}" class="btn btn-default">Sebelumnya</a>
+				<button type="submit" class="btn btn-default">Berikutnya</button>
 			</div>
-			{{Form::close()}}
 		</div>
+		{{Form::close()}}
 	</div>
-	@stop
-	@section('script')
-	<script>
-		$("#tambahProfesiButton").click(function(e){
-			e.preventDefault();
-			$("#profesiModal").append('<div class="form-group"><label class="col-sm-1 col-sm-offset-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi2[]" id="input" class="form-control" id="asosiasi"></div><label class="col-sm-2 control-label">No. anggota</label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota2[]" id="input" class="form-control" id="no_anggota"></div><button class="btn btn-danger" type="button" id="hapusProfesi">Hapus</button></div>');
+</div>
+@stop
+@section('script')
+<script>
+	$(document).ready(function(){
+		
+		$("#tambah").click(function(){
+			var formData = {
+				asosiasi : $('#asos').val(),
+				no_anggota : $('#anggota').val()
+			};
+			$.ajax({
+				type:"POST",
+				url:"{{ url('profesiSaved') }}",
+				data:formData,
+				success:function(msg){
+					console.log(msg.data);
+				}
+			})
+			.done(function(msg){
+				$("input[id=asos],input[id=anggota]").val("");
+				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
+			});
 		});
-		// var data_table = "";
-		// $.ajax({
-		// 	url:'http://localhost/magister/public/load',
-		// 	data:"",
-		// 	dataType:'json',
-		// 	success: function(data){	
-		// 		for(var i=0;i<data.length;i++){
-		// 			data_table +='<div class="form-group"><label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label><div class="col-sm-3"><input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi" value="'+data[i].asosiasi+'"></div><label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label><div class="col-sm-2" id="no_anggota"><input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota" value="'+data[i].noAnggota+'"></div><button class="btn btn-danger"  type="button" id="hapusProfesi1" ic-delete-from="pendidikan/'+data[i].id+'"><i class="glyphicon glyphicon-remove"></i><i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i></button></div>';
-		// 		}
-		// 		$("#profesi").append(data_table);
-		// 		console.log(data);
-		// 	}
+
+		// $("#tambah").click(function(){
+		// 	alert($("#anggota").val())
 		// });
-		function redirect(){
-			location.reload(false);
-		}
-	</script>
-	@stop
+});
+</script>
+@stop
