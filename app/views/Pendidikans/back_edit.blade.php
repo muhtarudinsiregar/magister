@@ -4,7 +4,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendidikan.update', $edit->id))) }}
 		<div class="form-group">
-			<h4><strong>Langkah 3 : Pendidikan Sebelumnya [Back-Edit]</strong></h4>
+			<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 		</div>
 		<?php if ($errors->has()): ?>
 			<div class="alert alert-danger">
@@ -112,17 +112,21 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody id="output"></tbody>
+			<tbody id="output" ic-confirm="Benar data ingin dihapus?" ic-target="closest tbody"></tbody>
 			@foreach ($profesi as $element)
-			<tr id="tr{{$element->id}}">
+			<tr id="tr-{{$element->id}}">
 				<td>{{$element->asosiasi}}</td>
 				<td>{{$element->noAnggota}}</td>
-				<td align="center"><a href="pendidikan/{{$element->id}}" class="btn btn-danger">Hapus</a></td>
+				<td align="center">
+					<button type="button" id="{{$element->id}}" class="btn btn-danger hapus_btn">
+						Hapus
+						<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
+					</button>
+				</td>
 			</tr>
 			@endforeach
-			
 		</table>
-		<!-- Modal -->
+		<a href="" ic-confirm="benar?">Clik</a>
 
 		{{-- ==============================================BUTTON ============================================= --}}
 		<div class="form-group">
@@ -138,7 +142,6 @@
 @section('script')
 <script>
 	$(document).ready(function(){
-		
 		$("#tambah").click(function(){
 			var formData = {
 				asosiasi : $('#asos').val(),
@@ -149,7 +152,7 @@
 				url:"{{ url('profesiSaved') }}",
 				data:formData,
 				success:function(msg){
-					console.log(msg.data);
+					console.log(msg.success);
 				}
 			})
 			.done(function(msg){
@@ -157,10 +160,23 @@
 				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
 			});
 		});
-
-		// $("#tambah").click(function(){
-		// 	alert($("#anggota").val())
-		// });
-});
+		 $('.hapus_btn').click(function(){
+            var del_id= $(this).attr('id');
+            var $ele = $(this).parent().parent();
+            $.ajax({
+                type:'DELETE',
+                url:"{{ url('pendidikan')}}"+'/'+del_id,
+                data:del_id,
+                success: function(data){
+                    if(data=='yes'){
+                        console.log('success');
+                    }else{
+                    	console.log('success');
+                    	$ele.fadeOut().remove();
+                    }
+                }
+            })
+        })
+	});
 </script>
 @stop

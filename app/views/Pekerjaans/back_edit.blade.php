@@ -4,9 +4,9 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pekerjaan.update', $edit->id))) }}
 		<div class="form-group">
-			<h4><strong>Langkah 4 : Pekerjaan [Back1-Edit]</strong></h4>
+			<h4><strong>Langkah 4 : Pekerjaan</strong></h4>
 			<?php if ($errors->has()): ?>
-					<div class="alert alert-danger">
+				<div class="alert alert-danger">
 					<ul class="square">
 						<?php foreach ($errors->all() as $error): ?>
 							<li><?php echo $error; ?></li>
@@ -19,7 +19,8 @@
 			<div class="col-sm-3">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" value="y" id="statusKerja" name="sttskrja">
+						<?php $selected = (empty($edit) == true)? 'checked="checked"':'';  ?>
+						<input type="checkbox" value="y" id="statusKerja" name="sttskrja" {{$selected}}>
 						Saat ini tidak bekerja
 					</label>
 				</div>
@@ -100,90 +101,96 @@
 				
 			</div>
 		</div>
-		<div id="riwayat" ic-confirm="Anda yakin akan menghapus data ini?" ic-target="closest .form-group">
-			@foreach ($data as $element)
+		<div id="profesi">
 			<div class="form-group">
-				<label for="" class="col-sm-1 control-label">Posisi </label>
-				<div class="col-sm-2">
-					<input type="text" name="pos_riw[]" id="input" class="form-control" value="{{ $element->posisi }}">
-				</div>
-				<label for="" class="col-sm-1 control-label">Institusi </label>
+				<label class="col-sm-1 control-label" id="">Posisi</label>
 				<div class="col-sm-3">
-					<input type="text" name="ins_riw[]" id="input" class="form-control" value="{{ $element->institusi }}">
+					<input type="text" name="posisi"  class="form-control" id="posisi">
 				</div>
-				<label for="" class="col-sm-2 control-label">Masa Kerja </label>
-				<div class="col-lg-1">
-					<input type="text" name="th_riw[]" id="input" class="form-control" value="{{ $element->masaKerja }}">
+				<label class="col-sm-1 control-label">Institusi</label>
+				<div class="col-sm-3">
+					<input type="text" name="institusi" class="form-control" id="institusi">
 				</div>
-
-				<label for="" class="col-sm-1 control-label">tahun</label> 
-				<button class="btn btn-danger" type="button" id="hapusPekerjaan" ic-delete-from="pekerjaan/{{ $element->id}}">
-					<i class="glyphicon glyphicon-remove"></i>
-					<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
-				</button>
+				<label class="col-sm-2 control-label" style="width:8em;">Masa Kerja</label>
+				<div class="col-sm-1">
+					<input type="text" name="masaKerja" class="form-control" id="masaKerja">
+				</div>
+				<label class="control-label"></label>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-primary btn-md" id="tambah">
+						Tambah
+					</button>
+				</div>
 			</div>
+		</div>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Posisi</th>
+					<th>Institusi</th>
+					<th>Masa Kerja</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="output"></tbody>
+			@foreach ($data as $element)
+			<tr id="tr{{$element->id}}">
+				<td>{{$element->posisi}}</td>
+				<td>{{$element->institusi}}</td>
+				<td>{{$element->masaKerja}}</td>
+				<td align="center"><a href="pekerjaan/{{$element->id}}" class="btn btn-danger">Hapus</a></td>
+			</tr>
 			@endforeach
-		</div>
-		<div class="form-group">
-			<div class="col-sm-3">
-				<button type="button" class="btn btn-default" id="tambahPekerjaan" data-toggle="modal" data-target="#myModal">
-					Tambah Riwayat Pekerjaan
-				</button>
-			</div>
-		</div>
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel" align="center">Tambah Profesi</h4>
-					</div>
-					<div class="modal-body" id="#modalTambah">
-						<div id="notifProfesi">
-
-						</div>
-						<div id="riwayatModal" ic-target="#notifProfesi">
-
-						</div>
-						<div class="form-group">
-							<div class="col-sm-3">
-								<button type="button" class="btn btn-primary" id="tambahRiwayatButton">
-									<i class="glyphicon glyphicon-plus"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" ic-target="#notifProfesi" ic-post-to="RiwayatPekerjaanSaved" onclick="setTimeout(function () { window.location.reload(); }, 1)">Submit</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
+		</table>
 	</div>
-	{{-- butttonnnnnnnnnnnnnnnnnnnnnnnnnnn --}}
 	<div class="form-group">
 		<div class="col-sm-offset-9 col-sm-3">
-			<a href="{{url('pendidikan')}}" class="btn btn-default">Sebelumnya</a>
+			<a href="{{ url('pendidikan') }}" class="btn btn-default">Sebelumnya</a>
 			<button type="submit" class="btn btn-default">Berikutnya</button>
 		</div>
 	</div>
-</form>
-</div>
+	{{Form::close()}}
 </div>
 @stop
 @section('script')
 <script type="text/javascript">
-	$(function() {		
-		$("#tambahRiwayatButton ").click(function(){
-			$("#riwayatModal").append('<div class="form-group"><label for="" class="col-sm-1 control-label">Posisi </label><div class="col-sm-2"><input type="text" name="pos_riw2[]" id="input" class="form-control"></div><label for="" class="col-sm-1 control-label">Institusi </label><div class="col-sm-3"><input type="text" name="ins_riw2[]" id="input" class="form-control"></div><label for="" class="col-sm-2 control-label">Masa Kerja </label><div class="col-lg-1"><input type="text" name="th_riw2[]" id="input" class="form-control"></div><label for="" class="col-sm-1 control-label">tahun</label><button class="btn btn-danger" type="button" id="hapusPekerjaanModal"><i class="glyphicon glyphicon-remove"></i></button></div>');
-		});
-		$(document).on("click","#hapusPekerjaanModal",function(){
-			$(this).parent().remove();
-		});
-	});	
-</script>
+	$("#statusKerja").click(function(){
+		if ($(this).is(':checked'))
+		{
+			$('#inputPekerjaan :input').prop('disabled', true);
+		}
+		else
+		{
+			$('#inputPekerjaan :input').prop('disabled', false);
+		};
 
+	});
+	if($("#statusKerja").prop('checked',false))
+    	// alert("tes");
+    	$("#inputPekerjaan :input").prop('disabled',false);  // checked
+    	else
+    		$("#inputPekerjaan :input").prop('disabled',true);
+
+    	$(document).ready(function(){	
+    		$("#tambah").click(function(){
+    			var formData = {
+    				posisi : $('#posisi').val(),
+    				institusi : $('#institusi').val(),
+    				masaKerja : $('#masaKerja').val()
+    			};
+    			$.ajax({
+    				type:"POST",
+    				url:"{{ url('RiwayatPekerjaanSaved') }}",
+    				data:formData,
+    				success:function(msg){
+    					console.log(msg.msg);
+    				}
+    			})
+    			.done(function(msg){
+    				$("input[id=posisi],input[id=institusi],input[id=masaKerja]").val("");
+    				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
+    			});
+    		});
+    	});
+    </script>
 @stop
-

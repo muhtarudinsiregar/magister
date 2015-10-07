@@ -104,33 +104,44 @@
 
 			<div id="profesi">
 				<div class="form-group">
-						<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
-						<div class="col-sm-3">
-							<input type="text" name="asosiasi[]" id="input" class="form-control" id="asosiasi">
-						</div>
-						<label for="tahun_akademik" class="col-sm-2 control-label">No. anggota  </label>
-						<div class="col-sm-2" id="no_anggota">
-							<input type="text" name="no_anggota[]" id="input" class="form-control" id="no_anggota">
-						</div>
+					<label for="tahun_akademik" class="col-sm-1 control-label" id="">Asosiasi</label>
+					<div class="col-sm-3">
+						<input type="text" name="asosiasi"  class="form-control" id="asos">
+					</div>
+					<label for="tahun_akademik" class="col-sm-2 control-label" style="padding-left:40px;">No. anggota  </label>
+					<div class="col-sm-2" id="no_anggota">
+						<input type="text" name="no_anggota" class="form-control" id="anggota">
+					</div>
+					<button type="button" class="btn btn-primary btn-md" id="tambah">
+						Tambah Profesi
+					</button>
 				</div>
 			</div>
+		
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Asosiasi</th>
 						<th>No.Anggota</th>
+						<th></th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>tes</td>
-						<td>tes</td>
-					</tr>
-				</tbody>
+				<tbody id="output" ic-confirm="Benar data ingin dihapus?" ic-target="closest tr"></tbody>
+				@foreach ($profesi as $element)
+				<tr id="tr{{$element->id}}">
+					<td>{{$element->id}}</td>
+					<td>{{$element->noAnggota}}</td>
+					<td align="center">
+						<button class="btn btn-danger" ic-delete-from="{{url('pendidikan'/$element->id)}}">
+						Hapus
+						<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
+						</button>
+					</td>
+				</tr>
+				@endforeach
 			</table>
 			<div class="form-group">
 				<div class="col-sm-3">
-					{{-- <button type="button" class="btn btn-primary" id="tambahProfesi">Tambah Profesi </button> --}}
 					<button type="button" class="btn btn-primary" id="btn">Tambah Profesi </button>
 				</div>
 			</div>
@@ -146,4 +157,28 @@
 		</form>
 	</div>
 </div>
+@stop
+@section('script')
+	<script>
+	$(document).ready(function(){	
+		$("#tambah").click(function(){
+			var formData = {
+				asosiasi : $('#asos').val(),
+				no_anggota : $('#anggota').val()
+			};
+			$.ajax({
+				type:"POST",
+				url:"{{ url('profesiSaved') }}",
+				data:formData,
+				success:function(msg){
+					console.log(msg.data);
+				}
+			})
+			.done(function(msg){
+				$("input[id=asos],input[id=anggota]").val("");
+				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
+			});
+		});
+	});
+	</script>
 @stop

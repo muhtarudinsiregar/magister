@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-	<title>Home</title>
+	<title>PPs UII</title>
 </head>
 <body>
 	<div class="container">

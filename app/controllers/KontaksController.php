@@ -10,7 +10,7 @@ class KontaksController extends \BaseController {
 	 */
 	public function index()
 	{
-		var_dump(Session::all());
+		// var_dump(Session::all());
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 

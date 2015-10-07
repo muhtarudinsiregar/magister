@@ -15,11 +15,11 @@ class PendidikansController extends \BaseController {
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 
-		$profesi = Profesi::where('id_pendaftar','=',$id['id'])->get();
+		$profesi = Profesi::where('id_pendaftar','=',$id['id'])->orderBy('id','desc')->get();
 		$edit = Pendidikan::where('id_pendaftar','=',$id['id'])->first();
 		// dd($profesi);
 		if (is_null($edit['id'])) {
-			return View::make('pendidikans.create');
+			return View::make('pendidikans.create')->withProfesi($profesi);
 		}else
 		{
 			return View::make('pendidikans.back_edit')->withEdit($edit)->withProfesi($profesi);
@@ -48,7 +48,7 @@ class PendidikansController extends \BaseController {
 			
 			$last_id = $data->id;
 			$get_data = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->orderBy('id','desc')->take(1)->first();
-			$data ="<tr id='{$get_data['id']}'><td>{$get_data['asosiasi']}</td><td>{$get_data['noAnggota']}</td><td><a href='' class='btn btn-danger'>Hapus</a></td></tr>";
+			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['asosiasi']}</td><td>{$get_data['noAnggota']}</td><td align='center'><button type='button' id='{$get_data['id']}' class='btn btn-danger hapus_btn'>Hapus</button></td></tr></tbody>";
 			
 			$response = array(
                 'status' => 'success',
@@ -58,10 +58,6 @@ class PendidikansController extends \BaseController {
             );
 
             return Response::json($response);
-		// }else{
-		// 	echo "error";
-		// }
-		// Redirect::to('pendidikan');
 	}
 	public function create()
 	{
@@ -231,21 +227,10 @@ class PendidikansController extends \BaseController {
 	public function destroy($id)
 	{
 
-		// header('X-IC-Remove',true);
 		$user = Profesi::find($id);
 		$user->delete();
-		// Request::header('X-IC-Remove',true);
-		echo "
-		<div class='col-sm-12' ic-remove-after='2s'>
-			<div class='alert alert-success alert-dismissible' role='alert'>
-				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-				<strong>Berhasil </strong> Menghapus Data.
-			</div>
-		</div>
-		";
-		// return Redirect::to('Pendidikan');
-		// dd($user);
-		// Response::header('X-IC-Remove',true);
+		return header('X-IC-Remove:true');
+		// return $this->response->header('X-IC-Remove', true);
 	}
 
 }

@@ -35,7 +35,8 @@
 }
 body{
     /*background: #ECECEE;*/
-    height: 1200px;
+    height: auto;
+    margin-bottom: 5em;
 }
 .caret-up {
     width: 0; 

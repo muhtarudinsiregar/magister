@@ -10,7 +10,7 @@ class PendanaansController extends \BaseController {
 	 */
 	public function index()
 	{
-		var_dump(Session::get('mail'));
+		// var_dump(Session::get('mail'));
 		$beasiswa = Pendanaan::beasiswa();
 
 		$email = Session::get('mail');
@@ -86,7 +86,7 @@ class PendanaansController extends \BaseController {
 			$data_beasiswa = DataPribadi::find($id_pendaftar['id']);
 			$data_beasiswa->danaBeasiswa = Input::get('dana');
 			$data_beasiswa->id_beasiswa = 4;
-			$data_beasiswa->statusBeasiswa = 0;
+			$data_beasiswa->statusBeasiswa = 2;
 			$data_beasiswa->save();
 		}
 
@@ -134,23 +134,23 @@ class PendanaansController extends \BaseController {
 	public function update($id)
 	{
 
-		$validator = Validator::make($data = Input::all(), Kontak::$rules);
+		$validator = Validator::make($data = Input::all(), Pendanaan::$rules);
 		$validator->setAttributeNames(Pendanaan::$niceNames); 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 		$email = Session::get('mail');
-		$id = DataPribadi::where('email','=',$email)->first(['id']);
+		$id1 = DataPribadi::where('email','=',$email)->first(['id']);
 
 		if (Input::get('dana') != 0) {
-			$data_beasiswa = DataPribadi::find($id['id']);
+			$data_beasiswa = DataPribadi::find($id1['id']);
 			$data_beasiswa->danaBeasiswa = Input::get('dana');
 			$data_beasiswa->id_beasiswa = Input::get('beasiswa');
 			$data_beasiswa->statusBeasiswa = Input::get('sttsbea');
 			$data_beasiswa->save();
 			if (Input::get('beasiswa') ==3) {
-				$sponsor = Sponsor::findOrFail($id);
+				$sponsor = Pendanaan::find($id);
 				$sponsor->sponsor = Input::get('pemberi');
 				$sponsor->alamat = Input::get('almt');
 				$sponsor->kotakab = Input::get('kotakab');
@@ -168,8 +168,8 @@ class PendanaansController extends \BaseController {
 			// ketika dana beasiswa adalah sendiri maka semuanya 0 dan menghapus data sponsor yang ada di tabel sponsor.
 			$data_beasiswa = DataPribadi::find($id['id']);
 			$data_beasiswa->danaBeasiswa = Input::get('dana');
-			$data_beasiswa->id_beasiswa = 0;
-			$data_beasiswa->statusBeasiswa = 0;
+			$data_beasiswa->id_beasiswa = 4;
+			$data_beasiswa->statusBeasiswa = 2;
 			$data_beasiswa->save();
 
 			$id_sponsor = Sponsor::where('id_pendaftar','=',$id['id'])->first(['id']);

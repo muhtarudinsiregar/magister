@@ -8,7 +8,7 @@
 
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('data-pribadi.update', $edit->id))) }}
 			<div class="form-group">
-				<h4><strong>Langkah 2 : Data Pribadi [Back-Edit]</strong></h4>
+				<h4><strong>Langkah 2 : Data Pribadi</strong></h4>
 			</div>
 			<?php if ($errors->has()): ?>
 					<div class="alert alert-danger">

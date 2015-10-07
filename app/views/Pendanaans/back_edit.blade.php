@@ -46,49 +46,49 @@
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Pemberi beasiswa </label>
 					<div class="col-sm-4">
-						<input type="text" name="pemberi" id="input" class="form-control" required="required"  value="{{$edit->sponsor}}">
+						<input type="text" name="pemberi" id="input" class="form-control" value="{{$edit->sponsor}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Alamat </label>
 					<div class="col-sm-4">
-						<input type="text" name="almt" id="input" class="form-control" required="required"  value="{{ $edit->alamat }}">
+						<input type="text" name="almt" id="input" class="form-control" value="{{ $edit->alamat }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Kabupaten/kota </label>
 					<div class="col-sm-4">
-						<input type="text" name="kotakab" id="input" class="form-control" required="required"  value="{{ $edit->kotakab }}">
+						<input type="text" name="kotakab" id="input" class="form-control" value="{{ $edit->kotakab }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Propinsi </label>
 					<div class="col-sm-4">
-						<input type="text" name="prop" id="input" class="form-control" required="required"  value="{{ $edit->propinsi }}">
+						<input type="text" name="prop" id="input" class="form-control" value="{{ $edit->propinsi }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Negara </label>
 					<div class="col-sm-4">
-						<input type="text" name="neg" id="input" class="form-control" required="required"  value="{{ $edit->negara }}">
+						<input type="text" name="neg" id="input" class="form-control" value="{{ $edit->negara }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">No. telepon </label>
 					<div class="col-sm-4">
-						<input type="text" name="notel" id="input" class="form-control" required="required"  value="{{ $edit->noTelepon }}">
+						<input type="text" name="notel" id="input" class="form-control" value="{{ $edit->noTelepon }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">No. faksimili </label>
 					<div class="col-sm-4">
-						<input type="text" name="nofax" id="input" class="form-control" required="required"  value="{{ $edit->noFaksimili }}">
+						<input type="text" name="nofax" id="input" class="form-control" value="{{ $edit->noFaksimili }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-sm-2 control-label">Email </label>
 					<div class="col-sm-4">
-						<input type="text" name="mail" id="input" class="form-control" required="required"  value="{{ $edit->email }}">
+						<input type="text" name="mail" id="input" class="form-control" value="{{ $edit->email }}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -106,7 +106,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-9 col-sm-3">
-				<button type="submit" class="btn btn-default">Sebelumnya </button>
+				<a href="{{url('pekerjaan')}}" class="btn btn-default">Sebelumnya</a>
 				<button type="submit" class="btn btn-default">Berikutnya</button>
 			</div>
 		</div>
@@ -143,6 +143,7 @@
 		{
 			$('#inputPendanaan :input').prop('disabled', true);
 		}
+		
 		$('#beasiswa').is("checked",true)
 		{
 			$('#inputPendanaan :input').prop('disabled', false);

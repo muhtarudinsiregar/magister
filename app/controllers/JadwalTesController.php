@@ -17,11 +17,6 @@ class JadwalTesController extends \BaseController {
 
 		if (empty($jadwal))
 		{
-			if ($jadwal->tanggalTes == "0000-00-00") {
-				echo "benar";
-			}else{
-				echo "salah";
-			}	
 			return View::make('jadwaltes.create');
 		}else
 		{

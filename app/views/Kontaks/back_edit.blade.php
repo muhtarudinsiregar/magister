@@ -7,7 +7,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($kontak, array('method'=>'PUT','class'=>'form-horizontal','route' => array('kontak.update', $kontak->id))) }}
 		<div class="form-group">
-			<h4><strong>Langkah 6 : Kontak Darurat[backedit]</strong></h4>
+			<h4><strong>Langkah 6 : Kontak Darurat</strong></h4>
 			<?php if ($errors->has()): ?>
 				<div class="alert alert-danger">
 					<ul class="square">

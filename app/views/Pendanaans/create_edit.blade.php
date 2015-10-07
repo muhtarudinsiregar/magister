@@ -142,11 +142,12 @@
 		});
 		$('input[name="beasiswa"]').is("checked",true)
 		{
-			$('#inputPendanaan :input').prop('disabled', true);
+			$('#inputPendanaan :input').prop('disabled', false);
+			$('#sponsor :input').prop('disabled', true);
 		}
-		// if ($("#sendiri").prop("checked")) {
-		// 	$('#inputPendanaan :input').prop('disabled', true);
-		// };
+		if ($("#sendiri").prop("checked")) {
+			$('#inputPendanaan :input').prop('disabled', true);
+		};
 	});
 </script>
 @stop

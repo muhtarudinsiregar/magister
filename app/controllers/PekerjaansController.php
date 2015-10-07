@@ -10,16 +10,14 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function index()
 	{
-		var_dump(Session::get('mail'));
-
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 		$edit = Pekerjaan::where('id_pendaftar','=',$id['id'])->first();
-		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id['id'])->get();
+		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id['id'])->orderBy('id','desc')->get();
 		// dd(empty($edit));
 
-		if ($riwayat->isEmpty() or empty($edit)) {
-			return View::make('pekerjaans.create')->withEdit($edit)->withData($riwayat);
+		if (empty($edit)) {
+			return View::make('pekerjaans.create')->withData($riwayat);
 		}
 
 		else
@@ -36,39 +34,30 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function RiwayatPekerjaanSaved()
 	{
-		$email = Session::get('mail');
-		$id_pendaftar = DataPribadi::where('email','=',$email)->first(['id']);
+		if (Request::ajax()) {
+			$email = Session::get('mail');
+			$id_pendaftar = DataPribadi::where('email','=',$email)->first(['id']);
 
-		$pekerjaan = Input::only('pos_riw2','ins_riw2','th_riw2');
-		$posi = $pekerjaan['pos_riw2'];
-		$insitut = $pekerjaan['ins_riw2'];
-		$tahun = $pekerjaan['th_riw2'];
+			$data = new RiwayatPekerjaan;
+			$data->id_pendaftar =$id_pendaftar['id'];
+			$data->posisi = Input::get('posisi');
+			$data->institusi = Input::get('institusi');
+			$data->masaKerja = Input::get('masaKerja');
+			$data->save();
 
-		// dd(Input::all());
+			$last_id = $data->id;
+			$get_data = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->orderBy('id','desc')->take(1)->first();
 
-		foreach ($posi as $key => $value)
-		{
-			DB::table('riwayatpekerjaan')->insert(
-				[
-				'id_pendaftar'=>$id_pendaftar['id'],
-				'posisi'=>$posi[$key],
-				'institusi'=>$insitut[$key],
-				'masaKerja'=>$tahun[$key]
-				]);
+			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['posisi']}</td><td>{$get_data['institusi']}</td><td>{$get_data['masaKerja']}</td><td align='center'><a href='' class='btn btn-danger'>Hapus</a></td></tr></tbody >";
+			$response = array(
+				'status' => 'success',
+				'msg' => 'Setting created successfully',
+				'data'=>$data,
+				'last_id'=>$get_data
+				);
+
+			return Response::json($response);
 		}
-		// Request::header('X-IC-Remove',true);
-		echo "
-		<div class='col-sm-12' ic-remove-after='2s'>
-			<div class='alert alert-success alert-dismissible' role='alert'>
-				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-				<strong>Berhasil </strong> Menambahkan Data.
-			</div>
-		</div>
-		";
-		$header = ['X-IC-Remove'=>true];
-		Redirect::to('pekerjaan','',$header);
-
-
 	}
 	public function create()
 	{
@@ -175,7 +164,7 @@ class PekerjaansController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id)->get();
+		$riwayat = RiwayatPekerjaan::where('id_pendaftar','=',$id)->orderBy('id','desc')->get();
 		$edit = Pekerjaan::where('id_pendaftar','=',$id)->first();
 
 		return View::make('pekerjaans.back_edit')->withEdit($edit)->withData($riwayat);
@@ -217,42 +206,9 @@ class PekerjaansController extends \BaseController {
 		}
 		
 
-		$pekerjaan = Input::only('pos_riw','ins_riw','th_riw');
-		$posi = $pekerjaan['pos_riw'];
-		$insitut = $pekerjaan['ins_riw'];
-		$tahun = $pekerjaan['th_riw'];
-		$riwayat_id = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->get(['id']);
-		// dd($riwayat_id);
-
-		if ($riwayat_id->isEmpty())
-		{
-			foreach ($posi as $key => $value)
-			{
-				DB::table('riwayatpekerjaan')->insert(
-					[
-					'id_pendaftar'=>$id_pendaftar['id'],
-					'posisi'=>$posi[$key],
-					'institusi'=>$insitut[$key],
-					'masaKerja'=>$tahun[$key]
-					]);
-			}
-		}else
-		{
-			foreach ($riwayat_id as $key => $value)
-			{
-				DB::table('riwayatpekerjaan')->where('id',$value->id)->update(
-					[
-					'posisi'=>$posi[$key],
-					'institusi'=>$insitut[$key],
-					'masaKerja'=>$tahun[$key]
-					]);
-			}
-		}
-		
-
 			// return Redirect::to('pendanaan/'.Auth::id().'/edit');
 		if (is_null(Auth::id())) {
-			// return Redirect::to('pendanaan');
+			return Redirect::to('pendanaan');
 		}else{
 			return Redirect::to('pendanaan/'.Auth::id().'/edit');
 		}
