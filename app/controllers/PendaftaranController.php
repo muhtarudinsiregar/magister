@@ -193,7 +193,7 @@ class PendaftaranController extends \BaseController {
 			$mail->attachData($data1['pdf'],'formulir.pdf',['mime'=>'application/pdf']);
 
 		});
-		// Session::forget('mail');
+		Session::forget('mail');
 		return Redirect::to('konfirmasi');
 		// return View::make('emails.boilerplate');
 	}
