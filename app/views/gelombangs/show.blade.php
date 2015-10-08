@@ -1,0 +1,1 @@
+C:\wamp\www\magister\app/views/gelombangs/show.blade.php

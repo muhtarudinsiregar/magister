@@ -31,6 +31,14 @@ View::composer(array('kontaks.edit','kontaks.create','kontaks.back_edit'), funct
 {
     $view->with('hub', Hubungan::all());
 });
+View::composer(array('sesites.edit','sesites.create','sesites.index'), function($view)
+{
+    $view->with('title', 'Sesi Tes');
+});
+View::composer(array('konsentrasis.edit','konsentrasis.create','konsentrasis.index'), function($view)
+{
+    $view->with('title', 'Konsentrasi');
+});
 
 
 
@@ -54,6 +62,10 @@ Route::resource('pekerjaan', "PekerjaansController");
 Route::resource('pendanaan', "PendanaansController");
 Route::resource('kontak', "KontaksController");
 Route::resource('jadwal', "JadwalTesController");
+Route::resource('tahungelombang', "GelombangsController");
+Route::resource('sesites', "SesitesController");
+Route::resource('konsentrasi', "KonsentrasisController");
+Route::resource('studi', "StudisController");
 Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
 Route::get('pdf', 'PendaftaranController@pdf');
