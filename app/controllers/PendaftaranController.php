@@ -75,30 +75,36 @@ class PendaftaranController extends \BaseController {
 		{
 			Pendaftaran::pendidikan($value);
 		}
-		foreach ($data['sponsor']as $value)
+		foreach ($data['sponsor'] as $value)
 		{
 			Pendaftaran::sponsor($value);
 		}
-		foreach ($data['riwayatpekerjaan']as $value)
+		foreach ($data['riwayatpekerjaan'] as $value)
 		{
 			Pendaftaran::riwayatpekerjaan($value);
 		}
 		
 		Pendaftaran::kontakdarurat($data->kontakdarurat);
 
-		foreach ($data['profesi']as $value)
+		foreach ($data['profesi'] as $value)
 		{
 			Pendaftaran::profesi($value);
 		}	
 		
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
+		$ok = DB::table('pendaftarok')->where('email', $email)->orderBy('id', 'desc')->take(1)->pluck('id');
+		// $ok = Pendaftaran::pendaftar($pribadi);
 
-		$ok = DB::table('pendaftarok')->where('email', $email)->pluck('id');
-		
 		$daftar = Pendaftaran::where('id_pendaftar','=',$id['id'])->first(['no']);
 		$update = Pendaftaran::find($daftar['no']);
 		$update->id_pendaftarOK = $ok;
 		$update->save();
+
+		date_default_timezone_set("Asia/Jakarta"); 
+		$update_waktu = Pendaftaran::find($daftar['no']);
+		$update_waktu->waktu = date('y-m-d H:i:s');
+		$update_waktu->save();
+
 		return Redirect::to('mail');
 	}
 
@@ -131,10 +137,7 @@ class PendaftaranController extends \BaseController {
 			]);
 
 		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['no','tahun','semester','gelombang','id_prodi','id_konsentrasi','waktu']);
-		date_default_timezone_set("Asia/Jakarta"); 
-		$update_waktu = Pendaftaran::find($pendaftaran['no']);
-		$update_waktu->waktu = date('y-m-d H:i:s');
-		$update_waktu->save();
+		
 		$prodi = Pendaftaran::prodi($pendaftaran['id_prodi']);
 		$konsentrasi = Pendaftaran::konsentrasi($pendaftaran['id_konsentrasi']);
 		// dd($konsentrasi);
@@ -190,7 +193,7 @@ class PendaftaranController extends \BaseController {
 			$mail->attachData($data1['pdf'],'formulir.pdf',['mime'=>'application/pdf']);
 
 		});
-		Session::forget('mail');
+		// Session::forget('mail');
 		return Redirect::to('konfirmasi');
 		// return View::make('emails.boilerplate');
 	}

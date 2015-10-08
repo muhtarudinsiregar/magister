@@ -16,7 +16,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($jadwal, array('method'=>'PUT','class'=>'form-horizontal','route' => array('jadwal.update', $jadwal->no))) }}
 		<div class="form-group">
-			<h4><strong>Langkah 7 : Jadwal Tes[back_edit]</strong></h4>
+			<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-7 i-custom control-label"><i>Jadwal tes bersifat tentatif. Kepastian jadwal pasti akan kami konfirmasikan melalui email/no. handphone anda. </i></label>

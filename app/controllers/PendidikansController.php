@@ -10,7 +10,7 @@ class PendidikansController extends \BaseController {
 	 */
 	public function index()
 	{
-		var_dump(Session::get('mail'));
+		// var_dump(Session::get('mail'));
 		// Session::put('mail', 'tes@gmail.com');
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);

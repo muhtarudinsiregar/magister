@@ -13,7 +13,7 @@ class Pendaftaran extends \Eloquent {
 
 	public static function pendaftar($pribadi)
 	{
-		DB::table('pendaftarok')->insert(
+		return DB::table('pendaftarok')->insertGetId(
 			[
 			'email' => $pribadi->email, 
 			'password' => $pribadi->password, 

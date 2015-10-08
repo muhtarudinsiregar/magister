@@ -13,7 +13,7 @@
 		<?php endif ?>
 		<form action="{{ url('pendanaan') }}" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4><strong>Langkah 5 : Pendanaan Beasiswa [Create-edit]</strong></h4>
+				<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>

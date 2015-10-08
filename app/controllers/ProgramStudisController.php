@@ -96,6 +96,7 @@ class ProgramStudisController extends \BaseController {
 		];
 		$tahun = TahunGelombang::all(['gelombang']);
 		$edit = ProgramStudi::where('id_pendaftar','=',$id)->first();
+
 		if (is_null($edit))
 		{
 			return View::make('programstudis.create')->withData($data);	
@@ -128,7 +129,7 @@ class ProgramStudisController extends \BaseController {
 		$update = ProgramStudi::findOrFail($id);
 		$update->tahun = $tahun['tahun'];
 		$update->semester = $tahun['semester'];
-		$update->gelombang = Input::get('gel');
+		$update->gelombang = $tahun['gelombang'];
 		$update->id_prodi = Input::get('pro');
 		$update->id_konsentrasi = Input::get('kon');
 		$update->save();

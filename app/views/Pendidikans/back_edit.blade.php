@@ -126,7 +126,6 @@
 			</tr>
 			@endforeach
 		</table>
-		<a href="" ic-confirm="benar?">Clik</a>
 
 		{{-- ==============================================BUTTON ============================================= --}}
 		<div class="form-group">
