@@ -48,7 +48,7 @@ class PekerjaansController extends \BaseController {
 			$last_id = $data->id;
 			$get_data = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->orderBy('id','desc')->take(1)->first();
 
-			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['posisi']}</td><td>{$get_data['institusi']}</td><td>{$get_data['masaKerja']}</td><td align='center'><a href='' class='btn btn-danger'>Hapus</a></td></tr></tbody >";
+			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['posisi']}</td><td>{$get_data['institusi']}</td><td>{$get_data['masaKerja']}</td><td align='center'><button type='button' id='{$get_data['id']}' class='btn btn-danger hapus' onClick='remove()'>Hapus</button></td></tr></tbody >";
 			$response = array(
 				'status' => 'success',
 				'msg' => 'Setting created successfully',

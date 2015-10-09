@@ -53,11 +53,11 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li><a href="index.html"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+			<li><a href="{{url('dashboard')}}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 			<li><a href="{{url('konsentrasi')}}"><span class="glyphicon glyphicon-th"></span> Konsentrasi</a></li>
 			<li><a href="{{url('studi')}}"><span class="glyphicon glyphicon-stats"></span> Program Studi</a></li>
-			<li><a href="{{url('sesites')}}"><span class="glyphicon glyphicon-list-alt"></span> Sesi Tes</a></li>
-			<li><a href="{{url('tahungelombang')}}"><span class="glyphicon glyphicon-pencil"></span> Tahun Gelombang</a></li>
+			<li><a href="{{url('sesites')}}"><span class="glyphicon glyphicon-pencil"></span> Sesi Tes</a></li>
+			<li><a href="{{url('tahungelombang')}}"><span class="glyphicon glyphicon-list-alt"></span> Tahun Gelombang</a></li>
 			<li><a href="panels.html"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
 			<li class="parent ">
 				<a href="#">

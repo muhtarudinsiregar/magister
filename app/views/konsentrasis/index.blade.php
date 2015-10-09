@@ -13,8 +13,8 @@
 						<table data-toggle="table" data-url="tables/data2.json" class="table table-hover table-bordered">
 						    <thead>
 						    <tr>
-						        <th>Program Studi</th>
-						        <th>Konsentrasi</th>
+						        <th style="text-align:center;">Program Studi</th>
+						        <th style="text-align:center;">Konsentrasi</th>
 						        <th align="center">Aksi</th>
 						    </tr>
 						    </thead>

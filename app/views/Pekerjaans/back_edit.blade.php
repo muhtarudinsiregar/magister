@@ -138,7 +138,12 @@
 				<td>{{$element->posisi}}</td>
 				<td>{{$element->institusi}}</td>
 				<td>{{$element->masaKerja}}</td>
-				<td align="center"><a href="pekerjaan/{{$element->id}}" class="btn btn-danger">Hapus</a></td>
+				<td align="center">
+					<button type="button" id="{{$element->id}}" class="btn btn-danger hapus_btn">
+						Hapus
+						<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
+					</button>
+				</td>
 			</tr>
 			@endforeach
 		</table>
@@ -191,6 +196,45 @@
     				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
     			});
     		});
+    		$('.hapus_btn').click(function(){
+    			var del_id= $(this).attr('id');
+    			var $ele = $(this).parent().parent();
+    			$.ajax({
+    				type:'DELETE',
+    				url:"{{ url('pekerjaan')}}"+'/'+del_id,
+    				data:del_id,
+    				success: function(data){
+    					if(data=='yes'){
+    						console.log('success');
+    					}else{
+    						console.log('success');
+    						$ele.fadeOut().remove();
+    					}
+    				}
+    			})
+    		})
     	});
-    </script>
+remove = function(item_id)
+{
+	var  confirmation = confirm("Benar Data ini Akan Dihapus?");
+	if (confirmation) {
+		var del_id= $(".hapus").attr('id');
+		var $ele = $(".hapus").parent().parent();
+		$.ajax({
+			type:'DELETE',
+			url:"{{ url('pekerjaan')}}"+'/'+del_id,
+			data:del_id,
+			success: function(data){
+				if(data=='yes'){
+					console.log('success');
+					$ele.fadeOut().remove();
+				}else{
+					console.log('success');
+					$ele.fadeOut().remove();
+				}
+			}
+		})
+	};			
+}
+</script>
 @stop

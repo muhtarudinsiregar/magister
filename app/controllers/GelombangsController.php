@@ -9,9 +9,9 @@ class GelombangsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$gelombangs = Gelombang::all();
+		$gelombang = Gelombang::all();
 
-		return View::make('gelombangs.index', compact('gelombangs'));
+		return View::make('gelombangs.index', compact('gelombang'));
 	}
 
 	/**

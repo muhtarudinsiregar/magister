@@ -39,6 +39,18 @@ View::composer(array('konsentrasis.edit','konsentrasis.create','konsentrasis.ind
 {
     $view->with('title', 'Konsentrasi');
 });
+View::composer(array('gelombangs.edit','gelombangs.create','gelombangs.index'), function($view)
+{
+    $view->with('title', 'Tahun Gelombang');
+});
+View::composer(array('studis.edit','studis.create','studis.index'), function($view)
+{
+    $view->with('title', 'Program Studi');
+});
+View::composer(array('dashboards.edit','dashboards.create','dashboards.index'), function($view)
+{
+    $view->with('title', 'Dashboard');
+});
 
 
 
@@ -66,6 +78,7 @@ Route::resource('tahungelombang', "GelombangsController");
 Route::resource('sesites', "SesitesController");
 Route::resource('konsentrasi', "KonsentrasisController");
 Route::resource('studi', "StudisController");
+Route::resource('dashboard', "DashboardsController");
 Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
 Route::get('pdf', 'PendaftaranController@pdf');

@@ -179,6 +179,46 @@
 				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
 			});
 		});
+		// delete
+		 $('.hapus_btn').click(function(){
+            var del_id= $(this).attr('id');
+            var $ele = $(this).parent().parent();
+            $.ajax({
+                type:'DELETE',
+                url:"{{ url('pendidikan')}}"+'/'+del_id,
+                data:del_id,
+                success: function(data){
+                    if(data=='yes'){
+                        console.log('success');
+                    }else{
+                    	console.log('success');
+                    	$ele.fadeOut().remove();
+                    }
+                }
+            })
+        })
 	});
+remove = function(item_id) {
+			var  confirmation = confirm("Benar Data ini Akan Dihapus?");
+			if (confirmation) {
+				var del_id= $(".hapus").attr('id');
+            	var $ele = $(".hapus").parent().parent();
+            	$.ajax({
+	                type:'DELETE',
+	                url:"{{ url('pendidikan')}}"+'/'+del_id,
+	                data:del_id,
+	                success: function(data){
+	                    if(data=='yes'){
+	                        console.log('success');
+	                        $ele.fadeOut().remove();
+	                    }else{
+	                    	console.log('success');
+	                    	$ele.fadeOut().remove();
+	                    }
+	                }
+            	})
+			};			
+            // alert(del_id);
+	}
 	</script>
 @stop

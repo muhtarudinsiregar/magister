@@ -48,7 +48,7 @@ class PendidikansController extends \BaseController {
 			
 			$last_id = $data->id;
 			$get_data = Profesi::where('id_pendaftar','=',$id_pendaftar['id'])->orderBy('id','desc')->take(1)->first();
-			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['asosiasi']}</td><td>{$get_data['noAnggota']}</td><td align='center'><button type='button' id='{$get_data['id']}' class='btn btn-danger hapus_btn'>Hapus</button></td></tr></tbody>";
+			$data ="<tbody><tr id='tr-{$get_data['id']}'><td>{$get_data['asosiasi']}</td><td>{$get_data['noAnggota']}</td><td align='center'><button type='button' id='{$get_data['id']}' class='btn btn-danger hapus' onClick='remove()'>Hapus</button></td></tr></tbody>";
 			
 			$response = array(
                 'status' => 'success',

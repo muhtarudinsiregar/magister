@@ -31,6 +31,7 @@ class StudisController extends \BaseController {
 	 */
 	public function store()
 	{
+		// dd(Input::all());
 		$validator = Validator::make($data = Input::all(), Studi::$rules);
 
 		if ($validator->fails())
@@ -38,9 +39,10 @@ class StudisController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		// dd($data);
 		Studi::create($data);
 
-		return Redirect::route('studis.index');
+		// return Redirect::route('studi.index');
 	}
 
 	/**

@@ -1,0 +1,1 @@
+C:\wamp\www\magister\app/views/dashboards/show.blade.php

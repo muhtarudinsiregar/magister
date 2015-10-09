@@ -15,5 +15,9 @@ class Konsentrasi extends \Eloquent {
     {
         return $this->belongsTo('Studi','id_prodi');
     }
+    // public function pendaftaran()
+    // {
+    // 	return $this->hasMany('pendaftaran','id_konsentrasi');
+    // }
 
 }

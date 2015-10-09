@@ -6,15 +6,7 @@
 		<div class="form-group">
 			<h4><strong>Langkah 3 : Pendidikan Sebelumnya</strong></h4>
 		</div>
-		<?php if ($errors->has()): ?>
-			<div class="alert alert-danger">
-				<ul class="square">
-					<?php foreach ($errors->all() as $error): ?>
-						<li><?php echo $error; ?></li>
-					<?php endforeach ?>
-				</ul>
-			</div>
-		<?php endif ?>
+		
 		<div class="form-group">
 			<label for="program" class="col-sm-2 control-label">Jenjang *</label>
 			<div class="col-sm-4">
@@ -177,5 +169,27 @@
             })
         })
 	});
+	remove = function(item_id) {
+			var  confirmation = confirm("Benar Data ini Akan Dihapus?");
+			if (confirmation) {
+				var del_id= $(".hapus").attr('id');
+            	var $ele = $(".hapus").parent().parent();
+            	$.ajax({
+	                type:'DELETE',
+	                url:"{{ url('pendidikan')}}"+'/'+del_id,
+	                data:del_id,
+	                success: function(data){
+	                    if(data=='yes'){
+	                        console.log('success');
+	                        $ele.fadeOut().remove();
+	                    }else{
+	                    	console.log('success');
+	                    	$ele.fadeOut().remove();
+	                    }
+	                }
+            	})
+			};			
+            // alert(del_id);
+	}
 </script>
 @stop

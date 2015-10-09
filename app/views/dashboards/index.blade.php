@@ -8,29 +8,29 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Tahun Gelombang</div>
+					<div class="panel-heading">Dashboard</div>
 					<div class="panel-body">
 						<table data-toggle="table" data-url="tables/data2.json" class="table table-hover table-bordered">
 						    <thead>
 						    <tr>
+						        <th>Nama</th>
 						        <th>Tahun</th>
 						        <th>Semester</th>
 						        <th>Gelombang</th>
-						        <th>Biaya</th>
-						        <th>Tanggal Tutup</th>
-						        <th>Aktif</th>
+						        <th>Prodi</th>
+						        <th>Konsentrasi</th>
 						        <th align="center">Aksi</th>
 						    </tr>
 						    </thead>
 						    <tbody>
-						    	@foreach ($gelombang as $element)
+						    	@foreach ($dashboards as $element)
 						    		<tr>
+						    			<td>{{$element->pendaftar->nama}}</td>
 						    			<td>{{$element->tahun}}</td>
 						    			<td>{{$element->semester}}</td>
 						    			<td>{{$element->gelombang}}</td>
-						    			<td>{{$element->biaya}}</td>
-						    			<td>{{$element->tanggalTutup}}</td>
-						    			<td>{{$element->aktif}}</td>
+						    			<td>{{$element->studi->prodi}}</td>
+						    			<td>{{$element->konsentrasi->konsentrasi}}</td>
 						    			<td align="center">
 						    				<button class="btn btn-primary">
            										Edit
