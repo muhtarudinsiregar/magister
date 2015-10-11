@@ -119,7 +119,8 @@
 		$(window).on('resize', function () {
 			if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>
+	@yield('script')	
 </body>
 
 </html>

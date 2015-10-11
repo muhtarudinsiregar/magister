@@ -10,9 +10,20 @@ class DashboardsController extends \BaseController {
 	public function index()
 	{
 		$dashboards = Dashboard::with('konsentrasi','studi','pendaftar')->get();
-
-		// dd();
-		return View::make('dashboards.index', compact('dashboards'));
+		$tahun = DB::table('tahungelombang')
+		->select('tahun')
+		->groupBy('tahun')
+		->get();
+		$semester = DB::table('tahungelombang')
+		->select('semester')
+		->groupBy('semester')
+		->get();
+		$gelombang = DB::table('tahungelombang')
+		->select('gelombang')
+		->groupBy('gelombang')
+		->get();
+		// dd($dashboards);
+		return View::make('dashboards.index', compact('dashboards','tahun','semester','gelombang'));
 	}
 
 	/**
@@ -20,6 +31,26 @@ class DashboardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function cariPendaftar()
+	{
+		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang')];
+		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
+		foreach ($get_data as $value) {
+				$data[] = $value->id_pendaftar;
+		}	
+
+		$data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+
+		return View::make('dashboards.cari', compact('data_pendaftaran'));
+		
+
+		// $response = [
+		// 	'data'=>$get_data,
+		// 	'status'=>'success'
+		// ];
+		// return Response::json($response);
+
+	}
 	public function create()
 	{
 		return View::make('dashboards.create');

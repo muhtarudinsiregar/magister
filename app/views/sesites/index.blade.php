@@ -10,7 +10,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Sesi Tes</div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data2.json" class="table table-hover table-bordered">
+						<table class="table table-hover table-bordered">
 						    <thead>
 						    <tr>
 						        <th>Sesi</th>

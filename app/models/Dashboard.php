@@ -6,7 +6,8 @@ class Dashboard extends \Eloquent {
 	public static $rules = [
 		// 'title' => 'required'
 	];
-	protected $table = 'pendaftaran';
+	protected $primaryKey = 'no';
+    protected $table = 'pendaftaran';
 	// Don't forget to fill this array
 	protected $fillable = [];
 

@@ -65,6 +65,8 @@ Route::get('mail', 'PendaftaranController@sendmail');
 Route::post('mail', 'PendaftaranController@sendmail');
 Route::get('/','BerandasController@index');
 Route::get('konfirmasi','PendaftaranController@konfirmasi');
+Route::get('cariPendaftar', 'DashboardsController@cariPendaftar');
+// Route::post('cariPendaftar', 'DashboardsController@cariPendaftar');
 Route::resource('beranda', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
 Route::resource('data-pribadi', "DataPribadisController");
