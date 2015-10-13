@@ -36,7 +36,7 @@
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="T" id="pilihJadwal" {{($jadwal->tanggalTes =='0000-00-00')?'':'checked="checked"'}}>
-						Pilih Jadwal edit
+						Pilih Jadwal
 					</label>
 				</div>
 			</div>

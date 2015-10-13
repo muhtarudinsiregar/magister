@@ -21,7 +21,6 @@ class PendaftaranController extends \BaseController {
 
 	public function index()
 	{
-		var_dump(Session::get('mail'));
 		return View::make('pendaftaran.pernyataan');
 	}
 	/**

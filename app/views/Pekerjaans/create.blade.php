@@ -87,6 +87,7 @@
 					<div class="col-sm-2">
 						<input type="text" name="thnkrj" id="input" class="form-control" value="{{Input::old('thnkrj')}}">
 					</div>
+					<label for="" class="col-sm-2 control-label">Tahun </label>
 				</div>
 			</div>
 			<hr>
@@ -99,18 +100,18 @@
 			<div id="profesi">
 				<div class="form-group">
 					<label class="col-sm-1 control-label" id="">Posisi</label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input type="text" name="posisi"  class="form-control" id="posisi">
 					</div>
 					<label class="col-sm-1 control-label">Institusi</label>
 					<div class="col-sm-3">
 						<input type="text" name="institusi" class="form-control" id="institusi">
 					</div>
-					<label class="col-sm-2 control-label">Masa Kerja</label>
+					<label class="col-sm-2 control-label" style="width:8em;">Masa Kerja</label>
 					<div class="col-sm-1">
 						<input type="text" name="masaKerja" class="form-control" id="masaKerja">
 					</div>
-					<label class="control-label"></label>
+					<label class="col-sm-1 control-label">Tahun</label>
 					<div class="col-sm-1">
 						<button type="button" class="btn btn-primary btn-md" id="tambah">
 							Tambah

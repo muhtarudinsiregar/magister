@@ -35,11 +35,20 @@ class DashboardsController extends \BaseController {
 	{
 		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang')];
 		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
-		foreach ($get_data as $value) {
-				$data[] = $value->id_pendaftar;
-		}	
 
-		$data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+		if ($get_data->isEmpty())
+		{
+			// echo "data tidak ada";
+		}else
+		{
+			foreach ($get_data as $value)
+			{
+					$data[] = $value->id_pendaftar;
+			}	
+
+			$data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+
+		}
 
 		return View::make('dashboards.cari', compact('data_pendaftaran'));
 		

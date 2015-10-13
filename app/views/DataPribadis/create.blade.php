@@ -27,13 +27,13 @@
 				<label for="tahun_akademik" class="col-sm-5 control-label i-custom"></label>
 			</div>
 
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Pin* </label>
 				<div class="col-sm-3">
 					<input type="password" name="pin" id="input" class="form-control" required="required" value="{{ Input::old('pin') }}">
 				</div>
 				<label for="tahun_akademik" class="col-sm-2 col-sm-offset-1 control-label i-custom"><i>Angka 4 digit</i></label>
-			</div>
+			</div> -->
 
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">Nama* </label>

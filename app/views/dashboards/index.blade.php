@@ -138,7 +138,11 @@ $("#filter").click(function(){
 	}).done(
 	function(data)
 	{
-		$("#output").html(data);
+		if (data==0) {
+			alert("message");
+		}else{
+			$("#output").html(data);
+		}
 	});
 });
 </script>
