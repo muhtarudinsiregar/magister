@@ -9,7 +9,10 @@
 	@endforeach
 	@else
 	<tr >
-		<td colspan="3" align="center"><h4>Data Tidak Ada</h4></td>
+		<td colspan="3" align="center"><div class="alert alert-danger">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4>Data Tidak Ada</h4>
+		</div></td>
 	</tr>
 
 	@endif

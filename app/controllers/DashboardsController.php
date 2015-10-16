@@ -22,8 +22,10 @@ class DashboardsController extends \BaseController {
 		->select('gelombang')
 		->groupBy('gelombang')
 		->get();
+		$studi = Studi::all();
+		$konsentrasi = Konsentrasi::all();
 		// dd($dashboards);
-		return View::make('dashboards.index', compact('dashboards','tahun','semester','gelombang'));
+		return View::make('dashboards.index', compact('dashboards','tahun','semester','gelombang','studi','konsentrasi'));
 	}
 
 	/**
@@ -33,7 +35,7 @@ class DashboardsController extends \BaseController {
 	 */
 	public function cariPendaftar()
 	{
-		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang')];
+		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi'),'id_konsentrasi'=>Input::get('konsentrasi')];
 		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
 
 		if ($get_data->isEmpty())

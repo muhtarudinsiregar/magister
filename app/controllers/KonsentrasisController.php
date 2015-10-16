@@ -10,9 +10,10 @@ class KonsentrasisController extends \BaseController {
 	public function index()
 	{
 		$konsentrasi = Konsentrasi::with('Studi')->orderBy('id_prodi','asc')->get();
+		$prodi = Studi::all();
 		// dd($konsentrasi->studi);
 
-		return View::make('konsentrasis.index', compact('konsentrasi'));
+		return View::make('konsentrasis.index', compact('konsentrasi','prodi'));
 	}
 
 	/**
@@ -41,7 +42,7 @@ class KonsentrasisController extends \BaseController {
 
 		Konsentrasi::create($data);
 
-		return Redirect::route('konsentrasis.index');
+		return Redirect::route('konsentrasi.index');
 	}
 
 	/**
@@ -102,7 +103,7 @@ class KonsentrasisController extends \BaseController {
 	{
 		Konsentrasi::destroy($id);
 
-		return Redirect::route('konsentrasis.index');
+		// return Redirect::route('konsentrasis.index');
 	}
 
 }

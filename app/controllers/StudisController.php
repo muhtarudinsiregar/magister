@@ -42,7 +42,7 @@ class StudisController extends \BaseController {
 		// dd($data);
 		Studi::create($data);
 
-		// return Redirect::route('studi.index');
+		return Redirect::route('studi.index');
 	}
 
 	/**
@@ -103,7 +103,6 @@ class StudisController extends \BaseController {
 	{
 		Studi::destroy($id);
 
-		return Redirect::route('studis.index');
 	}
 
 }
