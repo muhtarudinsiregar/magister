@@ -9,7 +9,7 @@ class GelombangsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$gelombang = Gelombang::all();
+		$gelombang = Gelombang::orderBy('id','desc')->get();
 
 		return View::make('gelombangs.index', compact('gelombang'));
 	}
@@ -39,8 +39,8 @@ class GelombangsController extends \BaseController {
 		}
 
 		Gelombang::create($data);
-
-		return Redirect::route('gelombangs.index');
+		Session::flash('message', 'Berhasil Menambahkan Data.');
+		return Redirect::to('tahungelombang');
 	}
 
 	/**
@@ -100,8 +100,6 @@ class GelombangsController extends \BaseController {
 	public function destroy($id)
 	{
 		Gelombang::destroy($id);
-
-		return Redirect::route('gelombangs.index');
 	}
 
 }

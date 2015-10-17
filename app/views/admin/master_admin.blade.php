@@ -58,29 +58,6 @@
 			<li><a href="{{url('konsentrasi')}}"><span class="glyphicon glyphicon-th"></span> Konsentrasi</a></li>
 			<li><a href="{{url('sesites')}}"><span class="glyphicon glyphicon-pencil"></span> Sesi Tes</a></li>
 			<li><a href="{{url('tahungelombang')}}"><span class="glyphicon glyphicon-list-alt"></span> Tahun Gelombang</a></li>
-			<li><a href="panels.html"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
-			<li class="parent ">
-				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Dropdown <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
-				</a>
-				<ul class="children collapse" id="sub-item-1">
-					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 1
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 2
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 3
-						</a>
-					</li>
-				</ul>
-			</li>
 			<li role="presentation" class="divider"></li>
 			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
 		</ul>

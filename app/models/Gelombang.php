@@ -4,10 +4,13 @@ class Gelombang extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'tahun' => 'required',
+		'semester' => 'required',
+		'gelombang' => 'required',
+		'biaya' => 'required'
 	];
 	protected $table = "tahungelombang";
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['tahun','semester','gelombang','biaya','tanggalTutup'];
 
 }

@@ -15,7 +15,7 @@ class ProgramStudisController extends \BaseController {
 		$data_program = [
 		'jurusan' => ProgramStudi::prodi(),
 		'konsentrasi' => ProgramStudi::konsentrasi(),
-		'tahungelombang'=>TahunGelombang::where('aktif','=','Y')->first(),
+		'tahungelombang'=>TahunGelombang::where('aktif','=','1')->first(),
 		];
 
 		if (is_null($id))
