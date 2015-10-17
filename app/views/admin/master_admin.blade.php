@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/styles_admin.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui-timepicker-addon.css') }}">
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
@@ -79,6 +80,7 @@
 	<script src="{{ asset('js/jquery.chained.min.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/intercooler-0.9.0.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
 	<script>
 		$('#calendar').datepicker({
 		});

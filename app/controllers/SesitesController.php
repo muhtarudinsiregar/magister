@@ -9,7 +9,7 @@ class SesitesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$sesites = Sesite::all();
+		$sesites = Sesite::orderBy('sesi','asc')->get();
 
 		return View::make('sesites.index', compact('sesites'));
 		// return View::make('sesites.index');
@@ -38,10 +38,29 @@ class SesitesController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
+		// dd(Input::all());
+		// $waktu = Input::get('waktu');
 
-		Sesite::create($data);
+		$jam_awal = Input::get('jam_awal');
+		$jam_akhir = Input::get('jam_akhir');
+		$jam = substr($jam_awal, 0,2);
 
-		return Redirect::route('sesites.index');
+		if ($jam =="08" or $jam =="09" or $jam =="10") {
+			$waktu = "Pagi";
+		}else{
+			$waktu = "Siang";
+		}
+		$time = $waktu.":".$jam_awal." - ".$jam_akhir;
+		// dd($time);
+
+		$data = new Sesite;
+		$data->sesi = $time;
+		$data->save();
+
+		Session::flash('message', 'Berhasil Menambahkan Data');
+		// Sesite::create($data);
+
+		return Redirect::to('sesites');
 	}
 
 	/**
@@ -102,7 +121,6 @@ class SesitesController extends \BaseController {
 	{
 		Sesite::destroy($id);
 
-		return Redirect::route('sesites.index');
 	}
 
 }
