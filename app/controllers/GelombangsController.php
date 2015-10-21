@@ -14,6 +14,13 @@ class GelombangsController extends \BaseController {
 		return View::make('gelombangs.index', compact('gelombang'));
 	}
 
+	public function aktif($id)
+	{
+		$data = Gelombang::where('aktif','=','1')->update(['aktif'=>'0']);
+		$aktif = Gelombang::where('id','=',$id)->update(['aktif'=>'1']);
+		Session::flash('message', 'Berhasil Memperbarui Tanggal Aktif');
+		return Redirect::to('tahungelombang');
+	}
 	/**
 	 * Show the form for creating a new gelombang
 	 *

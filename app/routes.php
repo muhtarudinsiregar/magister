@@ -67,6 +67,7 @@ Route::get('/','BerandasController@index');
 Route::get('konfirmasi','PendaftaranController@konfirmasi');
 Route::get('cariPendaftar', 'DashboardsController@cariPendaftar');
 Route::post('cariPendaftar', 'DashboardsController@cariPendaftar');
+Route::get('aktif/{id}', 'GelombangsController@aktif');
 Route::resource('beranda', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
 Route::resource('data-pribadi', "DataPribadisController");

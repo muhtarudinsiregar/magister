@@ -100,7 +100,7 @@
 						
 						<tr class="<?php 
 							if ($element->aktif=='1') {
-								echo "success";
+								echo "info";
 							}
 						 ?>">
 							<td>{{$element->tahun}}</td>
@@ -109,7 +109,7 @@
 							<td>{{$element->biaya}}</td>
 							<td>{{$element->tanggalTutup}}</td>
 							<td style="text-align:center">
-								<input type="checkbox">
+								<a href="{{url('aktif/'.$element->id)}}" class="btn btn-default" style="background-color:#8999a8">Aktif</a>
 							</td>
 							<td align="center">
 								<button class="btn btn-primary">
