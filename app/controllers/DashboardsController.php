@@ -33,7 +33,7 @@ class DashboardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function cariPendaftar()
+	public function cari()
 	{
 		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi'),'id_konsentrasi'=>Input::get('konsentrasi')];
 		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
@@ -48,9 +48,14 @@ class DashboardsController extends \BaseController {
 					$data[] = $value->id_pendaftar;
 			}	
 
-			$data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
 
 		}
+	}
+
+	public function cariPendaftar()
+	{
+		$data_pendaftaran = $this->cari();
 
 		return View::make('dashboards.cari', compact('data_pendaftaran'));
 		
@@ -62,6 +67,20 @@ class DashboardsController extends \BaseController {
 		// return Response::json($response);
 
 	}
+
+	public function exportToExcel()
+	{
+
+
+		Excel::create('Data Pendaftar', function($excel) {
+			$excel->sheet('Data Pendaftaran', function($sheet) {
+				$users = $this->cari();
+				// dd($users);
+				$sheet->loadView('dashboards.excel', ['users' => $users]);
+    		});
+		})->export('xlsx');
+	}
+
 	public function create()
 	{
 		return View::make('dashboards.create');

@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/jquery-ui-timepicker-addon.css') }}">
 
+
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
@@ -55,10 +56,10 @@
 		</form>
 		<ul class="nav menu">
 			<li><a href="{{url('dashboard')}}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-			<li><a href="{{url('studi')}}"><span class="glyphicon glyphicon-stats"></span> Program Studi</a></li>
+			<li><a href="{{url('studi')}}"><span class="fa fa-list"></span> Program Studi</a></li>
 			<li><a href="{{url('konsentrasi')}}"><span class="glyphicon glyphicon-th"></span> Konsentrasi</a></li>
 			<li><a href="{{url('sesites')}}"><span class="glyphicon glyphicon-pencil"></span> Sesi Tes</a></li>
-			<li><a href="{{url('tahungelombang')}}"><span class="glyphicon glyphicon-list-alt"></span> Tahun Gelombang</a></li>
+			<li><a href="{{url('tahungelombang')}}"><span class="fa fa-calendar"></span> Tahun Gelombang</a></li>
 			<li role="presentation" class="divider"></li>
 			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
 		</ul>
@@ -81,6 +82,7 @@
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/intercooler-0.9.0.min.js') }}"></script>
 	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
+
 	<script>
 		$('#calendar').datepicker({
 		});

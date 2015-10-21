@@ -9,6 +9,41 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
+				
+				<?php if ($errors->has()): ?>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="alert alert-danger">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<ul class="square">
+									<?php foreach ($errors->all() as $error): ?>
+										<li><?php echo $error; ?></li>
+									<?php endforeach ?>
+								</ul>
+							</div>
+						</div>	
+					</div>
+				<?php endif ?>
+				@if (Session::has('message'))
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-success" style="margin-bottom:4px;">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<strong>{{Session::get('message')}}</strong>
+						</div>
+					</div>	
+				</div>
+				@endif
+				<div class="row" id="hapusNotif">
+					<div class="col-lg-12">
+						<div class="alert alert-success" style="margin-bottom:4px;">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<strong>Berhasil Menghapus Data!</strong>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-12">
 						<form action="{{url('tahungelombang')}}" method="POST" class="" role="form">
@@ -49,41 +84,7 @@
 						</form>
 					</div>
 				</div>
-				<?php if ($errors->has()): ?>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="alert alert-danger">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<ul class="square">
-									<?php foreach ($errors->all() as $error): ?>
-										<li><?php echo $error; ?></li>
-									<?php endforeach ?>
-								</ul>
-							</div>
-						</div>	
-					</div>
-				<?php endif ?>
-				@if (Session::has('message'))
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="alert alert-success" style="margin-bottom:4px;">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							<strong>{{Session::get('message')}}</strong>
-						</div>
-					</div>	
-				</div>
-				@endif
-				<div class="row" id="hapusNotif">
-					<div class="col-lg-12">
-						<div class="alert alert-success" style="margin-bottom:4px;">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							<strong>Berhasil Menghapus Data!</strong>
-						</div>
-					</div>	
-				</div>
-			</div>
-			<div class="panel-body">
-				<table  class="table table-hover table-bordered">
+				<table id="table" class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>Tahun</th>
@@ -112,7 +113,7 @@
 								<a href="{{url('aktif/'.$element->id)}}" class="btn btn-default" style="background-color:#8999a8">Aktif</a>
 							</td>
 							<td align="center">
-								<button class="btn btn-primary">
+								<button class="btn btn-primary" id="{{$element->id}}">
 									Edit
 								</button>
 								<button class="btn btn-danger hapus" id="{{$element->id}}">
@@ -136,6 +137,7 @@
 		dateFormat: "yy-mm-dd"
 	});
 	$(document).ready(function(){
+
 		$('#hapusNotif').hide();
 		$('.hapus').click(function(){
 			var konfirmasi = confirm("Data Ingin Dihapus?");
