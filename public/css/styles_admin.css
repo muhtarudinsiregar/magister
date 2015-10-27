@@ -5,6 +5,11 @@ Version 1.0
 
 
 /*Global Styles*/
+.table th 
+{
+    text-align:center !important; 
+    /*vertical-align:middle;*/
+}
 
 .table tbody tr > td.success {
   background-color: #DFF0D8 !important;

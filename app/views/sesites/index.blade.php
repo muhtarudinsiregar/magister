@@ -8,62 +8,61 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-12">
-						<form action="{{url('sesites')}}" method="POST" class="" role="form">
-							<div class="col-lg-2" style="padding-right:5px;">
-								<div class="form-group">
-									<label>Jam</label>
-									<input type="text" id="jam_awal" class="form-control" name="jam_awal">
-								</div>
-							</div>
-							<div class="col-lg-1" style="padding-right:5px;padding-left:5px;">
-								<div class="form-group">
-									<label for=""></label>
-									<p style="margin-top:11px;margin-left:19px;">S/D</p>
-								</div>
-							</div>	
-							<div class="col-lg-2" style="padding-left:5px;">
-								<div class="form-group">
-									<label>Jam</label>
-									<input type="text" id="jam_akhir" class="form-control" name="jam_akhir">
-								</div>
-							</div>
-							<div class="col-lg-1">
-								<div class="form-group">
-									<label for="" style="color:white;">Tambah</label>
-									<button type="submit" class="btn btn-primary">Tambah</button>
-								</div>
-							</div>
-						</form>
-					</div>
+			<div class="row">
+				<div class="col-lg-12">
 				</div>
-				<?php if ($errors->has()): ?>
+			</div>
+			<?php if ($errors->has()): ?>
 				<div class="row">
 					<div class="col-lg-12">
-							<div class="alert alert-danger">
-								<ul class="square">
-									<?php foreach ($errors->all() as $error): ?>
-										<li><?php echo $error; ?></li>
-									<?php endforeach ?>
-								</ul>
-							</div>
+						<div class="alert alert-danger">
+							<ul class="square">
+								<?php foreach ($errors->all() as $error): ?>
+									<li><?php echo $error; ?></li>
+								<?php endforeach ?>
+							</ul>
+						</div>
 					</div>	
 				</div>
-				<?php endif ?>
-				@if (Session::has('message'))
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="alert alert-success" style="margin-bottom:0px;">
-							    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							    <strong>{{Session::get('message')}}</strong>
-							</div>
+			<?php endif ?>
+			@if (Session::has('message'))
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="alert alert-success" style="margin-bottom:0px;">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>{{Session::get('message')}}</strong>
+					</div>
+				</div>
+			</div>
+			@endif
+			
+			<div class="panel-body">
+				<form action="{{url('sesites')}}" method="POST" class="" role="form">
+					<div class="col-lg-2" style="padding-right:5px;">
+						<div class="form-group">
+							<label>Jam</label>
+							<input required type="text" id="jam_awal" class="form-control" name="jam_awal">
 						</div>
 					</div>
-				@endif
-			</div>
-			<div class="panel-body">
+					<div class="col-lg-1" style="padding-right:5px;padding-left:5px;">
+						<div class="form-group">
+							<label for=""></label>
+							<p style="margin-top:11px;margin-left:19px;">S/D</p>
+						</div>
+					</div>	
+					<div class="col-lg-2" style="padding-left:5px;">
+						<div class="form-group">
+							<label>Jam</label>
+							<input required type="text" id="jam_akhir" class="form-control" name="jam_akhir">
+						</div>
+					</div>
+					<div class="col-lg-1">
+						<div class="form-group">
+							<label for="" style="color:white;">Tambah</label>
+							<button type="submit" class="btn btn-primary">Tambah</button>
+						</div>
+					</div>
+				</form>
 				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>

@@ -9,10 +9,11 @@
 	<meta name="csrf-param" content="_token" />
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/styles_admin.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/jquery-ui-timepicker-addon.css') }}">
+	<link href="{{ asset('bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
 
 
 <!--[if lt IE 9]>
@@ -82,6 +83,7 @@
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/intercooler-0.9.0.min.js') }}"></script>
 	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
+	<script src="{{ asset('bootstrap3-editable/js/bootstrap-editable.js') }}"></script>
 
 	<script>
 		$('#calendar').datepicker({

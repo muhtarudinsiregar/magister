@@ -94,8 +94,8 @@ class GelombangsController extends \BaseController {
 		}
 
 		$gelombang->update($data);
-
-		return Redirect::route('gelombangs.index');
+		Session::flash('message', "Data Berhasil Diperbarui");
+		return Redirect::to('tahungelombang');
 	}
 
 	/**

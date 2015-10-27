@@ -8,8 +8,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-body">
-				
+			<div class="">
 				<?php if ($errors->has()): ?>
 					<div class="row">
 						<div class="col-lg-12">
@@ -113,9 +112,7 @@
 								<a href="{{url('aktif/'.$element->id)}}" class="btn btn-default" style="background-color:#8999a8">Aktif</a>
 							</td>
 							<td align="center">
-								<button class="btn btn-primary" id="{{$element->id}}">
-									Edit
-								</button>
+							<a href="{{url('tahungelombang/'.$element->id.'/edit')}}" class="btn btn-primary">Edit</a>
 								<button class="btn btn-danger hapus" id="{{$element->id}}">
 									Hapus
 								</button>

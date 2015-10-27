@@ -68,14 +68,12 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="panel-body">
-					<table class="table table-hover table-bordered" id="records_table">
+					<table class="table table-hover table-bordered table-responsive text-center" id="records_table">
 						<thead>
 							<tr>
-								<th>Nama</th>
-								<th>Prodi</th>
-								<th>Konsentrasi</th>
+								<th class="text-center">Nama</th>
+								<th class="text-center">Prodi</th>
+								<th class="text-center">Konsentrasi</th>
 								{{-- <th align="center">Aksi</th> --}}
 							</tr>
 						</thead>

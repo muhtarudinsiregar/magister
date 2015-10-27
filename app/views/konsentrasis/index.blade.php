@@ -8,69 +8,64 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-12">
-						<form action="{{url('konsentrasi')}}" method="POST" class="" role="form">
-							<div class="col-lg-3" style="padding-left:0px;">
-								<div class="form-group">
-									<label>Program Studi</label>
-									<select name="id_prodi" id="studi" class="form-control" required="required">
-										@foreach ($prodi as $element)
-											<option value="{{$element->id}}">{{$element->prodi}}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-2">
-								<div class="form-group">
-									<label>ID Konsentrasi</label>
-									<input name= "id" type="text" class="form-control" id="" placeholder="ID">
-								</div>
-							</div>
-							<div class="col-lg-3">
-								<div class="form-group">
-									<label>Konsentrasi</label>
-									<input name= "konsentrasi" type="text" class="form-control" id="" placeholder="Input Konsentrasi">
-								</div>
-							</div>
-							<div class="col-lg-1">
-								<div class="form-group">
-									<label for=""></label>
-									<button type="submit" class="btn btn-primary">Tambah</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<?php if ($errors->has()): ?>
-							<div class="alert alert-danger">
-								<ul class="square">
-									<?php foreach ($errors->all() as $error): ?>
-										<li><?php echo $error; ?></li>
-									<?php endforeach ?>
-								</ul>
-							</div>
-						<?php endif ?>
-					</div>	
-				</div>
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<?php if ($errors->has()): ?>
+						<div class="alert alert-danger">
+							<ul class="square">
+								<?php foreach ($errors->all() as $error): ?>
+									<li><?php echo $error; ?></li>
+								<?php endforeach ?>
+							</ul>
+						</div>
+					<?php endif ?>
+				</div>	
 			</div>
 			<div class="panel-body">
-				<table data-toggle="table" data-url="tables/data2.json" class="table table-hover table-bordered">
+				<form action="{{url('konsentrasi')}}" method="POST" class="" role="form">
+					<div class="col-lg-3" style="padding-left:0px;">
+						<div class="form-group">
+							<label>Program Studi</label>
+							<select name="id_prodi" id="studi" class="form-control" required="required">
+								@foreach ($prodi as $element)
+								<option value="{{$element->id}}">{{$element->prodi}}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="form-group">
+							<label>ID Konsentrasi</label>
+							<input name= "id" type="text" class="form-control" id="" placeholder="ID">
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="form-group">
+							<label>Konsentrasi</label>
+							<input name= "konsentrasi" type="text" class="form-control" id="" placeholder="Input Konsentrasi">
+						</div>
+					</div>
+					<div class="col-lg-1">
+						<div class="form-group">
+							<label for="" style="color:white;">Tambah</label>
+							<button type="submit" class="btn btn-primary">Tambah</button>
+						</div>
+					</div>
+				</form>
+				<table class="table table-hover table-bordered text-center">
 					<thead>
 						<tr>
-							<th style="text-align:center;">Program Studi</th>
-							<th style="text-align:center;">Konsentrasi</th>
-							<th align="center">Aksi</th>
+							<th class="text-center">Program Studi</th>
+							<th class="text-center">Konsentrasi</th>
+							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach ($konsentrasi as $element)
 						<tr>
-							<td>{{$element->studi->prodi}}</td>
-							<td>{{$element->konsentrasi}}</td>
+							<td><a href="#" data-pk="{{$element->id}}" data-type="select" data-name="prodi" data-url="{{url('konsentrasi/updateProdi')}}" data-source="{{url('getProdi')}}" class="prodi-edit">{{$element->studi->prodi}}</a></td>
+							<td><a href="#" data-pk="{{$element->id}}" data-name="konsentrasi" data-url="{{url('konsentrasi/updateKonsentrasi')}}" class="konsentrasi-edit">{{$element->konsentrasi}}</a></td>
 							<td align="center">
 								<button class="btn btn-primary">
 									Edit
@@ -92,6 +87,15 @@
 @section('script')
 <script>
 	$(document).ready(function(){
+		$.fn.editable.defaults.mode = 'inline';
+		$.fn.editable.defaults.ajaxOptions = {type: "post"};
+		$('.prodi-edit').editable({
+			type: 'select',
+		});
+		$('.konsentrasi-edit').editable({
+			type: 'text',
+			name: 'konsentrasi'
+		});
 		$('.hapus').click(function(){
 			var konfirmasi = confirm("Data Ingin Dihapus?");
 			if (konfirmasi)

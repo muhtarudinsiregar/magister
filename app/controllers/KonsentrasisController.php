@@ -11,16 +11,50 @@ class KonsentrasisController extends \BaseController {
 	{
 		$konsentrasi = Konsentrasi::with('Studi')->orderBy('id_prodi','asc')->get();
 		$prodi = Studi::all();
-		// dd($konsentrasi->studi);
 
-		return View::make('konsentrasis.index', compact('konsentrasi','prodi'));
+		return View::make('konsentrasis.index', compact('konsentrasi','prodi','group'));
 	}
+
 
 	/**
 	 * Show the form for creating a new konsentrasi
 	 *
 	 * @return Response
 	 */
+	public function getProdi()
+	{
+		$prodi = Studi::get(['prodi','id']);
+		$group = array();
+		foreach ($prodi as $value) {
+				$group[] = array(
+					'value'=>$value->id,
+					'text'=>$value->prodi
+				);
+			}
+		return $group = json_encode($group);
+		// dd($prodi);
+		// var_dump($group);
+	}
+	public function updateProdi()
+	{
+		$inputs = Input::all();
+        $studi = Konsentrasi::find($inputs['pk']);
+        $studi->id_prodi = $inputs['value'];
+        // $studi->save();
+        if ($studi->save()) {
+        	echo "sukses";
+        }
+	}
+	public function updateKonsentrasi()
+	{
+		$inputs = Input::all();
+        $studi = Konsentrasi::find($inputs['pk']);
+        $studi->konsentrasi = $inputs['value'];
+        // $studi->save();
+        if ($studi->save()) {
+        	echo "sukses";
+        }
+	}
 	public function create()
 	{
 		return View::make('konsentrasis.create');

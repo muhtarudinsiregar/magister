@@ -9,13 +9,9 @@ class TestsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$email = Session::get('mail');
-		$id = DataPribadi::where('email','=',$email)->first(['id']);
-
-		$profesi = Profesi::where('id_pendaftar','=',$id['id'])->get();
-		$edit = Pendidikan::where('id_pendaftar','=',$id['id'])->first();
-
-		return View::make('tests.create')->withEdit($edit)->withProfesi($profesi);
+		// $users = Dashboard::where('email','=','redcar.studious@gmail.com');
+		// dd($users);
+		return View::make('dashboards.excel');
 	}
 
 	/**

@@ -73,6 +73,7 @@ class DashboardsController extends \BaseController {
 
 
 		Excel::create('Data Pendaftar', function($excel) {
+			// $excel->setBorder('1px dashed #CCC');
 			$excel->sheet('Data Pendaftaran', function($sheet) {
 				$users = $this->cari();
 				// dd($users);

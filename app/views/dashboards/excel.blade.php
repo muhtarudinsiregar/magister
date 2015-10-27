@@ -8,13 +8,17 @@
 	td{
 		text-align: center;
 	}
+
+	table, th, td{
+		border:1px solid #000000;
+	}
 	</style>
 </head>
 <body>
-	<table border="10">
+	<table>
 		<tbody>
 			<tr>
-				<td rowspan="3"><h1>Data Pendaftar</h1></td>
+				<td colspan="3"><h1>Data Pendaftar</h1></td>
 			</tr>
 			<tr>
 				<td style="text-align:center">Nama</td>

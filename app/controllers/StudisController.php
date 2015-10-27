@@ -41,7 +41,7 @@ class StudisController extends \BaseController {
 
 		// dd($data);
 		Studi::create($data);
-
+		Session::flash('message', 'Berhasil Menambahkan Data Baru');
 		return Redirect::route('studi.index');
 	}
 
@@ -70,7 +70,16 @@ class StudisController extends \BaseController {
 
 		return View::make('studis.edit', compact('studi'));
 	}
-
+	public function updateProdi()
+	{
+		$inputs = Input::all();
+        $studi = Studi::find($inputs['pk']);
+        $studi->prodi = $inputs['value'];
+        // $studi->save();
+        if ($studi->save()) {
+        	echo "sukses";
+        }
+	}
 	/**
 	 * Update the specified studi in storage.
 	 *
@@ -79,18 +88,22 @@ class StudisController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$studi = Studi::findOrFail($id);
+		// $studi = Studi::find($id);
+		// $studi->prodi = Input::get('prodi');
+		// $studi->save();
+		// $studi = Studi::findOrFail($id);
+		// // dd();
+		// $validator = Validator::make($data = Input::all(), Studi::$rules);
 
-		$validator = Validator::make($data = Input::all(), Studi::$rules);
+		// if ($validator->fails())
+		// {
+		// 	return Redirect::back()->withErrors($validator)->withInput();
+		// }
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+		// $studi->update($data);
 
-		$studi->update($data);
-
-		return Redirect::route('studis.index');
+		// echo "sukses";
+		return Redirect::to('studi');
 	}
 
 	/**
