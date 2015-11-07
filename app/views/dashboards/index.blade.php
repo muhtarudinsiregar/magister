@@ -51,16 +51,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-lg-3">
-							<div class="form-group">
-								<label>Konsentrasi</label>
-								<select name="konsentrasi" id="konsentrasi" class="form-control" required="required">
-									@foreach ($konsentrasi as $element)
-									<option value="{{$element->id}}" class="{{ $element->id_prodi}}">{{$element->konsentrasi}}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
+						
 						<div class="col-lg-1">
 							<div class="form-group">
 								<label style="color:white;">Cari</label>

@@ -18,8 +18,8 @@
 	<table>
 		<tbody>
 			<tr>
-				<td colspan="2"><h5>a</h5></td>
-				<td colspan="1"><h5>2015/2016</h5></td>
+				<td>Tahun Akademik</td>
+				<td>2015/2016</td>
 			</tr>
 			<tr>
 				<td>Semester</td>
@@ -44,16 +44,18 @@
 				<td style="text-align:center">Instansi Kerja</td>
 				<td style="text-align:center">Beasiswa</td>
 			</tr>
-
+			<?php $no=1 ?>
 			@foreach ($users as $element)
 			<tr>
 				<td>{{$no}}</td>
 				<td>{{$element->pendaftar->nama}}</td>
-				<td>{{$element->pendaftar->agama}}</td>
+				<td>{{$element->pendaftar->id_agama}}</td>
 				<td>{{$element->pendaftar->kotakab}}</td>
 				<td>{{$element->studi->prodi}}</td>
 				<td>{{$element->konsentrasi->konsentrasi}}</td>
+				
 			</tr>
+			<?php $no++; ?>
 			@endforeach
 		</tbody>
 	</table>

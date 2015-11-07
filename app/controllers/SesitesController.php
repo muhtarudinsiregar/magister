@@ -84,9 +84,11 @@ class SesitesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$sesite = Sesite::find($id);
+		$sesites = Sesite::find($id);
+		// $sesites = explode(' ', $sesites);
+		// dd($sesites);
 
-		return View::make('sesites.edit', compact('sesite'));
+		return View::make('sesites.edit', compact('sesites'));
 	}
 
 	/**

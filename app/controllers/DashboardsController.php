@@ -13,14 +13,17 @@ class DashboardsController extends \BaseController {
 		$tahun = DB::table('tahungelombang')
 		->select('tahun')
 		->groupBy('tahun')
+		->orderBy('tahun','desc')
 		->get();
 		$semester = DB::table('tahungelombang')
 		->select('semester')
 		->groupBy('semester')
+		->orderBy('semester','desc')
 		->get();
 		$gelombang = DB::table('tahungelombang')
 		->select('gelombang')
 		->groupBy('gelombang')
+		->orderBy('gelombang','desc')
 		->get();
 		$studi = Studi::all();
 		$konsentrasi = Konsentrasi::all();
@@ -35,7 +38,7 @@ class DashboardsController extends \BaseController {
 	 */
 	public function cari()
 	{
-		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi'),'id_konsentrasi'=>Input::get('konsentrasi')];
+		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi')];
 		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
 
 		if ($get_data->isEmpty())
@@ -48,8 +51,10 @@ class DashboardsController extends \BaseController {
 					$data[] = $value->id_pendaftar;
 			}	
 
-			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
-
+			$a = (array) $data_pendaftaran = Dashboard::with('konsentrasi','studi')->whereIn('id_pendaftar',$data)->get();
+			$b = (array) $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan')->whereIn('id',$data)->get();
+			return $c = array_merge($a,$b);
+			var_dump($c);
 		}
 	}
 
@@ -77,7 +82,7 @@ class DashboardsController extends \BaseController {
 			$excel->sheet('Data Pendaftaran', function($sheet) {
 				$users = $this->cari();
 				// dd($users);
-				$sheet->loadView('dashboards.excel', ['users' => $users]);
+				$sheet->loadView('dashboards.excels', ['users' => $users]);
     		});
 		})->export('xlsx');
 	}

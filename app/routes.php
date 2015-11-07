@@ -91,3 +91,4 @@ Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
 Route::get('pdf', 'PendaftaranController@pdf');
 Route::get('tesView', 'PendaftaranController@TesView');
+Route::post('cariTes', 'DashboardsController@cari');

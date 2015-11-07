@@ -28,4 +28,8 @@ class Pendidikan extends \Eloquent {
 	{
 		return DB::table('akreditasi')->get(); 
 	}
+	public function dashboard()
+    {
+        return $this->hasOne('pendidikan', 'id_pendaftar');
+    }
 }
