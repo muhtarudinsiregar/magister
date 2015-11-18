@@ -54,8 +54,9 @@ class JadwalTesController extends \BaseController {
         }
         	$email = Session::get('mail');
         	$id_pendaftar = DataPribadi::get_id($email);
-
+        	dd($id_pendaftar['id']);
         	$user = JadwalTes::find_id_pendaftar($id_pendaftar['id']);
+        	// dd($user);
         	$user->id_pendaftar = $id_pendaftar['id'];
         	$user->id_pendaftarOK = 1;
     	    $user->tanggalTes = Input::get('tgglTes');

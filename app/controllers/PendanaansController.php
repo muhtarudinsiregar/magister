@@ -92,7 +92,8 @@ class PendanaansController extends \BaseController {
 
 
 		
-		return Redirect::to('kontak');
+		// return Redirect::to('kontak');
+		return Redirect::to('jadwal');
 
 	}
 
@@ -183,9 +184,11 @@ class PendanaansController extends \BaseController {
 		}
 		// return Redirect::to('kontak/'.Auth::id()."/edit");
 		if (is_null(Auth::id())) {
-			return Redirect::to('kontak');
+			// return Redirect::to('kontak');
+			return Redirect::to('jadwal');
 		}else{
-			return Redirect::to('kontak/'.Auth::id().'/edit');
+			// return Redirect::to('kontak/'.Auth::id().'/edit');
+			return Redirect::to('jadwal/'.Auth::id().'/edit');
 		}	
 	}
 

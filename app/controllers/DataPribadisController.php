@@ -70,7 +70,7 @@ class DataPribadisController extends \BaseController {
 		$mail = Input::get('email');
 		$user = new DataPribadi;
 		$user->email = $mail;
-		$user->password = Input::get('pin');
+		// $user->password = Input::get('pin');
 		$user->nama = Input::get('nm');
 		$user->tempatLahir = Input::get('tlhr');
 		$user->tanggalLahir = Input::get('tglhr');

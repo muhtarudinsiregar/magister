@@ -19,15 +19,15 @@
 		<tbody>
 			<tr>
 				<td>Tahun Akademik</td>
-				<td>2015/2016</td>
+				<td>{{$users[0]['tahun']}}</td>
 			</tr>
 			<tr>
 				<td>Semester</td>
-				<td>1</td>
+				<td>{{$users[0]['semester']}}</td>
 			</tr>
 			<tr>
 				<td>Gelombang</td>
-				<td>3</td>
+				<td>{{$users[0]['gelombang']}}</td>
 			</tr>
 			<tr>
 				<td style="text-align:center">No</td>
@@ -45,15 +45,28 @@
 				<td style="text-align:center">Beasiswa</td>
 			</tr>
 			<?php $no=1 ?>
-			@foreach ($users as $element)
+
+			@foreach ($users as $key => $element)
 			<tr>
 				<td>{{$no}}</td>
-				<td>{{$element->pendaftar->nama}}</td>
-				<td>{{$element->pendaftar->id_agama}}</td>
-				<td>{{$element->pendaftar->kotakab}}</td>
-				<td>{{$element->studi->prodi}}</td>
-				<td>{{$element->konsentrasi->konsentrasi}}</td>
-				
+				<td>{{$users[$key]['nama']}}</td>
+				<td>{{$users[$key]['agama_rel']['agama']}}</td>
+				<td>{{$users[$key]['kotakab']}}</td>
+				<td>{{$users[$key]['prodi']}}</td>
+				<td>{{$users[$key]['konsentrasi']}}</td>
+				<td>{{$users[$key]['pendidikan'][0]['IPK']}}</td>
+				<td>{{$users[$key]['pendidikan'][0]['programStudi']}}</td>
+				<td>{{$users[$key]['pendidikan'][0]['jenjang']}}</td>
+				<td>{{$users[$key]['pendidikan'][0]['akreditasi']}}</td>
+				<td>{{$users[$key]['pekerjaan'][0]['posisi']}}</td>
+				<td>
+					@if (is_null($users[$key]['pekerjaan'][0]['institusi']))
+						Tidak Bekerja
+					@else
+					 	{{$users[$key]['pekerjaan'][0]['institusi']}}
+					@endif
+				</td>
+				<td>{{$users[$key]['pendidikan'][0]['PT']}}</td>
 			</tr>
 			<?php $no++; ?>
 			@endforeach

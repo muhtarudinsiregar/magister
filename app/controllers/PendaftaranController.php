@@ -83,7 +83,7 @@ class PendaftaranController extends \BaseController {
 			Pendaftaran::riwayatpekerjaan($value);
 		}
 		
-		Pendaftaran::kontakdarurat($data->kontakdarurat);
+		// Pendaftaran::kontakdarurat($data->kontakdarurat);
 
 		foreach ($data['profesi'] as $value)
 		{

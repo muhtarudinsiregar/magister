@@ -29,10 +29,10 @@ class Pekerjaan extends \Eloquent {
 	'thnkrj'=>'Lama Bekerja',
 	];	
 
-	public function pendaftar()
-	{
-		return $this->hasOne('DataPribadi','id');
-	}
+	// public function pendaftar()
+	// {
+	// 	return $this->hasOne('DataPribadi','id');
+	// }
 	public static function riwayatPekerjaan()
 	{
 		

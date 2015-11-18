@@ -43,18 +43,27 @@ class DashboardsController extends \BaseController {
 
 		if ($get_data->isEmpty())
 		{
-			// echo "data tidak ada";
+			echo "data tidak ada";
 		}else
 		{
 			foreach ($get_data as $value)
 			{
-					$data[] = $value->id_pendaftar;
+				$data[] = $value->id_pendaftar;
 			}	
 
-			$a = (array) $data_pendaftaran = Dashboard::with('konsentrasi','studi')->whereIn('id_pendaftar',$data)->get();
-			$b = (array) $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan')->whereIn('id',$data)->get();
-			return $c = array_merge($a,$b);
-			var_dump($c);
+			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+			 // $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar')->whereIn('id',$data)->get()->toArray();
+
+			// foreach ($data_pendaftaran1 as $key => $value) {
+			// 	var_dump($data_pendaftaran1[$key]['pekerjaan']);
+			// 	# code...
+			// }
+			// var_dump($data_pendaftaran1[0]);
+			//  $a = (object) array_merge($data,(array)$data_pendaftaran);
+			// $a =array_merge($a,$data_pendaftaran1);
+			// dd($data_pendaftaran1);
+
+			
 		}
 	}
 
@@ -72,24 +81,58 @@ class DashboardsController extends \BaseController {
 		// return Response::json($response);
 
 	}
+	public function excel_data()
+	{
+		$data_pendaftaran = $this->cari();
+		$a = array();
+		foreach ($data_pendaftaran as $value) {
+			$a[] = [
+			'prodi'=>$value->studi->prodi,
+			'konsentrasi'=>$value->konsentrasi->konsentrasi,
+			'tahun'=>$value->tahun,
+			'semester'=>$value->semester,
+			'gelombang'=>$value->gelombang,
+			'id_pendaftar'=>$value->id_pendaftar
+			];
+		}
+		foreach ($a as $key=> $value)
+		{
+			$data[] = $a[$key]['id_pendaftar'];
+		}
+		// return $data;
+		$data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar')->whereIn('id',$data)->get()->toArray();
 
+		foreach ($a as $key => $value) {
+			$data_pendaftaran1[$key]['prodi']= $a[$key]['prodi'];
+			$data_pendaftaran1[$key]['konsentrasi']= $a[$key]['konsentrasi'];
+			$data_pendaftaran1[$key]['tahun']= $a[$key]['tahun'];
+			$data_pendaftaran1[$key]['semester']= $a[$key]['semester'];
+			$data_pendaftaran1[$key]['gelombang']= $a[$key]['gelombang'];
+		}
+		return $data_pendaftaran1;
+
+	}
 	public function exportToExcel()
 	{
-
-
 		Excel::create('Data Pendaftar', function($excel) {
 			// $excel->setBorder('1px dashed #CCC');
 			$excel->sheet('Data Pendaftaran', function($sheet) {
-				$users = $this->cari();
+				$users = $this->excel_data();
 				// dd($users);
 				$sheet->loadView('dashboards.excels', ['users' => $users]);
-    		});
+			});
 		})->export('xlsx');
 	}
 
 	public function create()
 	{
-		return View::make('dashboards.create');
+		$users1 = $this->cari();
+		// foreach ($data_pendaftaran as $value) {
+		// 	$id_pendaftar = $value->id_pendaftar;
+		// 	$konsentrasi = $value->studi->prodi
+		// 	$konsentrasi = $value->konsentrasi->konsentrasi
+		// }
+		// return View::make('dashboards.create');
 	}
 
 	/**

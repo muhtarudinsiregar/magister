@@ -32,10 +32,7 @@ class Dashboard extends \Eloquent {
     {
         return $this->hasMany('Pekerjaan','id_pendaftar');
     }
-    public function agama()
-    {
-        return $this->hasOne('agama','id_pendaftar');
-    }
+   
 
 
 

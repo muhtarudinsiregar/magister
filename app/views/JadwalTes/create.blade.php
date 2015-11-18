@@ -5,7 +5,7 @@
 
 		<form action=" {{ url('jadwal') }} " method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
-				<h4><strong>Langkah 7 : Jadwal Tes [Create]</strong></h4>
+				<h4><strong>Langkah 7 : Jadwal Tes</strong></h4>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-sm-7 i-custom control-label"><i>Jadwal tes bersifat tentatif. Kepastian jadwal pasti akan kami konfirmasikan melalui email/no. handphone anda. </i></label>
@@ -53,7 +53,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-9 col-sm-3">
-					<a href="{{url('kontak')}}" class="btn btn-default">Sebelumnya</a>
+					<a href="{{url('pendanaan')}}" class="btn btn-default">Sebelumnya</a>
 					<button type="submit" class="btn btn-default">Berikutnya</button>
 				</div>
 			</div>

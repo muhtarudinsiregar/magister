@@ -5,7 +5,6 @@ class DataPribadi extends \Eloquent {
 	protected $table = 'pendaftar';
 	public static $rules = [
     'email'=>'required|email|unique:pendaftar',
-    'pin'=>'required',
     'nm'=>'required|string',
     'tlhr'=>'required',
     'tglhr'=>'required',
@@ -44,11 +43,11 @@ class DataPribadi extends \Eloquent {
     public static function get_id($mail)
     {
        return DataPribadi::where('email','=',$mail)->first(['id']);
-   }
+    }
 
-   public function pekerjaan()
-   {
-    return $this->hasMany('Pekerjaan', 'id_pendaftar');
+    public function pekerjaan()
+    {
+        return $this->hasMany('Pekerjaan', 'id_pendaftar');
     }
     public function pendidikan()
     {
@@ -70,9 +69,26 @@ class DataPribadi extends \Eloquent {
     {
         return $this->hasOne('kontak', 'id_pendaftar');
     }
+     public function agama_rel()
+    {
+        return $this->belongsTo('agama','id_agama');
+    }
+    public function pendaftar()
+    {
+        return $this->hasMany('dashboard','id_pendaftar');
+    }
+
     public static function agama()
     {
       return DB::table('agama')->get();
+    }
+    // public function konsentrasi()
+    // {
+    //     return $this->belongsTo('konsentrasi', 'id_konsentrasi');
+    // }
+    public function studi()
+    {
+        return $this->belongsTo('Studi', 'id_prodi');
     }
     // public function dashboard()
     // {

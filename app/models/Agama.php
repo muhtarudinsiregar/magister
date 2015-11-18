@@ -6,5 +6,9 @@ class Agama extends \Eloquent {
 	protected $table = "Agama";
 	protected $primaryKey = "id";
 	// Don't forget to fill this array
+	// public function agama()
+	// {
+	// 	return $this->hasOne('DataPribadi','id_agama');
+	// }
 }
 ?>
