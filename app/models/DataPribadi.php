@@ -90,6 +90,10 @@ class DataPribadi extends \Eloquent {
     {
         return $this->belongsTo('Studi', 'id_prodi');
     }
+     public function beasiswa()
+    {
+        return $this->belongsTo('Beasiswa','id_beasiswa');
+    }
     // public function dashboard()
     // {
     //     return $this->hasMany('pendaftaran', 'id_pendaftar');

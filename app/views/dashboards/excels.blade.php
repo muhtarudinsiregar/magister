@@ -58,15 +58,21 @@
 				<td>{{$users[$key]['pendidikan'][0]['programStudi']}}</td>
 				<td>{{$users[$key]['pendidikan'][0]['jenjang']}}</td>
 				<td>{{$users[$key]['pendidikan'][0]['akreditasi']}}</td>
-				<td>{{$users[$key]['pekerjaan'][0]['posisi']}}</td>
 				<td>
-					@if (is_null($users[$key]['pekerjaan'][0]['institusi']))
-						Tidak Bekerja
+					@if (empty($users[$key]['pekerjaan'][0]['posisi']))
+						<?php echo " - "; ?>
+					@else
+						{{$users[$key]['pekerjaan'][0]['posisi']}}
+					@endif
+				</td>
+				<td>
+					@if (empty($users[$key]['pekerjaan'][0]['institusi']))
+						<?php echo " - "; ?>
 					@else
 					 	{{$users[$key]['pekerjaan'][0]['institusi']}}
 					@endif
 				</td>
-				<td>{{$users[$key]['pendidikan'][0]['PT']}}</td>
+				<td>{{$users[$key]['beasiswa']['beasiswa']}}</td>
 			</tr>
 			<?php $no++; ?>
 			@endforeach

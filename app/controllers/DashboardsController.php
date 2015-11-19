@@ -52,11 +52,15 @@ class DashboardsController extends \BaseController {
 			}	
 
 			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
-			 // $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar')->whereIn('id',$data)->get()->toArray();
+			// return $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar','beasiswa')->whereIn('id',$data)->get()->toArray();
 
 			// foreach ($data_pendaftaran1 as $key => $value) {
-			// 	var_dump($data_pendaftaran1[$key]['pekerjaan']);
-			// 	# code...
+			// 	if (empty($data_pendaftaran1[$key]['pekerjaan'][0]['institusi'])) {
+			// 		echo "tidak ada";
+			// 	}else{
+			// 		var_dump($data_pendaftaran1[$key]['pekerjaan']['0']['institusi']);
+
+			// 	}
 			// }
 			// var_dump($data_pendaftaran1[0]);
 			//  $a = (object) array_merge($data,(array)$data_pendaftaran);
@@ -100,7 +104,7 @@ class DashboardsController extends \BaseController {
 			$data[] = $a[$key]['id_pendaftar'];
 		}
 		// return $data;
-		$data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar')->whereIn('id',$data)->get()->toArray();
+		$data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar','beasiswa')->whereIn('id',$data)->get()->toArray();
 
 		foreach ($a as $key => $value) {
 			$data_pendaftaran1[$key]['prodi']= $a[$key]['prodi'];

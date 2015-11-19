@@ -32,6 +32,10 @@ class Dashboard extends \Eloquent {
     {
         return $this->hasMany('Pekerjaan','id_pendaftar');
     }
+    // public function beasiswa()
+    // {
+    //     return $this->hasMany('Beasiswa','id');
+    // }
    
 
 
