@@ -16,7 +16,7 @@
 			<h4><strong>Langkah 5 : Pendanaan Beasiswa</strong></h4>
 		</div>
 		<div class="form-group">
-			<label for="program" class="col-sm-2 control-label">Sumber pendanaan *</label>
+			<label for="program" class="col-sm-2 control-label">Sumber pendanaan*</label>
 			<div class="col-sm-3" id="pendanaan">
 				<label class="radio-inline" >
 					<input type="radio" value="0" name="dana" id="sendiri"{{($data_beasiswa->danaBeasiswa=='0')?'checked':''}}> Sendiri

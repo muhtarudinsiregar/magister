@@ -171,68 +171,46 @@
 	if($("#statusKerja").prop('checked',true))
     	// alert("tes");
     	$("#inputPekerjaan :input").prop('disabled',true);  // checked
-	else
-    	$("#inputPekerjaan :input").prop('disabled',false);
+    	else
+    		$("#inputPekerjaan :input").prop('disabled',false);
 
-	$(document).ready(function(){	
-		$("#tambah").click(function(){
-			var formData = {
-				posisi : $('#posisi').val(),
-				institusi : $('#institusi').val(),
-				masaKerja : $('#masaKerja').val()
-			};
-			$.ajax({
-				type:"POST",
-				url:"{{ url('RiwayatPekerjaanSaved') }}",
-				data:formData,
-				success:function(msg){
-					console.log(msg.msg);
-				}
-			})
-			.done(function(msg){
-				$("input[id=posisi],input[id=institusi],input[id=masaKerja]").val("");
-				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
-			});
-		});
-		 $('.hapus_btn').click(function(){
-            var del_id= $(this).attr('id');
-            var $ele = $(this).parent().parent();
-            $.ajax({
-                type:'DELETE',
-                url:"{{ url('pekerjaan')}}"+'/'+del_id,
-                data:del_id,
-                success: function(data){
-                    if(data=='yes'){
-                        console.log('success');
-                    }else{
-                    	console.log('success');
-                    	$ele.fadeOut().remove();
-                    }
-                }
-            })
-        })
-	});
-	remove = function(item_id) {
-			var  confirmation = confirm("Benar Data ini Akan Dihapus?");
-			if (confirmation) {
-				var del_id= $(".hapus").attr('id');
-            	var $ele = $(".hapus").parent().parent();
-            	$.ajax({
-	                type:'DELETE',
-	                url:"{{ url('pekerjaan')}}"+'/'+del_id,
-	                data:del_id,
-	                success: function(data){
-	                    if(data=='yes'){
-	                        console.log('success');
-	                        $ele.fadeOut().remove();
-	                    }else{
-	                    	console.log('success');
-	                    	$ele.fadeOut().remove();
-	                    }
-	                }
-            	})
-			};			
-            // alert(del_id);
-	}
+    	$(document).ready(function(){	
+    		$("#tambah").click(function(){
+    			var formData = {
+    				posisi : $('#posisi').val(),
+    				institusi : $('#institusi').val(),
+    				masaKerja : $('#masaKerja').val()
+    			};
+    			$.ajax({
+    				type:"POST",
+    				url:"{{ url('RiwayatPekerjaanSaved') }}",
+    				data:formData,
+    				success:function(msg){
+    					console.log(msg.msg);
+    				}
+    			})
+    			.done(function(msg){
+    				$("input[id=posisi],input[id=institusi],input[id=masaKerja]").val("");
+    				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
+    			});
+    		});
+    	});
+    	$(document).on("click",".hapus_btn", function(){
+    		var del_id= $(this).attr('id');
+    		var $ele = $(this).parent().parent();
+    		$.ajax({
+    			type:'DELETE',
+    			url:"{{ url('pekerjaan')}}"+'/'+del_id,
+    			data:del_id,
+    			success: function(data){
+    				if(data=='yes'){
+    					console.log('success');
+    				}else{
+    					console.log('success');
+    					$ele.fadeOut().remove();
+    				}
+    			}
+    		})
+    	});
 </script>
 @stop

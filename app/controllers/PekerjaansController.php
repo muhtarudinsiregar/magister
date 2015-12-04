@@ -48,7 +48,7 @@ class PekerjaansController extends \BaseController {
 			$last_id = $data->id;
 			$get_data = RiwayatPekerjaan::where('id_pendaftar','=',$id_pendaftar['id'])->orderBy('id','desc')->take(1)->first();
 
-			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['posisi']}</td><td>{$get_data['institusi']}</td><td>{$get_data['masaKerja']}</td><td align='center'><button type='button' id='{$get_data['id']}' class='btn btn-danger hapus' onClick='remove()'>Hapus</button></td></tr></tbody >";
+			$data ="<tbody><tr id='{$get_data['id']}'><td>{$get_data['posisi']}</td><td>{$get_data['institusi']}</td><td>{$get_data['masaKerja']}</td><td align='center'><button type='button' id='{$get_data['id']}' class='btn btn-danger hapus_btn'>Hapus</button></td></tr></tbody >";
 			$response = array(
 				'status' => 'success',
 				'msg' => 'Setting created successfully',
@@ -203,6 +203,19 @@ class PekerjaansController extends \BaseController {
 			$user->tahunMulai = Input::get('thnkrj');
 			$user->save();
 
+		}else{
+			$user = Pekerjaan::find($id);
+			$user->posisi = '';
+			$user->institusi = '';
+			$user->alamat = '';
+			$user->kotakab = '';
+			$user->propinsi = '';
+			$user->negara = '';
+			$user->noTelepon = '';
+			$user->noFaximile = '';
+			$user->email = '';
+			$user->tahunMulai = '';
+			$user->save();
 		}
 		
 

@@ -23,8 +23,9 @@ class ProgramStudisController extends \BaseController {
 			return View::make('programstudis.create')->with('data_program',$data_program);	
 		}else
 		{
+			// Session::put('gel', '2');
 			$edit = ProgramStudi::where('id_pendaftar','=',$id['id'])->first();
-			// dd($edit);
+			// dd(Session::all());
 			return View::make('programstudis.back_edit')->withEdit($edit)->withData($data_program);
 		}
 	}
@@ -56,7 +57,7 @@ class ProgramStudisController extends \BaseController {
 
 		// }
 		// Input::flash();
-		$data = TahunGelombang::where('aktif','=','Y')->first(['gelombang']);
+		$data = TahunGelombang::where('aktif','=','1')->first(['gelombang']);
 		$data_gel = $data['gelombang'];
 		$data_pro= Input::get('pro');
 		$data_kon = Input::get('kon');

@@ -1,6 +1,7 @@
 @extends('layout.master')
 @section('content')
 <div class="col-lg-12">
+	<h1>Back Edit</h1>
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendidikan.update', $edit->id))) }}
 		<div class="form-group">
@@ -143,7 +144,7 @@
 				url:"{{ url('profesiSaved') }}",
 				data:formData,
 				success:function(msg){
-					console.log(msg.success);
+					console.log("sukses");
 				}
 			})
 			.done(function(msg){
@@ -151,45 +152,23 @@
 				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
 			});
 		});
-		 $('.hapus_btn').click(function(){
-            var del_id= $(this).attr('id');
-            var $ele = $(this).parent().parent();
-            $.ajax({
-                type:'DELETE',
-                url:"{{ url('pendidikan')}}"+'/'+del_id,
-                data:del_id,
-                success: function(data){
-                    if(data=='yes'){
-                        console.log('success');
-                    }else{
-                    	console.log('success');
-                    	$ele.fadeOut().remove();
-                    }
-                }
-            })
-        })
 	});
-	remove = function(item_id) {
-			var  confirmation = confirm("Benar Data ini Akan Dihapus?");
-			if (confirmation) {
-				var del_id= $(".hapus").attr('id');
-            	var $ele = $(".hapus").parent().parent();
-            	$.ajax({
-	                type:'DELETE',
-	                url:"{{ url('pendidikan')}}"+'/'+del_id,
-	                data:del_id,
-	                success: function(data){
-	                    if(data=='yes'){
-	                        console.log('success');
-	                        $ele.fadeOut().remove();
-	                    }else{
-	                    	console.log('success');
-	                    	$ele.fadeOut().remove();
-	                    }
-	                }
-            	})
-			};			
-            // alert(del_id);
-	}
+	$(document).on('click','.hapus_btn',function(){
+		var del_id= $(this).attr('id');
+		var $ele = $(this).parent().parent();
+		$.ajax({
+			type:'DELETE',
+			url:"{{ url('pendidikan')}}"+'/'+del_id,
+			data:del_id,
+			success: function(data){
+				if(data=='yes'){
+					console.log('success');
+				}else{
+					console.log('success');
+					$ele.fadeOut().remove();
+				}
+			}
+		})
+	});
 </script>
 @stop

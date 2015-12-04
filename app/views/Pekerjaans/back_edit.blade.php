@@ -19,7 +19,7 @@
 			<div class="col-sm-3">
 				<div class="checkbox">
 					<label>
-						<?php $selected = (empty($edit) == true)? 'checked="checked"':'';  ?>
+						<?php $selected = ($edit->tahunMulai == 0)? 'checked="checked"':'';  ?>
 						<input type="checkbox" value="y" id="statusKerja" name="sttskrja" {{$selected}}>
 						Saat ini tidak bekerja
 					</label>
@@ -117,7 +117,7 @@
 				</div>
 				<label class="control-label"></label>
 				<div class="col-sm-1">
-					<button type="button" class="btn btn-primary btn-md" id="tambah">
+					<button type="button" class="btn btn-primary btn-md" id="tambah" onClick="window.location.reload();return false;">
 						Tambah
 					</button>
 				</div>
@@ -129,7 +129,7 @@
 					<th>Posisi</th>
 					<th>Institusi</th>
 					<th>Masa Kerja</th>
-					<th></th>
+					<th>Aksi</th>
 				</tr>
 			</thead>
 			<tbody id="output"></tbody>
@@ -137,7 +137,7 @@
 			<tr id="tr{{$element->id}}">
 				<td>{{$element->posisi}}</td>
 				<td>{{$element->institusi}}</td>
-				<td>{{$element->masaKerja}}</td>
+				<td align="center">{{$element->masaKerja}}</td>
 				<td align="center">
 					<button type="button" id="{{$element->id}}" class="btn btn-danger hapus_btn">
 						Hapus
@@ -196,45 +196,23 @@
     				$("#output").after(msg.data).hide().appendTo('#output').fadeTo(2000, 1);
     			});
     		});
-    		$('.hapus_btn').click(function(){
-    			var del_id= $(this).attr('id');
-    			var $ele = $(this).parent().parent();
-    			$.ajax({
-    				type:'DELETE',
-    				url:"{{ url('pekerjaan')}}"+'/'+del_id,
-    				data:del_id,
-    				success: function(data){
-    					if(data=='yes'){
-    						console.log('success');
-    					}else{
-    						console.log('success');
-    						$ele.fadeOut().remove();
-    					}
+    	});
+    	$(document).on("click",".hapus_btn", function(){
+    		var del_id= $(this).attr('id');
+    		var $ele = $(this).parent().parent();
+    		$.ajax({
+    			type:'DELETE',
+    			url:"{{ url('pekerjaan')}}"+'/'+del_id,
+    			data:del_id,
+    			success: function(data){
+    				if(data=='yes'){
+    					console.log('success');
+    				}else{
+    					console.log('success');
+    					$ele.fadeOut().remove();
     				}
-    			})
+    			}
     		})
     	});
-remove = function(item_id)
-{
-	var  confirmation = confirm("Benar Data ini Akan Dihapus?");
-	if (confirmation) {
-		var del_id= $(".hapus").attr('id');
-		var $ele = $(".hapus").parent().parent();
-		$.ajax({
-			type:'DELETE',
-			url:"{{ url('pekerjaan')}}"+'/'+del_id,
-			data:del_id,
-			success: function(data){
-				if(data=='yes'){
-					console.log('success');
-					$ele.fadeOut().remove();
-				}else{
-					console.log('success');
-					$ele.fadeOut().remove();
-				}
-			}
-		})
-	};			
-}
 </script>
 @stop
