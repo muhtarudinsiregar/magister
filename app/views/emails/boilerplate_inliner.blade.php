@@ -710,11 +710,10 @@ table[class="body"] .left-text-pad {
 </tr><tr class="offset-by-one" style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
 <ul type="disc"><li>Form pendaftaran (lihat lampiran) yang telah ditandatangani</li>
     <li>Bukti pembayaran biaya pendaftaran</li>
-    <li>Fotokopi ijazah S1/D4 yang telah dilegalisir</li>
-    <li>Fotokopi transkrip S1/D4 yang telah dilegalisir</li>
+    <li>2 fotokopi ijazah S1/D4 yang telah dilegalisir</li>
+    <li>2 fotokopi transkrip S1/D4 yang telah dilegalisir</li>
     <li>Surat pengalaman kerja (khusus bagi pendaftar dengan IPK kurang dari 2,75).</li>
-    <li>Rekomendasi dari pembimbing akademik/tugas akhir saat S1/D4</li>
-    <li>Rekomendasi dari pimpinan/atasan (bagi yang masih bekerja)</li>
+    <li>Rekomendasi dari pembimbing/pimpinan</li>
     <li>Pas foto berwarna 3x4 cm (2 lembar) dan 4x6 cm (2 lembar)</li>
     <li>Surat keterangan kesehatan dari dokter</li>
 </ul></td>

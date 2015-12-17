@@ -59,10 +59,10 @@
 			<li><a href="{{url('dashboard')}}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 			<li><a href="{{url('studi')}}"><span class="glyphicon glyphicon-th-list"></span> Program Studi</a></li>
 			<li><a href="{{url('konsentrasi')}}"><span class="glyphicon glyphicon-th"></span> Konsentrasi</a></li>
-			<li><a href="{{url('sesites')}}"><span class="glyphicon glyphicon-pencil"></span> Sesi Tes</a></li>
+			<li><a href="{{url('sesites')}}"><span class="glyphicon glyphicon-time"></span> Sesi Tes</a></li>
 			<li><a href="{{url('tahungelombang')}}"><span class="glyphicon glyphicon-calendar"></span> Tahun Gelombang</a></li>
+			<li><a href="{{url('validasi')}}"><span class="glyphicon glyphicon-ok"></span> Validasi</a></li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
 		</ul>
 	</div><!--/.sidebar-->
 
@@ -81,7 +81,6 @@
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.chained.min.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
-	<script src="{{ asset('js/intercooler-0.9.0.min.js') }}"></script>
 	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
 	<script src="{{ asset('bootstrap3-editable/js/bootstrap-editable.js') }}"></script>
 

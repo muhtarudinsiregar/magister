@@ -5,6 +5,11 @@ Version 1.0
 
 
 /*Global Styles*/
+.checkbox-custom{
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	text-align: center;
+}
 .table th 
 {
     text-align:center !important; 

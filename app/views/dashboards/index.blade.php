@@ -10,8 +10,8 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-lg-2">
-						<form action="{{url('exportToExcel')}}" method="POST">
+						<div class="col-lg-2">
+							<form action="{{url('exportToExcel')}}" method="POST">
 							<div class="form-group">
 								<label>Tahun</label>
 								<select  name="tahun" id="tahun" class="form-control" required="required">
@@ -71,7 +71,23 @@
 						<tbody id="output">
 						</tbody>
 					</table>
-					<button id="export" class="btn btn-success" type="submit"><span class="fa fa-download"></span> Export Ke Excel</button>
+					<div id="export">
+						<div class="radio">
+							<label>
+								<input class="chb" type="radio" name="data_valid" value="valid_data" checked="checked">
+								Data Valid Saja
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input class="chb" type="radio" name="semua_data" id="input" value="semua_data">
+								Semua Data
+							</label>
+						</div>
+						<button class="btn btn-primary" type="submit">
+							<span class="fa fa-download"></span> Export Ke Excel
+						</button>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -99,6 +115,14 @@
 	// 		})
 	// 	});
 	// });
+$(".chb").each(function()
+{
+	$(this).change(function()
+	{
+		$(".chb").prop('checked',false);
+		$(this).prop('checked',true);
+	});
+});
 $("#export").hide();
 $("#filter").click(function(){
 	var cari = '<?php echo URL::to("cariPendaftar"); ?>';

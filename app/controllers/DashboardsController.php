@@ -36,6 +36,10 @@ class DashboardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function validasi_submit()
+	{
+		
+	}
 	public function cari()
 	{
 		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi')];
@@ -50,8 +54,11 @@ class DashboardsController extends \BaseController {
 			{
 				$data[] = $value->id_pendaftar;
 			}	
-
-			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+			 return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
+			// foreach ($data_pendaftaran as $value) {
+			// 	dd($value->pendidikan);
+			// }
+			
 			// return $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar','beasiswa')->whereIn('id',$data)->get()->toArray();
 
 			// foreach ($data_pendaftaran1 as $key => $value) {

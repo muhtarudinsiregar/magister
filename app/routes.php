@@ -51,6 +51,10 @@ View::composer(array('dashboards.edit','dashboards.create','dashboards.index'), 
 {
     $view->with('title', 'Dashboard');
 });
+View::composer(array('validasis.edit','validasis.create','validasis.index','validasis.show'), function($view)
+{
+    $view->with('title', 'Validasi Pendaftar');
+});
 
 
 
@@ -87,6 +91,7 @@ Route::resource('sesites', "SesitesController");
 Route::resource('konsentrasi', "KonsentrasisController");
 Route::resource('studi', "StudisController");
 Route::resource('dashboard', "DashboardsController");
+Route::resource('validasis', "ValidasisController");
 Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
 Route::get('pdf', 'PendaftaranController@pdf');

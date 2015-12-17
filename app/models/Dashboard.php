@@ -23,15 +23,16 @@ class Dashboard extends \Eloquent {
     {
         return $this->belongsTo('Konsentrasi','id_konsentrasi');
     }
-   
-    public function pendidikan()
-    {
-        return $this->hasMany('Pendidikan','id_pendaftar');
-    }
-    public function pekerjaan()
-    {
-        return $this->hasMany('Pekerjaan','id_pendaftar');
-    }
+    
+
+    // public function pendidikan()
+    // {
+    //     return $this->hasOne('Pendidikan','id_pendaftar');
+    // }
+    // public function pekerjaan()
+    // {
+    //     return $this->hasMany('Pekerjaan','id_pendaftar');
+    // }
     // public function beasiswa()
     // {
     //     return $this->hasMany('Beasiswa','id');
