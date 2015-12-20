@@ -7,6 +7,35 @@ class ValidasisController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function validasi($id)
+	{
+		$data = new Validasi;
+		$data->no_pendaftaran = $id;
+		$data->l1 = Input::get('form_pendaftaran');
+		$data->l2 = Input::get('bukti'); 
+		$data->l3 = Input::get('ijazah'); 
+		$data->l4 = Input::get('transkrip'); 
+		$data->l5 = Input::get('rekomendasi'); 
+		$data->l6 = Input::get('foto3'); 
+		$data->l7 = Input::get('foto4'); 
+		$data->l8 = Input::get('surat_kesehatan'); 
+		$data->d1 = Input::get('program_studi'); 
+		$data->d2 = Input::get('akreditasi'); 
+		$data->d3 = Input::get('ipk'); 
+		$data->d4 = Input::get('jenjang'); 
+		$data->save();
+		
+		$pendaftaran = Pendaftaran::find($id);
+		if (Input::get('form_pendaftaran') && Input::get('bukti')  && Input::get('ijazah') && Input::get('transkrip') && Input::get('rekomendasi') && Input::get('foto3') && Input::get('foto4') && Input::get('surat_kesehatan') && Input::get('program_studi') && Input::get('akreditasi') && Input::get('ipk') && Input::get('jenjang') == 1) {
+			$pendaftaran->validasi = 1;
+		}else{
+			$pendaftaran = Pendaftaran::find($id);
+			$pendaftaran->validasi = 0;
+		}
+		$pendaftaran->save();
+		return Redirect::back();
+	}
 	public function index()
 	{
 		// $validasis = Validasi::all();
@@ -31,16 +60,11 @@ class ValidasisController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Validasi::$rules);
+		
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+		
 
-		Validasi::create($data);
-
-		return Redirect::route('validasis.index');
+		// return Redirect::to('validasis.index');
 	}
 
 	/**
@@ -77,18 +101,9 @@ class ValidasisController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$validasi = Validasi::findOrFail($id);
+		
 
-		$validator = Validator::make($data = Input::all(), Validasi::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		$validasi->update($data);
-
-		return Redirect::route('validasis.index');
+		// return Redirect::route('validasis.index');
 	}
 
 	/**

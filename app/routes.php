@@ -77,6 +77,7 @@ Route::post('updateProdi', 'StudisController@updateProdi');
 Route::post('konsentrasi/updateKonsentrasi', 'KonsentrasisController@updateKonsentrasi');
 Route::post('konsentrasi/updateProdi', 'KonsentrasisController@updateProdi');
 Route::get('getProdi', 'KonsentrasisController@getProdi');
+Route::post('validasi/{id}', 'ValidasisController@validasi');
 Route::resource('beranda', 'BerandasController');
 Route::resource('pendaftaran', "PendaftaranController");
 Route::resource('data-pribadi', "DataPribadisController");
