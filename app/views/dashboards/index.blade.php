@@ -63,9 +63,11 @@
 						<thead>
 							<tr>
 								<th class="text-center">Nama</th>
-								<th class="text-center">Prodi</th>
+								<th class="text-center">Tanggal</th>
+								<th class="text-center">Pukul</th>
+								<th class="text-center">Program</th>
 								<th class="text-center">Konsentrasi</th>
-								{{-- <th align="center">Aksi</th> --}}
+								<th align="center">Valid</th>
 							</tr>
 						</thead>
 						<tbody id="output">

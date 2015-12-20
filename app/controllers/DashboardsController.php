@@ -42,6 +42,7 @@ class DashboardsController extends \BaseController {
 	}
 	public function cari()
 	{
+		// fungsi untuk mencari data pendaftar yang dipanggil dari ajax.
 		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi')];
 		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
 
@@ -54,32 +55,16 @@ class DashboardsController extends \BaseController {
 			{
 				$data[] = $value->id_pendaftar;
 			}	
-			 return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->get();
-			// foreach ($data_pendaftaran as $value) {
-			// 	dd($value->pendidikan);
-			// }
-			
-			// return $data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar','beasiswa')->whereIn('id',$data)->get()->toArray();
-
-			// foreach ($data_pendaftaran1 as $key => $value) {
-			// 	if (empty($data_pendaftaran1[$key]['pekerjaan'][0]['institusi'])) {
-			// 		echo "tidak ada";
-			// 	}else{
-			// 		var_dump($data_pendaftaran1[$key]['pekerjaan']['0']['institusi']);
-
-			// 	}
-			// }
-			// var_dump($data_pendaftaran1[0]);
-			//  $a = (object) array_merge($data,(array)$data_pendaftaran);
-			// $a =array_merge($a,$data_pendaftaran1);
-			// dd($data_pendaftaran1);
-
-			
+			 // return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->orderBy('no','asc')->get();
+			 return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')
+			 							->join('pendaftar','pendaftaran.id_pendaftar','=','pendaftar.id')
+			 							->whereIn('id_pendaftar',$data)->orderBy('waktu','asc')->get();
 		}
 	}
 
 	public function cariPendaftar()
 	{
+		// menampilkan view hasil dari fungsi cari 
 		$data_pendaftaran = $this->cari();
 
 		return View::make('dashboards.cari', compact('data_pendaftaran'));
@@ -94,6 +79,7 @@ class DashboardsController extends \BaseController {
 	}
 	public function excel_data()
 	{
+		// olah data setelah melakukan filter di pencarian
 		$data_pendaftaran = $this->cari();
 		$a = array();
 		foreach ($data_pendaftaran as $value) {
@@ -125,6 +111,7 @@ class DashboardsController extends \BaseController {
 	}
 	public function exportToExcel()
 	{
+		// export data ke excel
 		Excel::create('Data Pendaftar', function($excel) {
 			// $excel->setBorder('1px dashed #CCC');
 			$excel->sheet('Data Pendaftaran', function($sheet) {
