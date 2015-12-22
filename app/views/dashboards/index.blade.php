@@ -152,5 +152,8 @@ $("#filter").click(function(){
 	});
 });
 $("#konsentrasi").chained("#studi");
+$("#close").click(function(){
+	$("#output").removeClass();
+})
 </script>
 @stop

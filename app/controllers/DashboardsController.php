@@ -36,10 +36,7 @@ class DashboardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function validasi_submit()
-	{
-		
-	}
+
 	public function cari()
 	{
 		// fungsi untuk mencari data pendaftar yang dipanggil dari ajax.
@@ -56,9 +53,9 @@ class DashboardsController extends \BaseController {
 				$data[] = $value->id_pendaftar;
 			}	
 			 // return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->orderBy('no','asc')->get();
-			 return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')
-			 							->join('pendaftar','pendaftaran.id_pendaftar','=','pendaftar.id')
-			 							->whereIn('id_pendaftar',$data)->orderBy('waktu','asc')->get();
+			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')
+			->join('pendaftar','pendaftaran.id_pendaftar','=','pendaftar.id')
+			->whereIn('id_pendaftar',$data)->orderBy('waktu','asc')->get();
 		}
 	}
 
@@ -80,7 +77,12 @@ class DashboardsController extends \BaseController {
 	public function excel_data()
 	{
 		// olah data setelah melakukan filter di pencarian
-		$data_pendaftaran = $this->cari();
+		if (Input::get('data_valid') == 1) {
+			
+			$data_pendaftaran = $this->valid_data_export_excel();
+		}else{
+			$data_pendaftaran = $this->cari();
+		}
 		$a = array();
 		foreach ($data_pendaftaran as $value) {
 			$a[] = [
@@ -109,8 +111,28 @@ class DashboardsController extends \BaseController {
 		return $data_pendaftaran1;
 
 	}
+	public function valid_data_export_excel()
+	{
+		$query = ['tahun'=>Input::get('tahun'),'semester'=>Input::get('semester'),'gelombang'=>Input::get('gelombang'),'id_prodi'=>Input::get('studi'),'validasi'=>Input::get('data_valid')];
+		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
+		if ($get_data->isEmpty())
+		{
+			echo "data tidak ada";
+		}else
+		{
+			foreach ($get_data as $value)
+			{
+				$data[] = $value->id_pendaftar;
+			}	
+			 // return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->orderBy('no','asc')->get();
+			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')
+			->join('pendaftar','pendaftaran.id_pendaftar','=','pendaftar.id')
+			->whereIn('id_pendaftar',$data)->orderBy('waktu','asc')->get();
+		}
+	}
 	public function exportToExcel()
 	{
+
 		// export data ke excel
 		Excel::create('Data Pendaftar', function($excel) {
 			// $excel->setBorder('1px dashed #CCC');

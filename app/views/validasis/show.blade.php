@@ -18,13 +18,13 @@
 							<tbody>
 								<tr>
 									<td>Nama</td>
-									<td>{{ $validasi->pendaftar->nama}}</td>
+									<td>{{ $data_user->pendaftar->nama}}</td>
 								</tr>
 								<tr>
 									<td>Tanggal</td>
 									<td>
 										<?php 
-										$tanggal = $validasi->waktu;
+										$tanggal = $data_user->waktu;
 										$tanggal = explode(" ", $tanggal);
 										echo $tanggal[0];
 										?>
@@ -34,7 +34,7 @@
 									<td>Pukul</td>
 									<td>
 										<?php 
-										$tanggal = $validasi->waktu;
+										$tanggal = $data_user->waktu;
 										$tanggal = explode(" ", $tanggal);
 										echo $tanggal[1];
 										?>
@@ -43,17 +43,21 @@
 								<tr>
 									<td>Program</td>
 									<td>
-										{{ $validasi->studi->prodi }}
+										{{ $data_user->studi->prodi }}
 									</td>
 								</tr>
 								<tr>
 									<td>Konsentrasi</td>
-									<td>{{ $validasi->konsentrasi->konsentrasi }}</td>
+									<td>{{ $data_user->konsentrasi->konsentrasi }}</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<form action="{{ url('validasi/'.$validasi->no) }}" method="POST" class="form-horizontal" role="form">
+					@if (empty($validasi))
+						<form action="{{ url('validasi/'.$data_user->no) }}" method="POST" class="form-horizontal" role="form">
+					@else
+						<form action="{{ url('validasi/'.$data_user->no.'/edit') }}" method="POST" class="form-horizontal" role="form">
+					@endif
 						<div class="col-lg-12 pull-left">
 							<h4><b>Lampiran</b></h4>
 						</div>
@@ -80,7 +84,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="form_pendaftaran">
-													<input type="checkbox" value="1" name="form_pendaftaran" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="form_pendaftaran" >
 												</label>
 											</div>
 										</td>
@@ -97,7 +101,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="bukti">
-													<input type="checkbox" value="1" name="bukti" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="bukti" >
 												</label>
 											</div>
 										</td>
@@ -114,7 +118,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="ijazah">
-													<input type="checkbox" value="1" name="ijazah" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="ijazah" >
 												</label>
 											</div>
 										</td>
@@ -133,7 +137,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="transkrip">
-													<input type="checkbox" value="1" name="transkrip" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="transkrip" >
 												</label>
 											</div>
 										</td>
@@ -151,7 +155,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="rekomendasi">
-													<input type="checkbox" value="1" name="rekomendasi" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="rekomendasi" >
 												</label>
 											</div>
 										</td>
@@ -168,7 +172,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="foto3">
-													<input type="checkbox" value="1" name="foto3" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="foto3" >
 												</label>
 											</div>
 										</td>
@@ -185,7 +189,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="foto4">
-													<input type="checkbox" value="1" name="foto4" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="foto4" >
 												</label>
 											</div>
 										</td>
@@ -202,7 +206,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="surat_kesehatan">
-													<input type="checkbox" value="1" name="surat_kesehatan" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="surat_kesehatan" >
 												</label>
 											</div>
 										</td>
@@ -233,7 +237,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="program_studi">
-													<input type="checkbox" value="1" name="program_studi" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="program_studi" >
 												</label>
 											</div>
 										</td>
@@ -246,7 +250,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="akreditasi">
-													<input type="checkbox" value="1" name="akreditasi" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="akreditasi" >
 												</label>
 											</div>
 										</td>
@@ -259,7 +263,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="ipk">
-													<input type="checkbox" value="1" name="ipk" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="ipk" >
 												</label>
 											</div>
 										</td>
@@ -272,7 +276,7 @@
 											<div class="checkbox checkbox-custom">
 												<label>
 													<input type="hidden" value="0" name="jenjang">
-													<input type="checkbox" value="1" name="jenjang" {{($validasi->validasi =='1')?'checked="checked"':''}}>
+													<input type="checkbox" value="1" name="jenjang" >
 												</label>
 											</div>
 										</td>

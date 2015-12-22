@@ -1,6 +1,6 @@
 @if (!empty($data_pendaftaran))
 @foreach ($data_pendaftaran as $element)
-<tr id='tr-{{$element->no}}'>
+<tr id='tr-{{$element->no}}' class="{{($element->validasi =='1')?'success':''}}">
 	<td>
 		<a class="" target="_blank" href="{{ url('validasis/'.$element->no) }}">{{$element->pendaftar->nama}}</a>
 	</td>
@@ -31,9 +31,9 @@
 </tr>
 @endforeach
 @else
-<tr >
-	<td colspan="3" align="center"><div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<tr>
+	<td colspan="6" align="center"><div class="alert alert-danger">
+		<button type="button" class="close" id="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<h4>Data Tidak Ada</h4>
 	</div></td>
 </tr>
