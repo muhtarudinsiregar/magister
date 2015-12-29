@@ -1,7 +1,6 @@
 @extends('layout.master')
 @section('content')
 <div class="col-lg-12">
-	<h1>Back Edit</h1>
 	<div class="col-lg-10 col-lg-offset-1">
 		{{ Form::model($edit, array('method'=>'PUT','class'=>'form-horizontal','route' => array('pendidikan.update', $edit->id))) }}
 		<div class="form-group">
@@ -105,7 +104,7 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody id="output" ic-confirm="Benar data ingin dihapus?" ic-target="closest tbody"></tbody>
+			<tbody id="output"></tbody>
 			@foreach ($profesi as $element)
 			<tr id="tr-{{$element->id}}">
 				<td>{{$element->asosiasi}}</td>

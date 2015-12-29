@@ -45,6 +45,7 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function store()
 	{
+		// fungsi simpan untuk data-pribadi
 		$niceNames = [
 		'nm'=>'Nama',
 		'tlhr'=>'Tempat Lahir',
@@ -91,8 +92,8 @@ class DataPribadisController extends \BaseController {
 		$data = DataPribadi::get_id($mail);
 		Session::put('mail', $mail);
 
-		$tahun = TahunGelombang::where('tahun','=','2015/2016')->first();//ambil tahun
-
+		$tahun = TahunGelombang::where('aktif','=','1')->first();//ambil tahun
+		// dd($tahun);
 		$email = Session::get('mail');
 		$id_pendaftar = DataPribadi::get_id($email);
 
@@ -141,6 +142,7 @@ class DataPribadisController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		// fungsi update untuk view back-edit data-pribadi
 		$niceNames = [
 		'nm'=>'Nama',
 		'tlhr'=>'Tempat Lahir',

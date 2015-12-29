@@ -76,13 +76,13 @@
 					<div id="export">
 						<div class="radio">
 							<label>
-								<input class="chb" type="radio" name="data_valid" value="valid_data" checked="checked">
+								<input class="chb" type="radio" name="data_valid" value="1" checked="checked">
 								Data Valid Saja
 							</label>
 						</div>
 						<div class="radio">
 							<label>
-								<input class="chb" type="radio" name="semua_data" id="input" value="semua_data">
+								<input class="chb" type="radio" name="semua_data" id="input" value="0">
 								Semua Data
 							</label>
 						</div>

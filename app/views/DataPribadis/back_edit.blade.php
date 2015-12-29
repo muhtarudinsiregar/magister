@@ -84,7 +84,7 @@
 			<div class="form-group">
 				<label for="tahun_akademik" class="col-sm-2 control-label">No. handphone* </label>
 				<div class="col-sm-4">
-					<input type="text" name="no_hp" id="input" class="form-control"required="required" value="{{ $edit->noTelepon }}">
+					<input type="text" name="no_hp" id="input" class="form-control"required="required" value="{{ $edit->noHP }}">
 				</div>
 			</div>
 

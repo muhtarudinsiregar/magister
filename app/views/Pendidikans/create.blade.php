@@ -126,13 +126,13 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody id="output" ic-confirm="Benar data ingin dihapus?" ic-target="closest tr"></tbody>
+						<tbody id="output"></tbody>
 						@foreach ($profesi as $element)
 						<tr id="tr{{$element->id}}">
 							<td>{{$element->id}}</td>
 							<td>{{$element->noAnggota}}</td>
 							<td align="center">
-								<button class="btn btn-danger" ic-delete-from="{{url('pendidikan'/$element->id)}}">
+								<button type="button" id="{{$element->id}}" class="btn btn-danger hapus_btn">
 									Hapus
 									<i class="ic-indicator fa fa-spinner fa-spin" style="display: none"></i>
 								</button>

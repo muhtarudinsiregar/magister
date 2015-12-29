@@ -53,9 +53,18 @@ class DashboardsController extends \BaseController {
 				$data[] = $value->id_pendaftar;
 			}	
 			 // return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')->whereIn('id_pendaftar',$data)->orderBy('no','asc')->get();
+			
 			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')
 			->join('pendaftar','pendaftaran.id_pendaftar','=','pendaftar.id')
-			->whereIn('id_pendaftar',$data)->orderBy('waktu','asc')->get();
+			->whereIn('id_pendaftar',$data)->orderBy('pendaftar.nama','asc')->orderBy('waktu','asc')->get();
+			// return $data_pendaftaran = DB::table('pendaftaran')
+   //          ->join('pendaftar', 'pendaftaran.id_pendaftar', '=', 'pendaftar.id')
+   //          ->join('konsentrasi', 'pendaftaran.id_konsentrasi', '=', 'konsentrasi.id')
+   //          ->join('programstudi', 'pendaftaran.id_prodi', '=', 'programstudi.id')
+   //          ->select('*')
+   //          ->orderBy('pendaftar.nama','asc')
+   //          ->orderBy('pendaftaran.waktu','asc')
+   //          ->get();
 		}
 	}
 
@@ -77,36 +86,40 @@ class DashboardsController extends \BaseController {
 	public function excel_data()
 	{
 		// olah data setelah melakukan filter di pencarian
-		if (Input::get('data_valid') == 1) {
+		if (Input::get('data_valid') == '1') {
 			
 			$data_pendaftaran = $this->valid_data_export_excel();
 		}else{
 			$data_pendaftaran = $this->cari();
 		}
 		$a = array();
-		foreach ($data_pendaftaran as $value) {
-			$a[] = [
-			'prodi'=>$value->studi->prodi,
-			'konsentrasi'=>$value->konsentrasi->konsentrasi,
-			'tahun'=>$value->tahun,
-			'semester'=>$value->semester,
-			'gelombang'=>$value->gelombang,
-			'id_pendaftar'=>$value->id_pendaftar
-			];
-		}
-		foreach ($a as $key=> $value)
-		{
-			$data[] = $a[$key]['id_pendaftar'];
-		}
+		if (empty($data_pendaftaran)) {
+			return false;
+		}else{
+			foreach ($data_pendaftaran as $value) {
+				$a[] = [
+				'prodi'=>$value->studi->prodi,
+				'konsentrasi'=>$value->konsentrasi->konsentrasi,
+				'tahun'=>$value->tahun,
+				'semester'=>$value->semester,
+				'gelombang'=>$value->gelombang,
+				'id_pendaftar'=>$value->id_pendaftar
+				];
+			}
+			foreach ($a as $key=> $value)
+			{
+				$data[] = $a[$key]['id_pendaftar'];
+			}
 		// return $data;
-		$data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar','beasiswa')->whereIn('id',$data)->get()->toArray();
+			$data_pendaftaran1 = DataPribadi::with('pekerjaan','pendidikan','agama_rel','pendaftar','beasiswa')->whereIn('id',$data)->get()->toArray();
 
-		foreach ($a as $key => $value) {
-			$data_pendaftaran1[$key]['prodi']= $a[$key]['prodi'];
-			$data_pendaftaran1[$key]['konsentrasi']= $a[$key]['konsentrasi'];
-			$data_pendaftaran1[$key]['tahun']= $a[$key]['tahun'];
-			$data_pendaftaran1[$key]['semester']= $a[$key]['semester'];
-			$data_pendaftaran1[$key]['gelombang']= $a[$key]['gelombang'];
+			foreach ($a as $key => $value) {
+				$data_pendaftaran1[$key]['prodi']= $a[$key]['prodi'];
+				$data_pendaftaran1[$key]['konsentrasi']= $a[$key]['konsentrasi'];
+				$data_pendaftaran1[$key]['tahun']= $a[$key]['tahun'];
+				$data_pendaftaran1[$key]['semester']= $a[$key]['semester'];
+				$data_pendaftaran1[$key]['gelombang']= $a[$key]['gelombang'];
+			}
 		}
 		return $data_pendaftaran1;
 
@@ -117,7 +130,7 @@ class DashboardsController extends \BaseController {
 		$get_data = Dashboard::where($query)->get(['no','id_pendaftar']);
 		if ($get_data->isEmpty())
 		{
-			echo "data tidak ada";
+			// echo "data tidak ada";
 		}else
 		{
 			foreach ($get_data as $value)
@@ -134,14 +147,20 @@ class DashboardsController extends \BaseController {
 	{
 
 		// export data ke excel
-		Excel::create('Data Pendaftar', function($excel) {
+		
+
+		if (empty($this->excel_data())) {
+			echo "Tidak Ada Data Pendaftaran Yang Valid";
+		}else{
+			Excel::create('Data Pendaftar', function($excel) {
 			// $excel->setBorder('1px dashed #CCC');
-			$excel->sheet('Data Pendaftaran', function($sheet) {
-				$users = $this->excel_data();
+				$excel->sheet('Data Pendaftaran', function($sheet) {
+					$users = $this->excel_data();
 				// dd($users);
-				$sheet->loadView('dashboards.excels', ['users' => $users]);
-			});
-		})->export('xlsx');
+					$sheet->loadView('dashboards.excels', ['users' => $users]);
+				});
+			})->export('xlsx');
+		}
 	}
 
 	public function create()

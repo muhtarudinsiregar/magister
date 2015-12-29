@@ -152,7 +152,7 @@ class PendaftaranController extends \BaseController {
 		'alamatYk'=>$data_pribadi['alamatYk'],
 		'kotakabYK'=>$data_pribadi['kotakabYK'],
 		'alamat'=>$data_pribadi['alamat'],
-		'noTelepon'=>$data_pribadi['noTelepon'],
+		'noTelepon'=>$data_pribadi['noHP'],
 		'kotakab'=>$data_pribadi['kotakab'],
 		'negara'=>$data_pribadi['negara'],
 		'propinsi'=>$data_pribadi['propinsi'],

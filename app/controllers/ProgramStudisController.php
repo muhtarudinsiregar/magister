@@ -10,6 +10,7 @@ class ProgramStudisController extends \BaseController {
 	 */
 	public function index()
 	{
+		// var_dump('asasas');
 		$email = Session::get('mail');
 		$id = DataPribadi::where('email','=',$email)->first(['id']);
 		$data_program = [
@@ -126,7 +127,7 @@ class ProgramStudisController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$tahun = TahunGelombang::where('aktif','=','y')->first();
+		$tahun = TahunGelombang::where('aktif','=','1')->first();
 		$update = ProgramStudi::findOrFail($id);
 		$update->tahun = $tahun['tahun'];
 		$update->semester = $tahun['semester'];

@@ -1,6 +1,6 @@
 @if (!empty($data_pendaftaran))
 @foreach ($data_pendaftaran as $element)
-<tr id='tr-{{$element->no}}' class="{{($element->validasi =='1')?'success':''}}">
+<tr id='tr-{{$element->no}}' class="">
 	<td>
 		<a class="" target="_blank" href="{{ url('validasis/'.$element->no) }}">{{$element->pendaftar->nama}}</a>
 	</td>
