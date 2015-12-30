@@ -56,15 +56,21 @@ class DashboardsController extends \BaseController {
 			
 			return $data_pendaftaran = Dashboard::with('konsentrasi','studi','pendaftar')
 			->join('pendaftar','pendaftaran.id_pendaftar','=','pendaftar.id')
-			->whereIn('id_pendaftar',$data)->orderBy('pendaftar.nama','asc')->orderBy('waktu','asc')->get();
+			->whereIn('id_pendaftar',$data)->orderBy('waktu','desc')->get();
+			
+			//
+
+			// db raw
+			// return $data_pendaftaran = DB::select('SELECT * FROM Pendaftaran inner JOIN Pendaftar ON PENDAFTAR.ID = PENDAFTARAN.id_pendaftar order by pendaftar.nama ASC , pendaftaran.waktu DESC');
+
 			// return $data_pendaftaran = DB::table('pendaftaran')
-   //          ->join('pendaftar', 'pendaftaran.id_pendaftar', '=', 'pendaftar.id')
-   //          ->join('konsentrasi', 'pendaftaran.id_konsentrasi', '=', 'konsentrasi.id')
-   //          ->join('programstudi', 'pendaftaran.id_prodi', '=', 'programstudi.id')
-   //          ->select('*')
-   //          ->orderBy('pendaftar.nama','asc')
-   //          ->orderBy('pendaftaran.waktu','asc')
-   //          ->get();
+   			//->join('pendaftar', 'pendaftaran.id_pendaftar', '=', 'pendaftar.id')
+   			//->join('konsentrasi', 'pendaftaran.id_konsentrasi', '=', 'konsentrasi.id')
+   			//->join('programstudi', 'pendaftaran.id_prodi', '=', 'programstudi.id')
+   			//->select('*')
+   			//->orderBy('pendaftar.nama','asc')
+   			//->orderBy('waktu','desc')
+   			//->get();
 		}
 	}
 

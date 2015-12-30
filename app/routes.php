@@ -62,6 +62,11 @@ View::composer(array('validasis.edit','validasis.create','validasis.index','vali
 // {
 //     var_dump($query);
 // });
+
+// route login dan logout
+Route::get('login', 'UsersController@login');
+Route::post('login', 'UsersController@login');
+
 Route::get('load', 'PendidikansController@loadProfesiAjax');
 Route::post('profesiSaved', 'PendidikansController@profesiSaved');
 Route::post('RiwayatPekerjaanSaved', 'PekerjaansController@RiwayatPekerjaanSaved');
@@ -89,11 +94,16 @@ Route::resource('pendanaan', "PendanaansController");
 Route::resource('kontak', "KontaksController");
 Route::resource('jadwal', "JadwalTesController");
 Route::resource('tahungelombang', "GelombangsController");
-Route::resource('sesites', "SesitesController");
-Route::resource('konsentrasi', "KonsentrasisController");
-Route::resource('studi', "StudisController");
-Route::resource('dashboard', "DashboardsController");
-Route::resource('validasis', "ValidasisController");
+
+// route admin
+Route::group(['before'=>'auth'],function(){
+    Route::resource('konsentrasi', "KonsentrasisController");
+    Route::resource('sesites', "SesitesController");
+    Route::resource('studi', "StudisController");
+    Route::get('logout', 'UsersController@logout');
+    Route::resource('dashboard', "DashboardsController");
+    Route::resource('validasis', "ValidasisController");
+});
 Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
 Route::get('pdf', 'PendaftaranController@pdf');
