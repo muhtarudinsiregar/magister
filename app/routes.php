@@ -55,7 +55,10 @@ View::composer(array('validasis.edit','validasis.create','validasis.index','vali
 {
     $view->with('title', 'Validasi Pendaftar');
 });
-
+View::composer(array('users.edit','users.create','users.index','users.show'), function($view)
+{
+    $view->with('title', 'Users');
+});
 
 
 // Event::listen('illuminate.query', function($query)
@@ -103,6 +106,7 @@ Route::group(['before'=>'auth'],function(){
     Route::get('logout', 'UsersController@logout');
     Route::resource('dashboard', "DashboardsController");
     Route::resource('validasis', "ValidasisController");
+    Route::resource('users', "UsersController");
 });
 Route::get('pernyataan',"PendaftaranController@index");
 Route::get('test', 'TestsController@index');
