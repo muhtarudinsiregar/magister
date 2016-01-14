@@ -129,7 +129,7 @@
 						<tbody id="output"></tbody>
 						@foreach ($profesi as $element)
 						<tr id="tr{{$element->id}}">
-							<td>{{$element->id}}</td>
+							<td>{{$element->asosiasi}}</td>
 							<td>{{$element->noAnggota}}</td>
 							<td align="center">
 								<button type="button" id="{{$element->id}}" class="btn btn-danger hapus_btn">
@@ -166,7 +166,7 @@
 						url:"{{ url('profesiSaved') }}",
 						data:formData,
 						success:function(msg){
-							console.log(msg.data);
+							console.log("sukses");
 						}
 					})
 					.done(function(msg){
@@ -175,7 +175,7 @@
 					});
 				});
 			});
-			$(document).on('click','hapus_btn',function(){
+			$(document).on('click','.hapus_btn',function(){
 				var del_id= $(this).attr('id');
 				var $ele = $(this).parent().parent();
 				$.ajax({

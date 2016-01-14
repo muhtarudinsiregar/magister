@@ -109,7 +109,8 @@ class DashboardsController extends \BaseController {
 				'tahun'=>$value->tahun,
 				'semester'=>$value->semester,
 				'gelombang'=>$value->gelombang,
-				'id_pendaftar'=>$value->id_pendaftar
+				'id_pendaftar'=>$value->id_pendaftar,
+				'validasi'=>$value->validasi
 				];
 			}
 			foreach ($a as $key=> $value)
@@ -125,6 +126,7 @@ class DashboardsController extends \BaseController {
 				$data_pendaftaran1[$key]['tahun']= $a[$key]['tahun'];
 				$data_pendaftaran1[$key]['semester']= $a[$key]['semester'];
 				$data_pendaftaran1[$key]['gelombang']= $a[$key]['gelombang'];
+				$data_pendaftaran1[$key]['validasi']= $a[$key]['validasi'];
 			}
 		}
 		return $data_pendaftaran1;

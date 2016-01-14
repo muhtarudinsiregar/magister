@@ -43,6 +43,7 @@
 				<td style="text-align:center">Pekerjaan</td>
 				<td style="text-align:center">Instansi Kerja</td>
 				<td style="text-align:center">Beasiswa</td>
+				<td style="text-align:center">Validasi</td>
 			</tr>
 			<?php $no=1 ?>
 
@@ -73,6 +74,13 @@
 					@endif
 				</td>
 				<td>{{$users[$key]['beasiswa']['beasiswa']}}</td>
+				<td>
+					@if ($users[$key]['validasi'] == 1)
+						Valid
+					@else
+						-
+					@endif
+				</td>
 			</tr>
 			<?php $no++; ?>
 			@endforeach

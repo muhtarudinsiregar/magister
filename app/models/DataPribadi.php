@@ -13,13 +13,13 @@ class DataPribadi extends \Eloquent {
     'no_hp'=>'required|numeric',
     'almtYk'=>'required|string',
     'kotakabYk'=>'required|string',
-    'no_telYk'=>'required|numeric',
+    'no_telYk'=>'numeric',
     'tinggalYk'=>'required|string',
     'almtNyk'=>'required|string',
     'kotakabNyk'=>'required|string',
     'prop'=>'required|string',
     'neg'=>'required|string',
-    'no_telNyk'=>'required|numeric'
+    'no_telNyk'=>'numeric'
     ];
     public static $rules2 = [
     'email'=>'required',
