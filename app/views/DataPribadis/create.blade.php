@@ -122,7 +122,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No. telepon</label>
 				<div class="col-sm-4">
-					<input type="text" name="no_telYk" id="input" class="form-control" required="required" value=" {{ Input::old('no_telYk') }}">
+					<input type="text" name="no_telYk" id="input" class="form-control" value=" {{ Input::old('no_telYk') }}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -168,7 +168,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No. telepon</label>
 				<div class="col-sm-4">
-					<input type="text" name="no_telNyk" id="input" class="form-control" required="required" value="{{ Input::old('no_telNyk') }}">
+					<input type="text" name="no_telNyk" id="input" class="form-control" value="{{ Input::old('no_telNyk') }}">
 				</div>
 			</div>
 			<div class="form-group">

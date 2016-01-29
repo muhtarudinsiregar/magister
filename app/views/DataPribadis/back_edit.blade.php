@@ -112,7 +112,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No. telepon</label>
 				<div class="col-sm-4">
-					<input type="text" name="no_telYk" id="input" class="form-control" required="required" value="{{ $edit->noTelpYK }}">
+					<input type="text" name="no_telYk" id="input" class="form-control" value="{{ $edit->noTelpYK }}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -158,7 +158,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No. telepon</label>
 				<div class="col-sm-4">
-					<input type="text" name="no_telNyk" id="input" class="form-control" required="required" value="{{ $edit->noTelepon }}">
+					<input type="text" name="no_telNyk" id="input" class="form-control"  value="{{ $edit->noTelepon }}">
 				</div>
 			</div>
 			<div class="form-group">

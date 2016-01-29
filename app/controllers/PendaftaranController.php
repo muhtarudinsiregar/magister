@@ -120,6 +120,7 @@ class PendaftaranController extends \BaseController {
 		$data_pribadi = DataPribadi::where('email','=',$email)->first([
 			'id',
 			'nama',
+			'id_beasiswa',
 			'tempatLahir',
 			'tanggalLahir',
 			'noHP',
@@ -134,16 +135,19 @@ class PendaftaranController extends \BaseController {
 			'propinsi',
 			'negara'
 			]);
-
+		// dd($data_pribadi);
 		$pendaftaran = Pendaftaran::where('id_pendaftar','=',$data_pribadi['id'])->first(['no','tahun','semester','gelombang','id_prodi','id_konsentrasi','waktu']);
 		
 		$prodi = Pendaftaran::prodi($pendaftaran['id_prodi']);
 		$konsentrasi = Pendaftaran::konsentrasi($pendaftaran['id_konsentrasi']);
 		// dd($konsentrasi);
+		$beasiswa = DataPribadi::find($data_pribadi['id'])->beasiswa;
+		// dd($beasiswa);
 		// $data_pendaftaran = (array) $pendaftaran;
 		// $data_pri = (array) $data_pribadi;
 		$data = [
 		'nama'=>ucwords(strtolower($data_pribadi['nama'])),
+		'beasiswa'=>$beasiswa->beasiswa,
 		'tempatLahir'=>$data_pribadi['tempatLahir'],
 		'tanggalLahir'=>$data_pribadi['tanggalLahir'],
 		'noTelpYK'=>$data_pribadi['noTelpYK'],
@@ -165,7 +169,7 @@ class PendaftaranController extends \BaseController {
 		'prodi'=>$prodi,
 		'konsentrasi'=>$konsentrasi
 		];
-		// dd($data);
+		// dd($data['beasiswa']);
 
 		//===================generate pdf===============
 
@@ -192,7 +196,7 @@ class PendaftaranController extends \BaseController {
 			$mail->attachData($data1['pdf'],'formulir.pdf',['mime'=>'application/pdf']);
 
 		});
-		Session::forget('mail');
+		// Session::forget('mail');
 		return Redirect::to('konfirmasi');
 		// return View::make('emails.boilerplate');
 	}
