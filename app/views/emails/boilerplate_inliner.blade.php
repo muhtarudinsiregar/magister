@@ -653,7 +653,7 @@ table[class="body"] .left-text-pad {
                                             <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;">
                                                 <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
                                                     <td class="six sub-columns" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; min-width: 0px; width: 50%; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 10px 10px 0px;" align="left" valign="top">
-                                                        {{-- <img src="http://master-fit.uii.ac.id/templates/ja_portfolio/themes/blue-color/images/logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" align="left" /> --}}
+                                                        <img src="http://master-fit.uii.ac.id/wp-content/uploads/2015/12/koplak-300x43.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" align="left" />
                                                     </td>
                                                     <td class="six sub-columns last" style="text-align: right; vertical-align: middle; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; min-width: 0px; width: 50%; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;" align="right" valign="middle">
                                                         <span class="template-label" style="color: #ffffff; font-weight: bold; font-size: 11px;">{{-- BASIC --}}</span>
@@ -808,7 +808,7 @@ table[class="body"] .left-text-pad {
                                 <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
                                     <td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;" align="left" valign="top">
                                         <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;">
-                                            <h5 style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; font-size: 24px; margin: 0; padding: 0;" align="left">
+                                            <h5 style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; font-size: 22px; margin: 0; padding: 0;" align="left">
                                                 Tahap Berikutnya
                                             </h5>
                                             <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
@@ -821,13 +821,9 @@ table[class="body"] .left-text-pad {
                                             </tr>
                                             <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
                                                 <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
-                                                    <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">Pembayaran dapat dilakukan secara langsung atau melalui transfer ke :  </p>
-                                                </td>
-                                            </tr>
-                                            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-                                                <td class="offset-by-one" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0 0 0 50px;" align="left" valign="top">
-                                                    <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">
-                                                        Rekening Pembayaran PPS FTI UII
+                                                    <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">Pembayaran dapat dilakukan secara langsung atau melalui transfer ke :  
+                                                    <br />
+                                                    Rekening Pembayaran PPS FTI UII
                                                     </p>
                                                     <ul type="disc">
                                                         <li>
@@ -857,7 +853,6 @@ table[class="body"] .left-text-pad {
                                                         <li>2 fotokopi ijazah S1/D4 yang telah dilegalisir</li>
                                                         <li>2 fotokopi transkrip S1/D4 yang telah dilegalisir</li>
                                                         <li>Surat pengalaman kerja (khusus bagi pendaftar dengan IPK kurang dari 2,75).</li>
-                                                        <li>Rekomendasi dari pembimbing/pimpinan</li>
                                                         <li>Pas foto berwarna 3x4 cm (2 lembar) dan 4x6 cm (2 lembar)</li>
                                                         <li>Surat keterangan kesehatan dari dokter</li>
                                                         <li>
@@ -879,28 +874,19 @@ table[class="body"] .left-text-pad {
                                             <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
                                                 <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
                                                     <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">
-                                                        <strong>Direktur Program Pascasarjana</strong>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-                                                <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
-                                                    <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">Fakultas Teknologi Industri Universitas Islam Indonesia
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-                                                <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
-                                                    <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">Gedung KH. Mas Mansur, Kampus Terpadu </p>
-                                                </td>
-                                            </tr>
-                                            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-                                                <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
-                                                    <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="left">
-                                                        Jl. Kaliurang KM 14,5 Sleman 55584 Yogyakarta                                             
-                                                    </p>
+                                                    <strong>Direktur Program Pascasarjana</strong>
                                                     <br />
-                                                    Untuk tes seleksi berupa Tes Potensi Akademik dapat dilayani Setiap hari di Jam 09.00 dan 13.00.
+                                                    Fakultas Teknologi Industri Universitas Islam Indonesia
+                                                    <br />
+                                                    Gedung KH. Mas Mansur, Kampus Terpadu
+                                                    <br />
+                                                    Jl. Kaliurang KM 14,5 Sleman 55584 Yogyakarta</p>
+                                                </td>
+                                            </tr>
+                                            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                                                <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="left" valign="top">
+                                                    Untuk tes seleksi berupa Tes Potensi Akademik dapat dilayani <br />
+                                                    setiap hari di Jam 09.00 dan 13.00.
                                                 </td>
                                             </tr>
                                             <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
